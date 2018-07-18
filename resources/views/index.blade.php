@@ -1,4 +1,5 @@
 @extends('master.app')
+@section('title') Data Pegawai @endsection
 @section('content')
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -588,5 +589,3 @@
   </div>
   <!-- /.content-wrapper -->
 @endsection
-</body>
-</html>
