@@ -2,7 +2,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <!-- <a href="/index3" class="brand-link">
-      <img src="AdminLTE/dist/img/logo-artajasa.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+      <img src="/AdminLTE/dist/img/logo-artajasa.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-heavy">Artajasa</span>
     </a> -->
@@ -12,7 +12,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="AdminLTE/dist/img/hendry.JPG" class="img-circle elevation-2" alt="User Image">
+          <img src="/AdminLTE/dist/img/hendry.JPG" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block">Admin</a>
@@ -43,13 +43,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="AdminLTE/pages/charts/chartjs.html" class="nav-link">
+                <a href="/AdminLTE/pages/charts/chartjs.html" class="nav-link">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>List Training</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="AdminLTE/pages/charts/flot.html" class="nav-link">
+                <a href="/AdminLTE/pages/charts/flot.html" class="nav-link">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>Rekapitulasi Training</p>
                 </a>
@@ -66,25 +66,25 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="AdminLTE/pages/charts/chartjs.html" class="nav-link">
+                <a href="/AdminLTE/pages/charts/chartjs.html" class="nav-link">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>Data pegawai</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="AdminLTE/pages/charts/flot.html" class="nav-link">
+                <a href="/AdminLTE/pages/charts/flot.html" class="nav-link">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>Jabatan</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="AdminLTE/pages/charts/inline.html" class="nav-link">
+                <a href="/AdminLTE/pages/charts/inline.html" class="nav-link">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>Direktorat</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="AdminLTE/pages/charts/inline.html" class="nav-link">
+                <a href="/AdminLTE/pages/charts/inline.html" class="nav-link">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>Jabatan</p>
                 </a>
