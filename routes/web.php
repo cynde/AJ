@@ -22,3 +22,19 @@ Route::get('/index2', function () {
 Route::get('/index3', function () {
     return view('index3');
 });
+
+Route::get('/pegawai', function () {
+    return view('pegawai.index');
+});
+
+Route::group(['prefix' => 'pegawai'], function() {
+	Route::get('/', function () {
+	    return view('pegawai.index');
+	});
+	Route::get('tambah', function () {
+	    return view('pegawai.tambah');
+	});
+	Route::get('edit', function () {
+	    return view('pegawai.edit');
+	});
+});
