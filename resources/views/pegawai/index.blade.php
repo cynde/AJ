@@ -2,7 +2,7 @@
 @section('title') Data Pegawai @endsection
 @section('css')
 <!-- DataTables -->
-  <link rel="stylesheet" href="AdminLTE/plugins/datatables/dataTables.bootstrap4.css">
+  <link rel="stylesheet" href="/AdminLTE/plugins/datatables/dataTables.bootstrap4.css">
 @endsection
 @section('content')
   <!-- Content Wrapper. Contains page content -->
@@ -58,9 +58,9 @@
                 <td>Cynthia Dewi</td>
                 <td>ABC</td>
                 <td>DEF</td>
-                <td><button type="button" class="btn btn-block btn-secondary btn-sm">lihat</button></td>
-                <td><button type="button" class="btn btn-block btn-secondary btn-sm">lihat</button></td>
-                <td><a href="#"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
+                <td><button type="button" class="btn btn-block btn-secondary btn-sm" data-toggle="modal" data-target="#kompetensiDepartemen">lihat</button></td>
+                <td><button type="button" class="btn btn-block btn-secondary btn-sm"data-toggle="modal" data-target="#kompetensiJabatan">lihat</button></td>
+                <td><a href="/pegawai/edit"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
                 <td><a href="#"><button type="button" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button></a></td>
               </tr>
               <tr>
@@ -85,19 +85,6 @@
                 <td><a href="#"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
                 <td><a href="#"><button type="button" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button></a></td>
               </tr>
-            <!-- <tfoot style="text-align: center">
-              <tr>
-                <th>No</th>
-                <th>NIK</th>
-                <th>Nama</th>
-                <th>Divisi</th>
-                <th>Departemen</th>
-                <th>Status Kompetensi Departemen</th>
-                <th>Status Kompetensi Jabatan</th>
-                <th></th>
-                <th></th>
-              </tr>
-            </tfoot> -->
           </table>
         </div>
         <!-- /.card-body -->
@@ -106,13 +93,143 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+
+<!-- Modal kompetensi departemen -->
+<div class="modal fade" id="kompetensiDepartemen" tabindex="-1" role="dialog" aria-labelledby="kompetensiDepartemen" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="kompetensiDepartemen">Kompetensi Departemen</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="text-align: center;">
+        <h5>Kompetensi Finance</h5>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Training yang Sudah</th>
+              <th>Training yang Belum</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Lorem ipsum</td>
+              <td>Lorem ipsum</td>
+            </tr>
+            <tr>
+              <td>Lorem ipsum</td>
+              <td>Lorem ipsum</td>
+            </tr>
+            <tr>
+              <td>Lorem ipsum</td>
+              <td>Lorem ipsum</td>
+            </tr>
+          </tbody>
+        </table>
+        <h5>Kompetensi Teknologi</h5>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Training yang Sudah</th>
+              <th>Training yang Belum</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Lorem ipsum</td>
+              <td>Lorem ipsum</td>
+            </tr>
+            <tr>
+              <td>Lorem ipsum</td>
+              <td>Lorem ipsum</td>
+            </tr>
+            <tr>
+              <td>Lorem ipsum</td>
+              <td>Lorem ipsum</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal kompetensi jabatan -->
+<div class="modal fade" id="kompetensiJabatan" tabindex="-1" role="dialog" aria-labelledby="kompetensiJabatan" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="kompetensiJabatan">Kompetensi Jabatan</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="text-align: center;">
+        <h5>Kompetensi Finance</h5>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Training yang Sudah</th>
+              <th>Training yang Belum</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Lorem ipsum</td>
+              <td>Lorem ipsum</td>
+            </tr>
+            <tr>
+              <td>Lorem ipsum</td>
+              <td>Lorem ipsum</td>
+            </tr>
+            <tr>
+              <td>Lorem ipsum</td>
+              <td>Lorem ipsum</td>
+            </tr>
+          </tbody>
+        </table>
+        <h5>Kompetensi Teknologi</h5>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Training yang Sudah</th>
+              <th>Training yang Belum</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Lorem ipsum</td>
+              <td>Lorem ipsum</td>
+            </tr>
+            <tr>
+              <td>Lorem ipsum</td>
+              <td>Lorem ipsum</td>
+            </tr>
+            <tr>
+              <td>Lorem ipsum</td>
+              <td>Lorem ipsum</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 @endsection
 @section('script')
 <!-- jQuery -->
-<script src="AdminLTE/plugins/jquery/jquery.min.js"></script>
+<script src="/AdminLTE/plugins/jquery/jquery.min.js"></script>
 <!-- DataTables -->
-<script src="AdminLTE/plugins/datatables/jquery.dataTables.js"></script>
-<script src="AdminLTE/plugins/datatables/dataTables.bootstrap4.js"></script>
+<script src="/AdminLTE/plugins/datatables/jquery.dataTables.js"></script>
+<script src="/AdminLTE/plugins/datatables/dataTables.bootstrap4.js"></script>
 <script>
   $(function () {
     $("#tabel-pegawai").DataTable();
