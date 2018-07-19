@@ -63,7 +63,7 @@
               </select>
             </div>
             <div class="form-group">
-              <label for="Jabatan_pegawai">Jabatan</label>
+              <label for="jabatan_pegawai">Jabatan</label>
               <select name="jabatan_pegawai" class="form-control select2" style="width: 100%;">
                 <option selected="selected">ABC</option>
                 <option>AAA</option>
