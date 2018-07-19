@@ -41,7 +41,7 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-          <table id="tabel-pegawai" class="table table-bordered table-striped">
+          <table id="rekap-peserta" class="table table-bordered table-striped">
             <thead style="text-align: center">
               <tr>
                 <th width="5%">No</th>
@@ -128,7 +128,7 @@
 <script>
   $(document).ready(function() {
     'use strict';
-    $('#tabel-pegawai').dataTable({
+    $('#rekap-peserta').dataTable({
         "bJQueryUI": true,
         "bStateSave": true,
         "scrollX": true
