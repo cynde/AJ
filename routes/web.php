@@ -38,3 +38,75 @@ Route::group(['prefix' => 'pegawai'], function() {
 	    return view('pegawai.edit');
 	});
 });
+
+Route::group(['prefix' => 'anggaran'], function() {
+	Route::get('/', function () {
+	    return view('anggaran.index');
+	});
+	Route::get('tambah', function () {
+	    return view('anggaran.tambah');
+	});
+	Route::get('edit', function () {
+	    return view('anggaran.edit');
+	});
+});
+
+Route::group(['prefix' => 'penyelenggara'], function() {
+	Route::get('/', function () {
+	    return view('penyelenggara.index');
+	});
+	Route::get('tambah', function () {
+	    return view('penyelenggara.tambah');
+	});
+	Route::get('edit', function () {
+	    return view('penyelenggara.edit');
+	});
+});
+
+Route::group(['prefix' => 'jabatan'], function() {
+	Route::get('/', function () {
+	    return view('jabatan.index');
+	});
+	Route::get('tambah', function () {
+	    return view('jabatan.tambah');
+	});
+	Route::get('edit', function () {
+	    return view('jabatan.edit');
+	});
+});
+
+Route::group(['prefix' => 'direktorat'], function() {
+	Route::get('/', function () {
+	    return view('direktorat.index');
+	});
+	Route::get('tambah', function () {
+	    return view('direktorat.tambah');
+	});
+	Route::get('edit', function () {
+	    return view('direktorat.edit');
+	});
+});
+
+Route::group(['prefix' => 'topik'], function() {
+	Route::get('/', function () {
+	    return view('topik.index');
+	});
+	Route::get('tambah', function () {
+	    return view('topik.tambah');
+	});
+	Route::get('edit', function () {
+	    return view('topik.edit');
+	});
+});
+
+Route::group(['prefix' => 'training'], function() {
+	Route::get('/', function () {
+	    return view('training.index');
+	});
+	Route::get('tambah', function () {
+	    return view('training.tambah');
+	});
+	Route::get('edit', function () {
+	    return view('training.edit');
+	});
+});
