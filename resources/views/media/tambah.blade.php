@@ -1,5 +1,5 @@
 @extends('master.app')
-@section('title') Edit Data Pegawai @endsection
+@section('title') Tambah Data Media @endsection
 @section('css')
 <!-- Select2 -->
 <link rel="stylesheet" href="/AdminLTE/plugins/select2/select2.min.css">
@@ -12,13 +12,13 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Pegawai</h1>
+            <h1 class="m-0 text-dark">Media</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/">Home</a></li>
-              <li class="breadcrumb-item"><a href="/pegawai">Pegawai</a></li>
-              <li class="breadcrumb-item active">Edit Pegawai</li>
+              <li class="breadcrumb-item"><a href="/media">Media</a></li>
+              <li class="breadcrumb-item active">Tambah Media</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -30,45 +30,21 @@
     <section class="content">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Edit Data Pegawai</h3>
+          <h3 class="card-title">Tambah Data Media</h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->
         <form role="form">
           <div class="card-body">
             <div class="form-group">
-              <label for="nik">NIK</label>
-              <input name="nik" type="number" class="form-control" id="nik" placeholder="Masukkan NIK">
+              <label for="nama_media">Nama</label>
+              <input name="nama_media" type="text" class="form-control" id="nama_media" placeholder="Masukkan Nama Media">
             </div>
             <div class="form-group">
-              <label for="nama_pegawai">Nama Pegawai</label>
-              <input name="nama_pegawai" type="text" class="form-control" id="nama_pegawai" placeholder="Masukkan Nama Pegawai">
-            </div>
-            <div class="form-group col-sm-6" style="float: left">
-              <label for="divisi_pegawai">Divisi Pegawai</label>
+              <label for="divisi_pegawai">Kategori Media</label>
               <select class="form-control select2" style="width: 100%;">
-                <option selected="selected">ABC</option>
-                <option>AAA</option>
-                <option>BBB</option>
-                <option>CCC</option>
-              </select>
-            </div>
-            <div class="form-group col-sm-6" style="float: left">
-              <label for="departemen_pegawai">Departemen Pegawai</label>
-              <select name="departemen_pegawai" class="form-control select2" style="width: 100%;">
-                <option selected="selected">ABC</option>
-                <option>AAA</option>
-                <option>BBB</option>
-                <option>CCC</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="jabatan_pegawai">Jabatan</label>
-              <select name="jabatan_pegawai" class="form-control select2" style="width: 100%;">
-                <option selected="selected">ABC</option>
-                <option>AAA</option>
-                <option>BBB</option>
-                <option>CCC</option>
+                <option selected="selected">Inhouse</option>
+                <option>Publik</option>
               </select>
             </div>
           </div>
