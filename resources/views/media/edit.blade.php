@@ -41,7 +41,7 @@
               <input name="nama_media" type="text" class="form-control" id="nama_media" placeholder="Masukkan Nama Media">
             </div>
             <div class="form-group">
-              <label for="divisi_pegawai">Kategori Media</label>
+              <label for="kategori_media">Kategori Media</label>
               <select class="form-control select2" style="width: 100%;">
                 <option selected="selected">Inhouse</option>
                 <option>Publik</option>
