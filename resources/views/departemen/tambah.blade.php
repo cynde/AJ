@@ -38,7 +38,7 @@
           <div class="card-body">
             <div class="form-group">
               <label for="id_departemen">ID</label>
-              <input name="id_departemen" type="text" class="form-control" id="nama_departemen" placeholder="Masukkan ID Departemen">
+              <input name="id_departemen" type="text" class="form-control" id="id_departemen" placeholder="Masukkan ID Departemen">
             </div>
             <div class="form-group">
               <label for="nama_departemen">Nama</label>

@@ -77,11 +77,11 @@
   <!-- /.content-wrapper -->
 
 <!-- Modal lihat kompetensi -->
-<div class="modal fade" id="lihatKompetensi" tabindex="-1" role="dialog" aria-labelledby="kompetensiDepartemen" aria-hidden="true">
+<div class="modal fade" id="lihatKompetensi" tabindex="-1" role="dialog" aria-labelledby="lihatKompetensi" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="kompetensiDepartemen">Lihat Kompetensi</h5>
+        <h5 class="modal-title" id="lihatKompetensi">Lihat Kompetensi</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -129,11 +129,11 @@
 </div>
 
 <!-- Modal tambah kompetensi -->
-<div class="modal fade" id="tambahKompetensi" tabindex="-1" role="dialog" aria-labelledby="kompetensiDepartemen" aria-hidden="true">
+<div class="modal fade" id="tambahKompetensi" tabindex="-1" role="dialog" aria-labelledby="tambahKompetensi" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="kompetensiDepartemen">Tambah Kompetensi</h5>
+        <h5 class="modal-title" id="tambahKompetensi">Tambah Kompetensi</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -174,11 +174,11 @@
 </div>
 
 <!-- Modal edit kompetensi -->
-<div class="modal fade" id="editKompetensi" tabindex="-1" role="dialog" aria-labelledby="kompetensiDepartemen" aria-hidden="true">
+<div class="modal fade" id="editKompetensi" tabindex="-1" role="dialog" aria-labelledby="editKompetensi" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="kompetensiDepartemen">Edit Kompetensi</h5>
+        <h5 class="modal-title" id="editKompetensi">Edit Kompetensi</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
