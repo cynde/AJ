@@ -2,7 +2,7 @@
 @section('title') Data Media @endsection
 @section('css')
 <!-- DataTables -->
-  <link rel="stylesheet" href="AdminLTE/plugins/datatables/dataTables.bootstrap4.css">
+  <link rel="stylesheet" href="/AdminLTE/plugins/datatables/dataTables.bootstrap4.css">
 @endsection
 @section('content')
   <!-- Content Wrapper. Contains page content -->
@@ -82,10 +82,10 @@
 @endsection
 @section('script')
 <!-- jQuery -->
-<script src="AdminLTE/plugins/jquery/jquery.min.js"></script>
+<script src="/AdminLTE/plugins/jquery/jquery.min.js"></script>
 <!-- DataTables -->
-<script src="AdminLTE/plugins/datatables/jquery.dataTables.js"></script>
-<script src="AdminLTE/plugins/datatables/dataTables.bootstrap4.js"></script>
+<script src="/AdminLTE/plugins/datatables/jquery.dataTables.js"></script>
+<script src="/AdminLTE/plugins/datatables/dataTables.bootstrap4.js"></script>
 <script>
   $(function () {
     $("#tabel-media").DataTable();
