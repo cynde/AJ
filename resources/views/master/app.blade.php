@@ -72,6 +72,16 @@
 <script src="/AdminLTE/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/AdminLTE/dist/js/demo.js"></script>
+<script>
+  $('.custom-file-input').on('change',function(){
+    //get the file name
+    var path = $(this).val();
+    var fileName = path.replace(/^.*[\\\/]/, '')
+    //replace the "Choose a file" label
+    console.log(fileName);
+    $(this).next('.custom-file-label').html(fileName);
+  })
+</script>
 @yield('script')
 </div>
 <!-- ./wrapper -->

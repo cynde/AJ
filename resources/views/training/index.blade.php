@@ -2,7 +2,11 @@
 @section('title') List Training @endsection
 @section('css')
 <!-- DataTables -->
-  <link rel="stylesheet" href="AdminLTE/plugins/datatables/dataTables.bootstrap4.css">
+<link rel="stylesheet" href="AdminLTE/plugins/datatables/dataTables.bootstrap4.css">
+<!-- Select2 -->
+<link rel="stylesheet" href="/AdminLTE/plugins/select2/select2.min.css">
+{{-- yadcf --}}
+<link rel="stylesheet" href="/yadcf/jquery.dataTables.yadcf.css">
 @endsection
 @section('content')
   <!-- Content Wrapper. Contains page content -->
@@ -36,8 +40,8 @@
           </h3>
         </div>
         <!-- /.card-header -->
-        <div class="card-body" style="overflow-x: auto">
-          <table id="tabel-pegawai" class="table table-bordered table-striped">
+        <div class="card-body">
+          <table id="tabel-training" class="table table-bordered table-striped">
             <thead style="text-align: center">
               <tr>
                 <th>No</th>
@@ -129,9 +133,58 @@
 <!-- DataTables -->
 <script src="AdminLTE/plugins/datatables/jquery.dataTables.js"></script>
 <script src="AdminLTE/plugins/datatables/dataTables.bootstrap4.js"></script>
+<script src="/yadcf/jquery.dataTables.yadcf.js"></script>
+<!-- Select2 -->
+<script src="/AdminLTE/plugins/select2/select2.full.min.js"></script>
 <script>
   $(function () {
-    $("#tabel-pegawai").DataTable();
+    //Initialize Select2 Elements
+    $('.select2').select2()
+  })
+</script>
+<script>
+  $(document).ready(function() {
+    'use strict';
+    $('#tabel-training').dataTable({
+        "bJQueryUI": true,
+        "bStateSave": true,
+        "scrollX": true
+    }).yadcf([{
+        column_number: 1,
+        filter_type: "range_date",
+        date_format:  'dd-mm-yy'
+    }, {
+        column_number: 2,
+        filter_type: "multi_select",
+        select_type: 'select2'
+    }, {
+        column_number: 3,
+        filter_type: "range_number"
+    }, {
+        column_number: 4,
+        filter_type: "range_number"
+    }, {
+        column_number: 5,
+        filter_type: "range_number"
+    }, {
+        column_number: 6,
+        filter_type: "multi_select",
+        select_type: 'select2'
+    }, {
+        column_number: 7,
+        filter_type: "multi_select",
+        select_type: 'select2'
+    }, {
+        column_number: 8,
+        filter_type: "multi_select",
+        select_type: 'select2'
+    }, {
+        column_number: 9,
+        filter_type: "range_number"
+      }, {
+        column_number: 10,
+        filter_type: "range_number"
+    }]);
   });
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
