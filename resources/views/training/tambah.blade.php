@@ -37,20 +37,22 @@
         <!-- form start -->
         <form role="form">
           <div class="card-body">
-          <div class="form-group">
+            <div class="col-sm-6" style="float:left">
+              <div class="form-group">
+                <label>ID</label>
+                <input name="id_training" type="text" class="form-control" id="id_training" placeholder="Masukkan ID Training">
+              </div>
+            </div>
+            <div class="col-sm-6" style="float:left">
+              <div class="form-group">
                 <label> <i class="fa fa-calendar"></i> Tanggal:</label>
-
-                <div class="input-group">
-                  <div class="input-group-addon">
-                    
-                  </div>
-                  <input type="text" class="form-control pull-right" id="reservation">
-                </div>
+                <input name="tanggal_training" type="date" class="form-control" id="tanggal_training" placeholder="Masukkan Tanggal Training">
                 <!-- /.input group -->
               </div>
+            </div>
             <div class="form-group">
               <label for="nama_training">Judul Training</label>
-              <input name="nama_training" type="number" class="form-control" id="nama_training" placeholder="Masukkan Nama Training">
+              <input name="nama_training" type="text" class="form-control" id="nama_training" placeholder="Masukkan Nama Training">
             </div>
             <div class="bootstrap-timepicker col-sm-6" style="float: left">
                 <div class="form-group">

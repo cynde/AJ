@@ -2,7 +2,11 @@
 @section('title') Data Pegawai @endsection
 @section('css')
 <!-- DataTables -->
-  <link rel="stylesheet" href="/AdminLTE/plugins/datatables/dataTables.bootstrap4.css">
+<link rel="stylesheet" href="/AdminLTE/plugins/datatables/dataTables.bootstrap4.css">
+<!-- Select2 -->
+<link rel="stylesheet" href="/AdminLTE/plugins/select2/select2.min.css">
+{{-- yadcf --}}
+<link rel="stylesheet" href="/yadcf/jquery.dataTables.yadcf.css">
 @endsection
 @section('content')
   <!-- Content Wrapper. Contains page content -->
@@ -230,12 +234,41 @@
 <!-- DataTables -->
 <script src="/AdminLTE/plugins/datatables/jquery.dataTables.js"></script>
 <script src="/AdminLTE/plugins/datatables/dataTables.bootstrap4.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script src="/yadcf/jquery.dataTables.yadcf.js"></script>
+<!-- Select2 -->
+<script src="/AdminLTE/plugins/select2/select2.full.min.js"></script>
 <script>
   $(function () {
-    $("#tabel-pegawai").DataTable();
+    //Initialize Select2 Elements
+    $('.select2').select2()
+  })
+</script>
+<script>
+  $(document).ready(function() {
+    'use strict';
+    $('#tabel-pegawai').dataTable({
+        "bJQueryUI": true,
+        "bStateSave": true,
+        "scrollX": true
+    }).yadcf([{
+        column_number: 1,
+        filter_type: "range_date",
+        date_format:  'dd-mm-yy'
+    }, {
+        column_number: 2,
+        filter_type: "multi_select",
+        select_type: 'select2'
+    }, {
+        column_number: 3,
+        filter_type: "multi_select",
+        select_type: 'select2'
+    }, {
+        column_number: 4,
+        filter_type: "multi_select",
+        select_type: 'select2'
+    }]);
   });
 </script>
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-
 @endsection
 

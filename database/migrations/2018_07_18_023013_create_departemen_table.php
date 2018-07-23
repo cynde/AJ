@@ -17,6 +17,7 @@ class CreateDepartemenTable extends Migration
             $table->string('id_departemen',50)->primary();
             $table->string('nama_departemen',100);
             $table->string('id_divisi',50);
+            $table->timestamps();
         });
     }
 

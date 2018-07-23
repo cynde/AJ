@@ -37,6 +37,10 @@
         <form role="form">
           <div class="card-body">
             <div class="form-group">
+              <label for="id_topik">ID Topik</label>
+              <input name="id_topik" type="text" class="form-control" id="id_topik" placeholder="Masukkan ID Topik">
+            </div>
+            <div class="form-group">
               <label for="nama_topik">Nama Topik</label>
               <input name="nama_topik" type="text" class="form-control" id="nama_topik" placeholder="Masukkan Nama Topik">
             </div>
