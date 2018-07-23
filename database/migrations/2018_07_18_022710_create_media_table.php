@@ -17,6 +17,7 @@ class CreateMediaTable extends Migration
             $table->increments('id_media');
             $table->string('nama_media',10);
             $table->string('kategori_media',7);
+            $table->timestamps();
         });
     }
 

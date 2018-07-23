@@ -14,8 +14,10 @@ class CreateTopikTable extends Migration
     public function up()
     {
         Schema::create('topik', function (Blueprint $table) {
-            $table->increments('id_topik');
+            $table->char('id_topik',1);
+            $table->primary('id_topik');
             $table->string('nama_topik',100);
+            $table->timestamps();
         });
     }
 

@@ -16,6 +16,7 @@ class CreatePenyelenggaraTable extends Migration
         Schema::create('penyelenggara', function (Blueprint $table) {
             $table->increments('id_penyelenggara');
             $table->string('nama_penyelenggara',100);
+            $table->timestamps();
         });
     }
 

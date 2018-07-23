@@ -16,6 +16,7 @@ class CreateDirektoratTable extends Migration
         Schema::create('direktorat', function (Blueprint $table) {
             $table->increments('id_direktorat');
             $table->string('nama_direktorat',50);
+            $table->timestamps();
         });
     }
 
