@@ -1,5 +1,5 @@
 @extends('master.app')
-@section('title') Rekapan Training@endsection
+@section('title') Rekapitulasi Training@endsection
 @section('css')
 <!-- DataTables -->
 <link rel="stylesheet" href="/AdminLTE/plugins/datatables/dataTables.bootstrap4.css">
@@ -16,12 +16,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Rekapan Training</h1>
+            <h1 class="m-0 text-dark">Rekapitulasi Training</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/">Home</a></li>
-              <li class="breadcrumb-item active">Rekapan Training</li>
+              <li class="breadcrumb-item active">Rekapitulasi Training</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -33,9 +33,9 @@
     <section class="content">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Rekapan Training
+          <h3 class="card-title">Rekapitulasi Training
             <div style="float: right;">
-              <a href="rekapanTraining/tambah"><button type="button" class="btn btn-block btn-primary">+ Tambah</button></a>
+              <a href="RekapitulasiTraining/tambah"><button type="button" class="btn btn-block btn-primary">+ Tambah</button></a>
             </div>
           </h3>
         </div>
@@ -94,7 +94,7 @@
                 <td></td>
                 <td>Finance</td>
                 <td></td>
-                <td><a href="/rekapanTraining/edit"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
+                <td><a href="/RekapitulasiTraining/edit"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
                 <td><a href="#"><button type="button" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button></a></td>
               </tr>
           </table>
