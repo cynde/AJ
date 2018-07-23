@@ -17,6 +17,8 @@ class CreateDivisiTable extends Migration
         Schema::create('divisi', function (Blueprint $table) {
             $table->string('id_divisi',50)->primary();
             $table->string('nama_divisi',100);
+            // $table->string('id_direktorat',5);
+            $table->timestamps();
         });
     }
 

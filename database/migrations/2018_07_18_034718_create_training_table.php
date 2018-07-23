@@ -14,7 +14,8 @@ class CreateTrainingTable extends Migration
     public function up()
     {
         Schema::create('training', function (Blueprint $table) {
-            $table->increments('id_training');
+            $table->char('id_training',2);
+            $table->primary('id_training');
             $table->string('nama_training',20);
             $table->date('tanggal_training');
             $table->time('time_start');
@@ -22,6 +23,7 @@ class CreateTrainingTable extends Migration
             $table->integer('jumlah_jam_training');
             $table->integer('harga_training');
             $table->integer('invoice_training');
+            $table->timestamps();
         });
     }
 
