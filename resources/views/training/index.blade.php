@@ -45,6 +45,7 @@
             <thead style="text-align: center">
               <tr>
                 <th>No</th>
+                <th>ID</th>
                 <th width="10%">Tanggal</th>
                 <th>Judul Training</th>
                 <th width="7%">Jam Mulai</th>
@@ -62,6 +63,7 @@
             <tbody>
               <tr>
                 <td>1</td>
+                <td>01</td>
                 <td>09-01-2018</td>
                 <td>Customer Engagement</td>
                 <td>10.00</td>
@@ -76,7 +78,8 @@
                 <td><a href="#"><button type="button" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button></a></td>
               </tr>
               <tr>
-                <td>1</td>
+                <td>2</td>
+                <td>02</td>
                 <td>09-02-2018</td>
                 <td>Customer Engagement</td>
                 <td>10.00</td>
@@ -91,7 +94,8 @@
                 <td><a href="#"><button type="button" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button></a></td>
               </tr>
               <tr>
-                <td>1</td>
+                <td>3</td>
+                <td>03</td>
                 <td>09-03-2018</td>
                 <td>Customer Engagement</td>
                 <td>10.00</td>
@@ -150,16 +154,13 @@
         "bStateSave": true,
         "scrollX": true
     }).yadcf([{
-        column_number: 1,
+        column_number: 2,
         filter_type: "range_date",
         date_format:  'dd-mm-yy'
     }, {
-        column_number: 2,
+        column_number: 3,
         filter_type: "multi_select",
         select_type: 'select2'
-    }, {
-        column_number: 3,
-        filter_type: "range_number"
     }, {
         column_number: 4,
         filter_type: "range_number"
@@ -168,8 +169,7 @@
         filter_type: "range_number"
     }, {
         column_number: 6,
-        filter_type: "multi_select",
-        select_type: 'select2'
+        filter_type: "range_number"
     }, {
         column_number: 7,
         filter_type: "multi_select",
@@ -180,9 +180,13 @@
         select_type: 'select2'
     }, {
         column_number: 9,
+        filter_type: "multi_select",
+        select_type: 'select2'
+    }, {
+        column_number: 10,
         filter_type: "range_number"
       }, {
-        column_number: 10,
+        column_number: 11,
         filter_type: "range_number"
     }]);
   });
