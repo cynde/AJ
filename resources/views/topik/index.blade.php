@@ -39,6 +39,7 @@
             <thead style="text-align: center">
               <tr>
                 <th width="5%">No</th>
+                <th>ID</th>
                 <th>Topik</th>
                 <th width="5%"></th>
                 <th width="5%"></th>
@@ -47,24 +48,28 @@
             <tbody>
               <tr>
                 <td>1</td>
+                <td>K</td>
                 <td>AKRAB</td>
                 <td><a href="#"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
                 <td><a href="#"><button type="button" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button></a></td>
               </tr>
               <tr>
                 <td>2</td>
+                <td>I</td>
                 <td>AJIB</td>
                 <td><a href="#"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
                 <td><a href="#"><button type="button" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button></a></td>
               </tr>
               <tr>
                 <td>3</td>
+                <td>S</td>
                 <td>ASIK</td>
                 <td><a href="#"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
                 <td><a href="#"><button type="button" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button></a></td>
               </tr>
               <tr>
                 <td>4</td>
+                <td>P</td>
                 <td>APIK</td>
                 <td><a href="#"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
                 <td><a href="#"><button type="button" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button></a></td>
