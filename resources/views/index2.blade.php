@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+\<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -590,7 +590,7 @@
 
                     <div class="chart">
                       <!-- Sales Chart Canvas -->
-                      <canvas id="salesChart" height="180" style="height: 180px;"></canvas>
+                      <canvas id="salesChart" style="height: 180px; width: 703px;" width="703" height="180"></canvas>
                     </div>
                     <!-- /.chart-responsive -->
                   </div>
