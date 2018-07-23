@@ -23,9 +23,6 @@
   <link rel="stylesheet" href="/AdminLTE/plugins/datepicker/datepicker3.css">
   <!-- Daterange picker -->
   <link rel="stylesheet" href="/AdminLTE/plugins/daterangepicker/daterangepicker-bs3.css">
-  <!-- bootstrap wysihtml5 - text editor -->
-  <link rel="stylesheet" href="/AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
-  <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   @yield('css')
@@ -36,6 +33,7 @@
   @include('include.sidebar')
   @yield('content')
   @include('include.footer')
+</div>
     <!-- jQuery -->
 <script src="/AdminLTE/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
@@ -62,8 +60,6 @@
 <script src="/AdminLTE/plugins/daterangepicker/daterangepicker.js"></script>
 <!-- datepicker -->
 <script src="/AdminLTE/plugins/datepicker/bootstrap-datepicker.js"></script>
-<!-- Bootstrap WYSIHTML5 -->
-<script src="/AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <!-- Slimscroll -->
 <script src="/AdminLTE/plugins/slimScroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
@@ -85,7 +81,6 @@
   })
 </script>
 @yield('script')
-</div>
 <!-- ./wrapper -->
 
 </body>
