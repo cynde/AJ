@@ -34,15 +34,16 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form role="form">
+        <form role="form" action="store" method="POST">
+          {{csrf_field()}}
           <div class="card-body">
             <div class="form-group">
               <label for="tahun_anggaran">Tahun</label>
-              <input name="tahun_anggaran" type="number" class="form-control" id="tahun_anggaran" placeholder="Masukkan Tahun">
+              <input name="tahun_anggaran" type="number" class="form-control" id="tahun_anggaran" placeholder="Masukkan Tahun Anggaran">
             </div>
             <div class="form-group">
               <label for="jumlah_anggaran">Jumlah Anggaran</label>
-              <input name="jumlah_anggaran" type="text" class="form-control" id="jumlah_anggaran" placeholder="Masukkan Jumlah Anggaran">
+              <input name="jumlah_anggaran" type="number" class="form-control" id="jumlah_anggaran" placeholder="Masukkan Jumlah Anggaran">
             </div>
 
           <div class="card-footer">

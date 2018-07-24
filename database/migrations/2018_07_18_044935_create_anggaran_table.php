@@ -14,8 +14,8 @@ class CreateAnggaranTable extends Migration
     public function up()
     {
         Schema::create('anggaran', function (Blueprint $table) {
-            $table->char('id_anggaran',2)->primary();
-            $table->char('tahun_anggaran',4);
+            $table->increments('id_anggaran');
+            $table->integer('tahun_anggaran')->unique();
             $table->integer('jumlah_anggaran');
             $table->timestamps();
         });

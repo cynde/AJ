@@ -35,6 +35,7 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
+          @if($all->count())
           <table id="tabel-anggaran" class="table table-bordered table-striped">
             <thead style="text-align: center">
               <tr>
@@ -46,27 +47,21 @@
               </tr>
             </thead>
             <tbody>
+              @foreach($all as $a)
               <tr>
-                <td>1</td>
-                <td>2017</td>
-                <td>Rp.1.234.567.890</td>
-                <td><a href="#"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
-                <td><a href="#"><button type="button" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button></a></td>
+                <td>{{$loop->iteration}}</td>
+                <td>{{$a->tahun_anggaran}}</td>
+                <td>Rp {{number_format($a->jumlah_anggaran,2)}}</td>
+                <td><a href="anggaran/edit/{{$a->id_anggaran}}"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
+                  <td>
+                    <form action="anggaran/delete/{{$a->id_anggaran}}" method="post">
+                      {{csrf_field()}}
+                      <button type="submit" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button>
+                    </form>
+                  </td>
+                </form>
               </tr>
-              <tr>
-                <td>2</td>
-                <td>2018</td>
-                <td>Rp.1.234.567.890</td>
-                <td><a href="#"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
-                <td><a href="#"><button type="button" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button></a></td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>2019</td>
-                <td>Rp.1.234.567.890</td>
-                <td><a href="#"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
-                <td><a href="#"><button type="button" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button></a></td>
-              </tr>
+              @endforeach
             <!-- <tfoot style="text-align: center">
               <tr>
                 <th>No</th>
@@ -77,6 +72,11 @@
               </tr>
             </tfoot> -->
           </table>
+          @else
+          <div class="alert alert-warning">
+            <i class="fa fa-exclamation-triangle"></i> Tidak ada data.
+          </div>
+          @endif
         </div>
         <!-- /.card-body -->
       </div>
