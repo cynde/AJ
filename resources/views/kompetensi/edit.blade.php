@@ -34,15 +34,25 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form role="form">
+        @if ($errors->any())
+          <div class="alert alert-danger">
+            <ul>
+              @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+        @endif
+        <form role="form" action="../update/{{$komp->id_kompetensi}}" method="post">
+          {{csrf_field()}}
           <div class="card-body">
             <div class="form-group">
               <label for="id_kompetensi">ID</label>
-              <input name="id_kompetensi" type="text" class="form-control" id="id_kompetensi" placeholder="Masukkan ID Kompetensi">
+              <input name="id_kompetensi" type="text" class="form-control" id="id_kompetensi" value="{{$komp->id_kompetensi}}">
             </div>
             <div class="form-group">
               <label for="nama_kompetensi">Nama</label>
-              <input name="nama_kompetensi" type="text" class="form-control" id="nama_kompetensi" placeholder="Masukkan Nama Kompetensi">
+              <input name="nama_kompetensi" type="text" class="form-control" id="nama_kompetensi" value="{{$komp->nama_kompetensi}}">
             </div>
           </div>
           <!-- /.card-body -->

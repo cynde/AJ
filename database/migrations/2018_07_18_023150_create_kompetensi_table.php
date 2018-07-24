@@ -14,7 +14,7 @@ class CreateKompetensiTable extends Migration
     public function up()
     {
         Schema::create('kompetensi', function (Blueprint $table) {
-            $table->char('id_kompetensi',2)->primary();
+            $table->integer('id_kompetensi')->primary();
             $table->string('nama_kompetensi',100);
             $table->timestamps();
         });
