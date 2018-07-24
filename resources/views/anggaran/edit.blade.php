@@ -34,17 +34,17 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form role="form">
+        <form role="form" action="../update/{{$ang->id_anggaran}}" method="post">
+          {{csrf_field()}}
           <div class="card-body">
             <div class="form-group">
               <label for="tahun_anggaran">Tahun</label>
-              <input name="tahun_anggaran" type="number" class="form-control" id="tahun_anggaran" placeholder="Tahun">
+              <input name="tahun_anggaran" type="number" class="form-control" id="tahun_anggaran" placeholder="Tahun" value="{{$ang->tahun_anggaran}}">
             </div>
             <div class="form-group">
               <label for="jumlah_anggaran">Jumlah Anggaran</label>
-              <input name="jumlah_anggaran" type="text" class="form-control" id="jumlah_anggaran" placeholder="Masukkan Jumlah Anggaran">
+              <input name="jumlah_anggaran" type="number" class="form-control" id="jumlah_anggaran" placeholder="Masukkan Jumlah Anggaran" value="{{$ang->jumlah_anggaran}}">
             </div>
-
           <div class="card-footer">
             <button type="submit" class="btn btn-primary">Submit</button>
           </div>
