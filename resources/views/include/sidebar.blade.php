@@ -25,7 +25,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
+            <a href="/" class="nav-link {{ Request::is('/') ? 'active' : '' }}">
               <i class="nav-icon fa fa-dashboard"></i>
               <p>
                 Dashboard
@@ -33,9 +33,9 @@
               </p>
             </a>
           </li>
-         <li class="nav-item has-treeview">
+          <li class="nav-item has-treeview" style="display: {{ Request::is('training') ? 'block' : Request::is('rekapitulasiTraining') ? 'block' : 'none'}}">
             <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-tree"></i>
+              <i class="nav-icon fa fa-id-badge"></i>
               <p>
                 Training
                 <i class="right fa fa-angle-left"></i>
@@ -43,22 +43,22 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/AdminLTE/pages/charts/chartjs.html" class="nav-link">
+                <a href="training" class="nav-link {{ Request::is('training') ? 'active' : '' }}">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>List Training</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/AdminLTE/pages/charts/flot.html" class="nav-link">
+                <a href="rekapitulasiTraining" class="nav-link {{ Request::is('rekapitulasiTraining') ? 'active' : '' }}">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>Rekapitulasi Training</p>
                 </a>
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item has-treeview" style="display: {{ Request::is('pegawai') ? 'block' : Request::is('jabatan') ? 'block' : Request::is('divisi') ? 'block' : Request::is('departemen') ? 'block' : 'none'}}">
             <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-paper-plane"></i>
+              <i class="nav-icon fa fa-users"></i>
               <p>
                 Kepegawaian
                 <i class="right fa fa-angle-left"></i>
@@ -66,33 +66,39 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/AdminLTE/pages/charts/chartjs.html" class="nav-link">
+                <a href="/pegawai" class="nav-link {{ Request::is('pegawai') ? 'active' : '' }}">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>Data pegawai</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/AdminLTE/pages/charts/flot.html" class="nav-link">
+                <a href="/jabatan" class="nav-link {{ Request::is('jabatan') ? 'active' : '' }}">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>Jabatan</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/AdminLTE/pages/charts/inline.html" class="nav-link">
+                <a href="/direktorat" class="nav-link {{ Request::is('direktorat') ? 'active' : '' }}">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>Direktorat</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="/AdminLTE/pages/charts/inline.html" class="nav-link">
+              <li class="nav-item {{ Request::is('divisi') ? 'active' : '' }}">
+                <a href="/divisi" class="nav-link {{ Request::is('divisi') ? 'active' : '' }}">
                   <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Jabatan</p>
+                  <p>Divisi</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/departemen" class="nav-link {{ Request::is('departemen') ? 'active' : '' }}">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>Departemen</p>
                 </a>
               </li>
             </ul>
           </li>
-           <li class="nav-item">
-            <a href="#" class="nav-link">
+          <li class="nav-item">
+            <a href="/media" class="nav-link {{ Request::is('media') ? 'active' : '' }}">
               <i class="nav-icon fa fa-pie-chart"></i>
               <p>
                 Media
@@ -100,7 +106,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="/topik" class="nav-link {{ Request::is('topik') ? 'active' : '' }}">
               <i class="nav-icon fa fa-empire"></i>
               <p>
                 Topik
@@ -108,15 +114,15 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-newspaper-o"></i>
+            <a href="/penyelenggara" class="nav-link {{ Request::is('penyelenggara') ? 'active' : '' }}">
+              <i class="nav-icon fa fa-institution"></i>
               <p>
                 Penyelenggara
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="/anggaran" class="nav-link {{ Request::is('anggaran') ? 'active' : '' }}">
               <i class="nav-icon fa fa-money"></i>
               <p>
                 Anggaran
@@ -124,21 +130,22 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-table"></i>
+            <a href="#" class="nav-link {{ Request::is('rekapBiaya') ? 'active' : '' }}">
+              <i class="nav-icon fa fa-book"></i>
               <p>
                 Rekap Biaya
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="fa fa-bus nav-icon"></i>
+            <a href="/kompetensi" class="nav-link {{ Request::is('kompetensi') ? 'active' : '' }}">
+              <i class="fa fa-star nav-icon"></i>
               <p>
                 Kompetensi
               </p>
             </a>
           </li>
+        </ul>
       </nav>
       <!-- /.sidebar-menu -->
     </div>
