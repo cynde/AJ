@@ -78,7 +78,7 @@
             <div class="box-header with-border">
               <div class="card card-danger card-outline">
                 <div class="card-header">
-                  <h3 class="card-title">Donut Chart</h3>
+                  <h3 class="card-title">Jumlah Jam</h3>
 
                   <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -101,7 +101,7 @@
             <div class="box-header with-border">
               <div class="card card-danger card-outline">
                 <div class="card-header">
-                  <h3 class="card-title">Donut Chart</h3>
+                  <h3 class="card-title">Jumlah Kegiatan</h3>
 
                   <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -140,7 +140,7 @@
           <!-- BAR CHART -->
           <div class="card card-success card-outline">
             <div class="card-header">
-              <h3 class="card-title">Bar Chart</h3>
+              <h3 class="card-title">Jumlah Pegawai Berpartisipasi</h3>
 
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -241,7 +241,7 @@
           <!-- DONUT CHART -->
           <div class="card card-danger card-outline">
             <div class="card-header">
-              <h3 class="card-title">Donut Chart</h3>
+              <h3 class="card-title">Jumlah Peserta</h3>
 
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fa fa-minus"></i>
