@@ -7,6 +7,9 @@
 <link rel="stylesheet" href="/AdminLTE/plugins/select2/select2.min.css">
 {{-- yadcf --}}
 <link rel="stylesheet" href="/yadcf/jquery.dataTables.yadcf.css">
+{{-- export --}}
+<link rel="stylesheet" href="/css/buttons.dataTables.min.css">
+
 @endsection
 @section('content')
   <!-- Content Wrapper. Contains page content -->
@@ -34,9 +37,6 @@
       <div class="card">
         <div class="card-header">
           <h3 class="card-title">Data Rekap Biaya
-            <div style="float: right;">
-              <button type="button" class="btn btn-block btn-success"><span class="fa fa-file-excel-o"></span> Export to Excel</button>
-            </div>
           </h3>
         </div>
         <!-- /.card-header -->
@@ -119,6 +119,11 @@
 <script src="/yadcf/jquery.dataTables.yadcf.js"></script>
 <!-- Select2 -->
 <script src="/AdminLTE/plugins/select2/select2.full.min.js"></script>
+{{-- export table --}}
+<script src="/js/dataTables.buttons.min.js"></script>
+<script src="/js/jszip.min.js"></script>
+<script src="/js/buttons.html5.min.js"></script>
+<script src="/js/vfs_fonts.js"></script>
 <script>
   $(function () {
     //Initialize Select2 Elements
@@ -131,7 +136,10 @@
     $('#rekap-biaya').dataTable({
         "bJQueryUI": true,
         "bStateSave": true,
-        "scrollX": true
+        "scrollX": true,
+        dom: 'Bfrtip',
+        buttons: [
+            'excelHtml5']
     }).yadcf([{
         column_number: 1,
         filter_type: "multi_select",

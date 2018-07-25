@@ -7,6 +7,9 @@
 <link rel="stylesheet" href="/AdminLTE/plugins/select2/select2.min.css">
 {{-- yadcf --}}
 <link rel="stylesheet" href="/yadcf/jquery.dataTables.yadcf.css">
+{{-- export --}}
+<link rel="stylesheet" href="/css/buttons.dataTables.min.css">
+
 @endsection
 @section('content')
   <!-- Content Wrapper. Contains page content -->
@@ -98,6 +101,9 @@
                 <td><a href="#"><button type="button" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button></a></td>
               </tr>
           </table>
+          <div style="float: right; margin-top: 20px">
+            <a href="/rekapPeserta"><button type="button" class="btn btn-block btn-success btn-outline"><span class="fa fa-book"></span> Buat Rekap Peserta</button></a>
+          </div>
         </div>
         <!-- /.card-body -->
       </div>
@@ -114,9 +120,13 @@
 <script src="/AdminLTE/plugins/datatables/jquery.dataTables.js"></script>
 <script src="/AdminLTE/plugins/datatables/dataTables.bootstrap4.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-<script src="/yadcf/jquery.dataTables.yadcf.js"></script>
 <!-- Select2 -->
 <script src="/AdminLTE/plugins/select2/select2.full.min.js"></script>
+{{-- export table --}}
+<script src="/js/dataTables.buttons.min.js"></script>
+<script src="/js/jszip.min.js"></script>
+<script src="/js/buttons.html5.min.js"></script>
+<script src="/js/vfs_fonts.js"></script>
 <script>
   $(function () {
     //Initialize Select2 Elements
@@ -125,14 +135,17 @@
 </script>
 <script>
   $(document).ready(function() {
-    $('#tabel-rekap-training').dataTable({
+    $('#tabel-rekap-training').DataTable({
         "bJQueryUI": true,
         "bStateSave": true,
         "scrollX": true,
+        dom: 'Bfrtip',
+        buttons: [
+            'excelHtml5'],
         fixedColumns: {
           leftColumns: 5
         }
-    })
+    });
   });
 </script>
 @endsection
