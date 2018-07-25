@@ -39,35 +39,43 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
+          @if($all->count())
           <table id="tabel-departemen" class="table table-bordered table-striped">
             <thead style="text-align: center">
               <tr>
                 <th width="5%">No</th>
                 <th>ID</th>
                 <th>Nama</th>
+                <th>ID Divisi</th>
                 <th>Kompetensi</th>
                 <th width="5%"></th>
                 <th width="5%"></th>
               </tr>
             </thead>
             <tbody>
+              @foreach($all as $a)
               <tr>
-                <td>1</td>
-                <td>ACB1DEPT</td>
-                <td>Acquiring Business I Department</td>
-                <td><button type="button" class="btn btn-block btn-secondary btn-sm"data-toggle="modal" data-target="#lihatKompetensi">lihat</button></td>
-                <td><a href="/departemen/edit"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
-                <td><a href="#"><button type="button" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button></a></td>
+                <td>{{$loop->iteration}}</td>
+                <td>{{$a->id_departemen}}</td>
+                <td>{{$a->nama_departemen}}</td>
+                <td>{{$a->id_divisi}}</td>
+                <td><button type="button" class="btn btn-block btn-secondary btn-sm" data-toggle="modal" data-target="#lihatKompetensi">lihat</button></td>
+                <td><a href="departemen/edit/{{$a->id_departemen}}"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
+                <td>
+                  <form action="departemen/delete/{{$a->id_departemen}}" method="post">
+                    {{csrf_field()}}
+                    <button type="submit" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button>
+                  </form>
+                </td>
               </tr>
-              <tr>
-                <td>2</td>
-                <td>ACB2DEPT</td>
-                <td>Acquiring Business II Department</td>
-                <td><button type="button" class="btn btn-block btn-secondary btn-sm"data-toggle="modal" data-target="#lihatKompetensi">lihat</button></td>
-                <td><a href="/departemen/edit"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
-                <td><a href="#"><button type="button" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button></a></td>
-              </tr>
+              @endforeach
+            </tbody>
           </table>
+          @else
+          <div class="alert alert-warning">
+            <i class="fa fa-exclamation-triangle"></i> Tidak ada data.
+          </div>
+          @endif
         </div>
         <!-- /.card-body -->
       </div>
@@ -107,14 +115,6 @@
               <td>Manajemen</td>
               <td>2</td>
               <td>Finance</td>
-              <td><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit" data-toggle="modal" data-target="#editKompetensi"></span></button></td>
-              <td><a href="#"><button type="button" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button></a></td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Finance</td>
-              <td>1</td>
-              <td>-</td>
               <td><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit" data-toggle="modal" data-target="#editKompetensi"></span></button></td>
               <td><a href="#"><button type="button" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button></a></td>
             </tr>

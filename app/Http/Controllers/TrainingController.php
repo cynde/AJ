@@ -97,7 +97,6 @@ class TrainingController extends Controller
      */
     public function edit($id)
     {
-        $train = Training::findorfail($id);
         $train = Training::leftJoin('media', 'training.id_media', '=', 'media.id_media')
                         ->leftJoin('topik', 'training.id_topik', '=', 'topik.id_topik')
                         ->leftJoin('penyelenggara', 'training.id_penyelenggara', '=', 'penyelenggara.id_penyelenggara')
