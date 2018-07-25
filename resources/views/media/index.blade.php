@@ -37,6 +37,7 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
+        @if($all->count())
           <table id="tabel-media" class="table table-bordered table-striped">
             <thead style="text-align: center">
               <tr>
@@ -48,28 +49,22 @@
               </tr>
             </thead>
             <tbody>
+            @foreach($all as $a)
               <tr>
-                <td>1</td>
-                <td>Giat</td>
-                <td>Publik</td>
-                <td><a href="/media/edit"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
-                <td><a href="#"><button type="button" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button></a></td>
+                <td>{{$loop->iteration}}</td>
+                <td>{{$a->nama_media}}</td>
+                <td>{{$a->kategori_media}}</td>
+                <td><a href="/media/edit/{{$a->id_media}}"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
+                <td><form action="/media/delete/{{$a->id_media}}" method="POST">
+                            {{csrf_field()}}
+                            <button type="submit" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button>
+                    </form></td>
               </tr>
-              <tr>
-                <td>2</td>
-                <td>Giat</td>
-                <td>Inhouse</td>
-                <td><a href="/media/edit"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
-                <td><a href="#"><button type="button" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button></a></td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Juara</td>
-                <td>Inhouse</td>
-                <td><a href="/media/edit"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
-                <td><a href="#"><button type="button" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button></a></td>
-              </tr>
+              @endforeach
           </table>
+          @else
+            <p>Tidak ada data</p>
+          @endif
         </div>
         <!-- /.card-body -->
       </div>

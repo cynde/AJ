@@ -41,14 +41,15 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
+        @if($all->count())
           <table id="tabel-pegawai" class="table table-bordered table-striped">
             <thead style="text-align: center">
               <tr>
                 <th>No</th>
                 <th width="10%">NIK</th>
                 <th width="35%">Nama</th>
-                <th>Divisi</th>
                 <th>Departemen</th>
+                <th>Jabatan</th>
                 <th width="12%">Status Kompetensi Departemen</th>
                 <th width="12%">Status Kompetensi Jabatan</th>
                 <th width="5%"></th>
@@ -56,40 +57,26 @@
               </tr>
             </thead>
             <tbody>
+            @foreach($all as $a)
               <tr>
-                <td>1</td>
-                <td>12345</td>
-                <td>Cynthia Dewi</td>
-                <td>ABC</td>
-                <td>DEF</td>
+                <td>{{$loop->iteration}}</td>
+                <td>{{$a->nik_pegawai}}</td>
+                <td>{{$a->nama_pegawai}}</td>
+                <td>{{$a->nama_departemen}}</td>
+                <td>{{$a->nama_jabatan}}</td>
                 <td><button type="button" class="btn btn-block btn-secondary btn-sm" data-toggle="modal" data-target="#kompetensiDepartemen">lihat</button></td>
                 <td><button type="button" class="btn btn-block btn-secondary btn-sm"data-toggle="modal" data-target="#kompetensiJabatan">lihat</button></td>
-                <td><a href="/pegawai/edit"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
-                <td><a href="#"><button type="button" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button></a></td>
+                <td><a href="/pegawai/edit/{{$a->id_pegawai}}"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
+                <td><form action="/pegawai/delete/{{$a->id_pegawai}}" method="POST">
+                            {{csrf_field()}}
+                            <button type="submit" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button>
+                    </form></td>
               </tr>
-              <tr>
-                <td>1</td>
-                <td>12345</td>
-                <td>Cynthia Dewi</td>
-                <td>ABC</td>
-                <td>DEF</td>
-                <td><button type="button" class="btn btn-block btn-secondary btn-sm">lihat</button></td>
-                <td><button type="button" class="btn btn-block btn-secondary btn-sm">lihat</button></td>
-                <td><a href="#"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
-                <td><a href="#"><button type="button" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button></a></td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>12345</td>
-                <td>Cynthia Dewi</td>
-                <td>ABC</td>
-                <td>DEF</td>
-                <td><button type="button" class="btn btn-block btn-secondary btn-sm">lihat</button></td>
-                <td><button type="button" class="btn btn-block btn-secondary btn-sm">lihat</button></td>
-                <td><a href="#"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
-                <td><a href="#"><button type="button" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button></a></td>
-              </tr>
+              @endforeach
           </table>
+          @else
+            <p>Tidak ada data</p>
+          @endif
         </div>
         <!-- /.card-body -->
       </div>

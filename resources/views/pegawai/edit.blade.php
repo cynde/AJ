@@ -34,19 +34,29 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form role="form">
+        @if ($errors->any())
+          <div class="alert alert-danger">
+            <ul>
+              @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+        @endif
+        <form role="form" action="../update/{{$r->nik_pegawai}}" method="post">
+          {{csrf_field()}}
           <div class="card-body">
             <div class="form-group">
-              <label for="nik">NIK</label>
-              <input name="nik" type="number" class="form-control" id="nik" placeholder="Masukkan NIK">
+              <label for="nik_pegawai">NIK Pegawai</label>
+              <input name="nik_pegawai" type="number" class="form-control" id="nik_pegawai" value="{{$r->nik_pegawai}}" required>
             </div>
             <div class="form-group">
               <label for="nama_pegawai">Nama Pegawai</label>
-              <input name="nama_pegawai" type="text" class="form-control" id="nama_pegawai" placeholder="Masukkan Nama Pegawai">
+              <input name="nama_pegawai" type="text" class="form-control" id="nama_pegawai" value="{{$r->nama_pegawai}}" required>
             </div>
             <div class="form-group col-sm-6" style="float: left">
               <label for="divisi_pegawai">Divisi Pegawai</label>
-              <select class="form-control select2" style="width: 100%;">
+              <select class="form-control select2" style="width: 100%;" required>
                 <option selected="selected">ABC</option>
                 <option>AAA</option>
                 <option>BBB</option>
@@ -55,7 +65,7 @@
             </div>
             <div class="form-group col-sm-6" style="float: left">
               <label for="departemen_pegawai">Departemen Pegawai</label>
-              <select name="departemen_pegawai" class="form-control select2" style="width: 100%;">
+              <select name="departemen_pegawai" class="form-control select2" style="width: 100%;" required>
                 <option selected="selected">ABC</option>
                 <option>AAA</option>
                 <option>BBB</option>
@@ -64,7 +74,7 @@
             </div>
             <div class="form-group">
               <label for="jabatan_pegawai">Jabatan</label>
-              <select name="jabatan_pegawai" class="form-control select2" style="width: 100%;">
+              <select name="jabatan_pegawai" class="form-control select2" style="width: 100%;" required>
                 <option selected="selected">ABC</option>
                 <option>AAA</option>
                 <option>BBB</option>
