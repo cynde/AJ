@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Pegawai;
+use App\Jabatan;
+use App\Departemen;
 use Illuminate\Http\Request;
 use DB;
 
@@ -28,7 +30,9 @@ class PegawaiController extends Controller
      */
     public function create()
     {
-        return view('pegawai.tambah');
+        $jabatan = Jabatan::all();
+        $departemen = Departemen::all();
+        return view('pegawai.tambah', compact('departemen','jabatan'));
     }
 
     /**
@@ -39,6 +43,12 @@ class PegawaiController extends Controller
      */
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'nik_pegawai' => 'required|unique:pegawai',
+            'nama_pegawai' => 'required',
+            'id_departemen' => 'required',
+            'id_jabatan' => 'required',
+        ]);
         $new = new Pegawai();
         $new->nik_pegawai = $request->nik_pegawai;
         $new->nama_pegawai = $request->nama_pegawai;
@@ -67,8 +77,14 @@ class PegawaiController extends Controller
      */
     public function edit($nik_pegawai)
     {
-        $r = Pegawai::findorfail($id_pegawai);
-        return view ('pegawai.edit',compact('r'));
+        $r = Pegawai::findorfail($nik_pegawai);
+        $r = Pegawai::leftJoin('departemen', 'pegawai.id_departemen', '=', 'departemen.id_departemen')
+                        ->leftJoin('jabatan', 'pegawai.id_jabatan', '=', 'jabatan.id_jabatan')
+                        ->where('pegawai.nik_pegawai','=',$nik_pegawai)
+                        ->first();
+        $jabatan = Jabatan::all();
+        $departemen = Departemen::all();
+        return view ('pegawai.edit',compact('r','departemen','jabatan'));
     }
 
     /**
@@ -80,7 +96,13 @@ class PegawaiController extends Controller
      */
     public function update(Request $request, $nik_pegawai)
     {
-        $r = Pegawai::findorfail($id_pegawai);
+      $validatedData = $request->validate([
+            'nik_pegawai' => 'required|unique:pegawai',
+            'nama_pegawai' => 'required',
+            'id_departemen' => 'required',
+            'id_jabatan' => 'required',
+        ]);
+        $r = Pegawai::findorfail($nik_pegawai);
         $r->nik_pegawai = $request->nik_pegawai;
         $r->nama_pegawai = $request->nama_pegawai;
         $r->id_departemen = $request->id_departemen;

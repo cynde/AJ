@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Pegawai extends Model
 {
     protected $table = 'pegawai';
-    protected $primaryKey = 'id_pegawai';
+    protected $primaryKey = 'nik_pegawai';
 
-  	protected $guarded = ['id_pegawai'];
+  	protected $guarded = ['nik_pegawai'];
 
   	public function rekapitulasi_training(){
     	return $this->belongsTo('App\RekapitulasiTraining');
