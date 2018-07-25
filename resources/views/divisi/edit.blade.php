@@ -33,16 +33,35 @@
           <h3 class="card-title">Edit Data Divisi</h3>
         </div>
         <!-- /.card-header -->
+        @if ($errors->any())
+          <div class="alert alert-danger">
+            <ul>
+              @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+        @endif
         <!-- form start -->
-        <form role="form">
+        <form role="form" action="../update/{{$divisi->id_divisi}}" method="post">
+          {{csrf_field()}}
           <div class="card-body">
             <div class="form-group">
-              <label for="id_divisi">ID</label>
-              <input name="id_divisi" type="text" class="form-control" id="id_divisi" placeholder="Masukkan ID Divisi">
+              <label for="id_divisi">ID Divisi</label>
+              <input name="id_divisi" type="text" class="form-control" id="id_divisi" value="{{$divisi->id_divisi}}" required>
             </div>
             <div class="form-group">
-              <label for="nama_divisi">Nama</label>
-              <input name="nama_divisi" type="text" class="form-control" id="nama_divisi" placeholder="Masukkan Nama Divisi">
+              <label for="nama_divisi">Nama Divisi</label>
+              <input name="nama_divisi" type="text" class="form-control" id="nama_divisi" value="{{$divisi->nama_divisi}}" required>
+            </div>
+            <div class="form-group">
+              <label for="id_direktorat">Direktorat</label>
+              <select name="id_direktorat" class="form-control select2" style="width: 100%;">
+                <option value="{{$divisi->id_direktorat}}" selected>{{$divisi->nama_direktorat}}</option>
+                @foreach($direktorat as $dir)
+                  <option value="{{$dir->id_direktorat}}">{{$dir->nama_direktorat}}</option>
+                @endforeach
+              </select>
             </div>
           </div>
           <!-- /.card-body -->

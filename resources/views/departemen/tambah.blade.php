@@ -33,16 +33,34 @@
           <h3 class="card-title">Tambah Data Departemen</h3>
         </div>
         <!-- /.card-header -->
+        @if ($errors->any())
+          <div class="alert alert-danger">
+            <ul>
+              @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+        @endif
         <!-- form start -->
-        <form role="form">
+        <form role="form" action="store" method="post">
+          {{csrf_field()}}
           <div class="card-body">
             <div class="form-group">
               <label for="id_departemen">ID</label>
-              <input name="id_departemen" type="text" class="form-control" id="id_departemen" placeholder="Masukkan ID Departemen">
+              <input name="id_departemen" type="text" class="form-control" id="id_departemen" placeholder="Masukkan ID Departemen" required>
             </div>
             <div class="form-group">
               <label for="nama_departemen">Nama</label>
-              <input name="nama_departemen" type="text" class="form-control" id="nama_departemen" placeholder="Masukkan Nama Departemen">
+              <input name="nama_departemen" type="text" class="form-control" id="nama_departemen" placeholder="Masukkan Nama Departemen" required>
+            </div>
+            <div class="form-group">
+              <label for="id_divisi">Divisi</label>
+              <select name="id_divisi" class="form-control select2" style="width: 100%;">
+                @foreach($divisi as $d)
+                  <option value="{{$d->id_divisi}}">{{$d->id_divisi}}</option>
+                @endforeach
+              </select>
             </div>
           </div>
           <!-- /.card-body -->
