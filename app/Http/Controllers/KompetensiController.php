@@ -81,7 +81,7 @@ class KompetensiController extends Controller
     {
         $komp = Kompetensi::findorfail($id);
         $validatedData = $request->validate([
-            'id_kompetensi' => 'required|unique:kompetensi|max:2',
+            'id_kompetensi' => 'required|max:2',
             'nama_kompetensi' => 'required',
         ]);
         $komp->id_kompetensi = $request->id_kompetensi;

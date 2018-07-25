@@ -48,11 +48,11 @@
           <div class="card-body">
             <div class="form-group">
               <label for="id_kompetensi">ID</label>
-              <input name="id_kompetensi" type="text" class="form-control" id="id_kompetensi" value="{{$komp->id_kompetensi}}">
+              <input name="id_kompetensi" type="text" class="form-control" id="id_kompetensi" value="{{$komp->id_kompetensi}}" required>
             </div>
             <div class="form-group">
               <label for="nama_kompetensi">Nama</label>
-              <input name="nama_kompetensi" type="text" class="form-control" id="nama_kompetensi" value="{{$komp->nama_kompetensi}}">
+              <input name="nama_kompetensi" type="text" class="form-control" id="nama_kompetensi" value="{{$komp->nama_kompetensi}}" required>
             </div>
           </div>
           <!-- /.card-body -->

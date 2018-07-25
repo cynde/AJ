@@ -49,7 +49,7 @@
               </tr>
             </thead>
             <tbody>
-            @foreach($all as $a)
+              @foreach($all as $a)
               <tr>
                 <td>{{$loop->iteration}}</td>
                 <td>{{$a->id_kompetensi}}</td>
@@ -63,6 +63,7 @@
                 </td>
               </tr>
               @endforeach
+            </tbody>
           </table>
           @else
           <div class="alert alert-warning">
