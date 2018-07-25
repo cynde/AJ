@@ -35,6 +35,7 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
+        @if($all->count())
           <table id="tabel-jabatan" class="table table-bordered table-striped">
             <thead style="text-align: center">
               <tr>
@@ -46,37 +47,22 @@
               </tr>
             </thead>
             <tbody>
+            @foreach($all as $a)
               <tr>
-                <td>1</td>
-                <td>Manager</td>
+                <td>{{$loop->iteration}}</td>
+                <td>{{$a->nama_jabatan}}</td>
                 <td><button type="button" class="btn btn-block btn-secondary btn-sm">lihat</button></td>
-                <td><a href="#"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
-                <td><a href="#"><button type="button" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button></a></td>
+                <td><a href="/jabatan/edit/{{$a->id_jabatan}}"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
+                <td><form action="/jabatan/delete/{{$a->id_jabatan}}" method="POST">
+                            {{csrf_field()}}
+                            <button type="submit" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button>
+                    </form></td>
               </tr>
-              <tr>
-                <td>2</td>
-                <td>Vice President</td>
-                <td><button type="button" class="btn btn-block btn-secondary btn-sm">lihat</button></td>
-                <td><a href="#"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
-                <td><a href="#"><button type="button" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button></a></td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Staff</td>
-                <td><button type="button" class="btn btn-block btn-secondary btn-sm">lihat</button></td>
-                <td><a href="#"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
-                <td><a href="#"><button type="button" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button></a></td>
-              </tr>
-            <!-- <tfoot style="text-align: center">
-              <tr>
-                <th>No</th>
-                <th>Tahun</th>
-                <th>Jumlah Anggaran</th>
-                <th></th>
-                <th></th>
-              </tr>
-            </tfoot> -->
+              @endforeach
           </table>
+          @else
+            <p>Tidak ada data</p>
+          @endif
         </div>
         <!-- /.card-body -->
       </div>

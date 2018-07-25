@@ -34,15 +34,24 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
+        @if ($errors->any())
+          <div class="alert alert-danger">
+            <ul>
+              @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+        @endif
         <form role="form">
           <div class="card-body">
             <div class="form-group">
               <label for="tanggal_training">Tanggal Training</label>
-              <input name="tanggal_training" type="date" class="form-control" id="tanggal_training" placeholder="Masukkan Tanggal Training">
+              <input name="tanggal_training" type="date" class="form-control" id="tanggal_training" placeholder="Masukkan Tanggal Training" required>
             </div>
             <div class="form-group col-sm-6" style="float: left">
               <label for="divisi_pegawai">Divisi</label>
-              <select class="form-control select2" style="width: 100%;">
+              <select class="form-control select2" style="width: 100%;" required>
                 <option selected="selected">ABC</option>
                 <option>AAA</option>
                 <option>BBB</option>
@@ -51,7 +60,7 @@
             </div>
             <div class="form-group col-sm-6" style="float: left">
               <label for="departemen_pegawai">Departemen</label>
-              <select name="departemen_pegawai" class="form-control select2" style="width: 100%;">
+              <select name="departemen_pegawai" class="form-control select2" style="width: 100%;" required>
                 <option selected="selected">ABC</option>
                 <option>AAA</option>
                 <option>BBB</option>
@@ -60,7 +69,7 @@
             </div>
             <div class="form-group">
               <label for="nama_pegawai">Peserta</label>
-              <select name="nama_pegawai" class="form-control select2" style="width: 100%;">
+              <select name="nama_pegawai" class="form-control select2" style="width: 100%;" required
                 <option selected="selected">ABC</option>
                 <option>AAA</option>
                 <option>BBB</option>
@@ -69,7 +78,7 @@
             </div>
             <div class="form-group">
               <label for="nama_training">Nama Training</label>
-              <input name="nama_training" type="text" class="form-control" id="nama_training" placeholder="Masukkan Nama Training">
+              <input name="nama_training" type="text" class="form-control" id="nama_training" placeholder="Masukkan Nama Training" required>
             </div>
             <div class="col-sm-3 form-group" style="float: left">
               <label for="fpt_file">FPT Approved</label>

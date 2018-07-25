@@ -84,6 +84,10 @@ class AnggaranController extends Controller
             'jumlah_anggaran' => 'required|numeric',
         ]);
         $ang = Anggaran::findorfail($id);
+        $validatedData = $request->validate([
+            'tahun_anggaran' => 'required|unique:anggaran|max:4',
+            'jumlah_anggaran' => 'required',
+        ]);
         $ang->tahun_anggaran = $request->tahun_anggaran;
         $ang->jumlah_anggaran = $request->jumlah_anggaran;
         $ang->save();

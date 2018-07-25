@@ -11,6 +11,7 @@ class Topik extends Model
     public $incrementing = false;
 
   	protected $guarded = ['id_topik'];
+  	public $incrementing = false;
   	
   	public function training(){
     	return $this->belongsTo('App\Training');

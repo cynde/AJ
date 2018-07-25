@@ -45,14 +45,28 @@
         <!-- form start -->
         <form role="form" action="../update/{{$dept->id_departemen}}" method="post">
           {{csrf_field()}}
+        @if ($errors->any())
+          <div class="alert alert-danger">
+            <ul>
+              @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+        @endif
+        <form role="form">
           <div class="card-body">
             <div class="form-group">
               <label for="id_departemen">ID Departemen</label>
               <input name="id_departemen" type="text" class="form-control" id="id_departemen" value="{{$dept->id_departemen}}" required>
+              <label for="id_departemen">ID</label>
+              <input name="id_departemen" type="text" class="form-control" id="id_departemen" placeholder="Masukkan ID Departemen" required>
             </div>
             <div class="form-group">
               <label for="nama_departemen">Nama Departemen</label>
               <input name="nama_departemen" type="text" class="form-control" id="nama_departemen" value="{{$dept->nama_departemen}}" required>
+              <label for="nama_departemen">Nama</label>
+              <input name="nama_departemen" type="text" class="form-control" id="nama_departemen" placeholder="Masukkan Nama Departemen" required>
             </div>
             <div class="form-group">
               <label for="id_divisi">Divisi</label>
