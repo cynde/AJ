@@ -17,6 +17,7 @@ class CreateRekapitulasiTrainingTable extends Migration
             $table->increments('id_rekapitulasi_training')->unsigned();
             $table->string('nik_pegawai',50);
             $table->string('status_training',20);
+            $table->string('justifikasi',50);
             $table->string('fpt_file',100);
             $table->string('pendaftaran_file',100);
             $table->string('undangan_file',100);
