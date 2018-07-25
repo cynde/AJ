@@ -33,17 +33,26 @@
           <h3 class="card-title">Tambah Jumlah Anggaran</h3>
         </div>
         <!-- /.card-header -->
+        @if ($errors->any())
+          <div class="alert alert-danger">
+            <ul>
+              @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+        @endif
         <!-- form start -->
         <form role="form" action="store" method="POST">
           {{csrf_field()}}
           <div class="card-body">
             <div class="form-group">
               <label for="tahun_anggaran">Tahun</label>
-              <input name="tahun_anggaran" type="number" class="form-control" id="tahun_anggaran" placeholder="Masukkan Tahun Anggaran">
+              <input name="tahun_anggaran" type="number" class="form-control" id="tahun_anggaran" placeholder="Masukkan Tahun Anggaran" required>
             </div>
             <div class="form-group">
               <label for="jumlah_anggaran">Jumlah Anggaran</label>
-              <input name="jumlah_anggaran" type="number" class="form-control" id="jumlah_anggaran" placeholder="Masukkan Jumlah Anggaran">
+              <input name="jumlah_anggaran" type="number" class="form-control" id="jumlah_anggaran" placeholder="Masukkan Jumlah Anggaran" required>
             </div>
 
           <div class="card-footer">
@@ -65,7 +74,7 @@
 <script>
   $(function () {
     //Initialize Select2 Elements
-    $('.select2').select2()
+    $('.select2').select2();
   })
 </script>
 @endsection

@@ -34,91 +34,94 @@
           <h3 class="card-title">Edit List Training</h3>
         </div>
         <!-- /.card-header -->
+        @if ($errors->any())
+          <div class="alert alert-danger">
+            <ul>
+              @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+        @endif
         <!-- form start -->
-        <form role="form">
+        <form role="form" action="../update/{{$train->id_training}}" method="post">
+          {{csrf_field()}}
           <div class="card-body">
             <div class="col-sm-6" style="float:left">
               <div class="form-group">
                 <label>ID</label>
-                <input name="id_training" type="text" class="form-control" id="id_training" placeholder="Masukkan ID Training">
+                <input name="id_training" type="number" class="form-control" id="id_training" value="{{$train->id_training}}" required>
               </div>
             </div>
             <div class="col-sm-6" style="float:left">
               <div class="form-group">
                 <label> <i class="fa fa-calendar"></i> Tanggal:</label>
-                <input name="tanggal_training" type="date" class="form-control" id="tanggal_training" placeholder="Masukkan Tanggal Training">
+                <input name="tanggal_training" type="date" class="form-control" id="tanggal_training" value="{{$train->tanggal_training}}" required>
                 <!-- /.input group -->
               </div>
             </div>
             <div class="form-group">
-              <label for="nama_training">Judul Training</label>
-              <input name="nama_training" type="text" class="form-control" id="nama_training" placeholder="Masukkan Nama Training">
+              <label for="nama_training">Nama Training</label>
+              <input name="nama_training" type="text" class="form-control" id="nama_training" value="{{$train->nama_training}}" required>
             </div>
             <div class="bootstrap-timepicker col-sm-6" style="float: left">
                 <div class="form-group">
                   <label><i class="fa fa-clock-o"></i> Jam Mulai:</label>
-
-                  <div class="input-group">
-                    <input type="text" class="form-control timepicker">
-                    <div class="input-group-addon">
-                    </div>
-                  </div>
-                  <!-- /.input group -->
+                  <input name="time_start" type="time" class="form-control" value="{{$train->time_start}}" required>
                 </div>
                 <!-- /.form group -->
               </div>
             <div class="bootstrap-timepicker col-sm-6" style="float: left">
                 <div class="form-group">
                   <label><i class="fa fa-clock-o"></i> Jam Selesai:</label>
-
-                  <div class="input-group">
-                    <input type="text" class="form-control timepicker">
-                    <div class="input-group-addon">
-                    </div>
-                  </div>
+                  <input name="time_finish" type="time" class="form-control" value="{{$train->time_finish}}" required>
                   <!-- /.input group -->
                 </div>
                 <!-- /.form group -->
               </div> 
             <div class="form-group col-sm-6" style="float: left">
-              <label for="media_training">Media</label>
-              <select name="media_training" class="form-control select2" style="width: 100%;">
-                <option selected="selected">GIAT</option>
-                <option>Juara</option>
+              <label for="id_media">Media</label>
+              <select name="id_media" class="form-control select2" style="width: 100%;">
+                <option value="{{$train->id_media}}" selected>{{$train->nama_media}}</option>
+                @foreach($media as $m)
+                <option value="{{$m->id_media}}">{{$m->nama_media}} ({{$m->kategori_media}})</option>
+                @endforeach
               </select>
             </div>
             <div class="form-group col-sm-6" style="float: left">
-              <label for="topik_training">Topik</label>
-              <select name="topik_training" class="form-control select2" style="width: 100%;">
-                <option selected="selected">AKRAB</option>
-                <option>ASIK</option>
-                <option>AJIB</option>
-                <option>APIK</option>
+              <label for="id_topik">Topik</label>
+              <select name="id_topik" class="form-control select2" style="width: 100%;">
+                <option value="{{$train->id_topik}}" selected>{{$train->nama_topik}}</option>
+                @foreach($topik as $t)
+                <option value="{{$t->id_topik}}">{{$t->nama_topik}}</option>
+                @endforeach
               </select>
             </div>
             <div class="form-group col-sm-6" style="float: left">
-              <label for="kompetensi_training">Kompetensi</label>
-              <select name="kompetensi_training" class="form-control select2" style="width: 100%;">
-                <option selected="selected">Finance</option>
-                <option>Leadership</option>
-                <option>Management</option>
+              <label for="id_kompetensi">Kompetensi</label>
+              <select name="id_kompetensi" class="form-control select2" style="width: 100%;">
+                <option value="{{$train->id_kompetensi}}" selected>{{$train->nama_kompetensi}}</option>
+                @foreach($kompetensi as $k)
+                <option value="{{$k->id_kompetensi}}">{{$k->nama_kompetensi}}</option>
+                @endforeach
               </select>
             </div>
             <div class="form-group col-sm-6" style="float: left">
-              <label for="penyelenggara_training">Penyelenggara</label>
-              <select name="penyelenggara_training" class="form-control select2" style="width: 100%;">
-                <option selected="selected">Artajasa</option>
-                <option>Financial Management Training Center</option>
-                <option>Tech in Asia</option>
+              <label for="id_penyelenggara">Penyelenggara</label>
+              <select name="id_penyelenggara" class="form-control select2" style="width: 100%;">
+                <option value="{{$train->id_penyelenggara}}" selected>{{$train->nama_penyelenggara}}</option>
+                @foreach($penyelenggara as $p)
+                <option value="{{$p->id_penyelenggara}}">{{$p->nama_penyelenggara}}</option>
+                @endforeach
               </select>
             </div>
             <div class="form-group col-sm-6" style="float: left">
               <label for="harga_training">Harga</label>
-              <input name="harga_training" type="number" class="form-control" id="nama_training" placeholder="Masukkan Harga Training">
+              <input name="harga_training" type="number" class="form-control" id="harga_training" value="{{$train->harga_training}}" required>
             </div>
             <div class="form-group col-sm-6" style="float: left">
               <label for="invoice_training">Invoice</label>
-              <input name="invoice_training" type="number" class="form-control" id="nama_training" placeholder="Masukkan Invoice Training">
+              <input name="invoice_training" type="number" class="form-control" id="invoice_training" value="{{$train->invoice}}" required>
             </div>
           </div>
           <!-- /.card-body -->
@@ -149,18 +152,6 @@
   $(function () {
     //Initialize Select2 Elements
     $('.select2').select2()
-    //Date range picker
-    $('#reservation').daterangepicker()
-    //Date range picker with time picker
-    $('#reservationtime').daterangepicker({
-      timePicker         : true,
-      timePickerIncrement: 30,
-      format             : 'MM/DD/YYYY h:mm A'
-    })
-    //Timepicker
-    $('.timepicker').timepicker({
-      showInputs: false
-    })
   })
 </script>
 @endsection
