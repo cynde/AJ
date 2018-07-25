@@ -13,7 +13,7 @@ class TrainingTableSeeder extends Seeder
     public function run()
     {
         Training::create( [
-        'id_training'=>'01',
+        'id_training'=>'1',
         'nama_training'=>'Customer Engagement',
         'tanggal_training'=>'2018-07-03',
         'time_start'=>'10:00:00',
