@@ -92,13 +92,10 @@ Route::group(['prefix' => 'direktorat'], function() {
 });
 
 Route::group(['prefix' => 'training'], function() {
-	Route::get('/', function () {
-	    return view('training.index');
-	});
-	Route::get('tambah', function () {
-	    return view('training.tambah');
-	});
-	Route::get('edit', function () {
-	    return view('training.edit');
-	});
+ Route::get('/', ['as' => 'training', 'uses' => 'TrainingController@index']);
+ Route::get('tambah', 'TrainingController@create');
+ Route::post('store', 'TrainingController@store');
+ Route::get('edit/{id}', 'TrainingController@edit');
+ Route::post('update/{id}', 'TrainingController@update');
+ Route::post('delete/{id}', 'TrainingController@destroy');
 });
