@@ -36,6 +36,10 @@ class AnggaranController extends Controller
      */
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'tahun_anggaran' => 'required|unique:anggaran|numeric|max:4',
+            'jumlah_anggaran' => 'required|numeric',
+        ]);
         $ang = new Anggaran();
         $ang->tahun_anggaran = $request->tahun_anggaran;
         $ang->jumlah_anggaran = $request->jumlah_anggaran;
@@ -75,6 +79,10 @@ class AnggaranController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validatedData = $request->validate([
+            'tahun_anggaran' => 'required|numeric|max:4',
+            'jumlah_anggaran' => 'required|numeric',
+        ]);
         $ang = Anggaran::findorfail($id);
         $ang->tahun_anggaran = $request->tahun_anggaran;
         $ang->jumlah_anggaran = $request->jumlah_anggaran;
