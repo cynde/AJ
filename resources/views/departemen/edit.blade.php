@@ -34,15 +34,24 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
+        @if ($errors->any())
+          <div class="alert alert-danger">
+            <ul>
+              @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+        @endif
         <form role="form">
           <div class="card-body">
             <div class="form-group">
               <label for="id_departemen">ID</label>
-              <input name="id_departemen" type="text" class="form-control" id="id_departemen" placeholder="Masukkan ID Departemen">
+              <input name="id_departemen" type="text" class="form-control" id="id_departemen" placeholder="Masukkan ID Departemen" required>
             </div>
             <div class="form-group">
               <label for="nama_departemen">Nama</label>
-              <input name="nama_departemen" type="text" class="form-control" id="nama_departemen" placeholder="Masukkan Nama Departemen">
+              <input name="nama_departemen" type="text" class="form-control" id="nama_departemen" placeholder="Masukkan Nama Departemen" required>
             </div>
           </div>
           <!-- /.card-body -->

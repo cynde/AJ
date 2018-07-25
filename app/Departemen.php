@@ -10,7 +10,7 @@ class Departemen extends Model
     protected $primaryKey = 'id_departemen';
 
   	protected $fillable = ['id_departemen','nama_departemen'];
-
+    public $incrementing = false;
   	public function pegawai(){
     	return $this->belongsTo('App\Pegawai');
     }

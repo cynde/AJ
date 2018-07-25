@@ -34,15 +34,25 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form role="form">
+        @if ($errors->any())
+          <div class="alert alert-danger">
+            <ul>
+              @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+        @endif
+         <form role="form" action="../update/{{$r->id_media}}" method="post">
+          {{csrf_field()}}
           <div class="card-body">
             <div class="form-group">
               <label for="nama_media">Nama</label>
-              <input name="nama_media" type="text" class="form-control" id="nama_media" placeholder="Masukkan Nama Media">
+              <input name="nama_media" type="text" class="form-control" id="nama_media" value="{{$r->nama_media}}" required>
             </div>
             <div class="form-group">
               <label for="kategori_media">Kategori Media</label>
-              <select class="form-control select2" style="width: 100%;">
+              <select name="kategori_media" class="form-control select2" style="width: 100%;" required>
                 <option selected="selected">Inhouse</option>
                 <option>Publik</option>
               </select>

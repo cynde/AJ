@@ -62,6 +62,7 @@
                 </form>
               </tr>
               @endforeach
+            </tbody>
             <!-- <tfoot style="text-align: center">
               <tr>
                 <th>No</th>

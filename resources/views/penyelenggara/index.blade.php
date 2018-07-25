@@ -35,6 +35,7 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
+        @if($all->count())
           <table id="tabel-penyelenggara" class="table table-bordered table-striped">
             <thead style="text-align: center">
               <tr>
@@ -45,34 +46,21 @@
               </tr>
             </thead>
             <tbody>
+            @foreach($all as $a)
               <tr>
-                <td>1</td>
-                <td>Artajasa</td>
-                <td><a href="#"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
-                <td><a href="#"><button type="button" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button></a></td>
+                <td>{{$loop->iteration}}</td>
+                <td>{{$a->nama_penyelenggara}}</td>
+                <td><a href="/penyelenggara/edit/{{$a->id_penyelenggara}}"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
+                <td><form action="/penyelenggara/delete/{{$a->id_penyelenggara}}" method="POST">
+                            {{csrf_field()}}
+                            <button type="submit" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button>
+                    </form></td>
               </tr>
-              <tr>
-                <td>2</td>
-                <td>Financial Management Training Center</td>
-                <td><a href="#"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
-                <td><a href="#"><button type="button" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button></a></td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Tech in Asia</td>
-                <td><a href="#"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
-                <td><a href="#"><button type="button" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button></a></td>
-              </tr>
-            <!-- <tfoot style="text-align: center">
-              <tr>
-                <th>No</th>
-                <th>Tahun</th>
-                <th>Jumlah Anggaran</th>
-                <th></th>
-                <th></th>
-              </tr>
-            </tfoot> -->
+              @endforeach
           </table>
+          @else
+            <p>Tidak ada data</p>
+          @endif
         </div>
         <!-- /.card-body -->
       </div>

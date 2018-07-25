@@ -34,11 +34,21 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form role="form">
+        @if ($errors->any())
+          <div class="alert alert-danger">
+            <ul>
+              @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+        @endif
+        <form role="form" action="store" method="post">
+        {{csrf_field()}}
           <div class="card-body">
             <div class="form-group">
               <label for="nama_direktorat">Nama Direktorat</label>
-              <input name="nama_direktorat" type="text" class="form-control" id="nama_direktorat" placeholder="Masukkan Nama Direktorat">
+              <input name="nama_direktorat" type="text" class="form-control" id="nama_direktorat" placeholder="Masukkan Nama Direktorat" required>
             </div>
 
           <div class="card-footer">

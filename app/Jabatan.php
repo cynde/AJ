@@ -10,6 +10,7 @@ class Jabatan extends Model
     protected $primaryKey = 'id_jabatan';
 
   	protected $guarded = ['id_jabatan'];
+  	public $incrementing = false;
 
   	public function pegawai(){
     	return $this->belongsTo('App\Pegawai');

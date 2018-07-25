@@ -33,17 +33,35 @@
           <h3 class="card-title">Edit Jumlah Anggaran</h3>
         </div>
         <!-- /.card-header -->
+        @if ($errors->any())
+          <div class="alert alert-danger">
+            <ul>
+              @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+        @endif
         <!-- form start -->
+        @if ($errors->any())
+          <div class="alert alert-danger">
+            <ul>
+              @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+        @endif
         <form role="form" action="../update/{{$ang->id_anggaran}}" method="post">
           {{csrf_field()}}
           <div class="card-body">
             <div class="form-group">
               <label for="tahun_anggaran">Tahun</label>
-              <input name="tahun_anggaran" type="number" class="form-control" id="tahun_anggaran" placeholder="Tahun" value="{{$ang->tahun_anggaran}}">
+              <input name="tahun_anggaran" type="number" class="form-control" id="tahun_anggaran" placeholder="Tahun" value="{{$ang->tahun_anggaran}}" required>
             </div>
             <div class="form-group">
               <label for="jumlah_anggaran">Jumlah Anggaran</label>
-              <input name="jumlah_anggaran" type="number" class="form-control" id="jumlah_anggaran" placeholder="Masukkan Jumlah Anggaran" value="{{$ang->jumlah_anggaran}}">
+              <input name="jumlah_anggaran" type="number" class="form-control" id="jumlah_anggaran" placeholder="Masukkan Jumlah Anggaran" value="{{$ang->jumlah_anggaran}}" required>
             </div>
           <div class="card-footer">
             <button type="submit" class="btn btn-primary">Submit</button>
