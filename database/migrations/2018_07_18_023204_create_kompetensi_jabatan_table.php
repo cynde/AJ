@@ -15,7 +15,7 @@ class CreateKompetensiJabatanTable extends Migration
     {
         Schema::create('kompetensi_jabatan', function (Blueprint $table) {
             $table->increments('id_kompetensi_jabatan')->unsigned();
-            $table->char('id_kompetensi',2);
+            $table->integer('id_kompetensi');
             $table->string('id_jabatan',50);
             $table->integer('level_kompetensi');
             $table->string('kompetensi_pendahulu',100);

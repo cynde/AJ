@@ -16,7 +16,7 @@ class CreateDepartemenTable extends Migration
         Schema::create('departemen', function (Blueprint $table) {
             $table->string('id_departemen',50)->primary();
             $table->string('nama_departemen',100);
-            $table->string('id_divisi',50);
+            $table->string('id_divisi',50)->nullable();
             $table->timestamps();
         });
     }

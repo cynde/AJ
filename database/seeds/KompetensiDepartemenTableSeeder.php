@@ -23,7 +23,7 @@ class KompetensiDepartemenTableSeeder extends Seeder
 		'id_kompetensi'=>'02',
 		'id_departemen'=>'ACB1DEPT',
 		'level_kompetensi'=>'2',
-		'kompetensi_pendahulu'=>'01'
+		'kompetensi_pendahulu'=>'1'
 		] );
     }
 }

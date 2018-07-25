@@ -15,7 +15,7 @@ class CreateKompetensiDepartemenTable extends Migration
     {
         Schema::create('kompetensi_departemen', function (Blueprint $table) {
             $table->increments('id_kompetensi_departemen')->unsigned();
-            $table->char('id_kompetensi',2);
+            $table->integer('id_kompetensi');
             $table->string('id_departemen',50);
             $table->integer('level_kompetensi');
             $table->string('kompetensi_pendahulu',100);

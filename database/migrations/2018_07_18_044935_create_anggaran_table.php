@@ -22,7 +22,7 @@ class CreateAnggaranTable extends Migration
 
         Schema::table('rekapitulasi_training', function (Blueprint $table) {
             $table->foreign('nik_pegawai')->references('nik_pegawai')->on('pegawai')->onUpdate('cascade')->onDelete('cascade');
-            $table->char('id_training',2);
+            $table->integer('id_training');
             $table->foreign('id_training')->references('id_training')->on('training')->onUpdate('cascade')->onDelete('cascade');
         });
 
@@ -54,9 +54,11 @@ class CreateAnggaranTable extends Migration
             $table->integer('id_media')->unsigned();
             $table->char('id_topik',1);
             $table->integer('id_penyelenggara')->unsigned();
+            $table->integer('id_kompetensi');
             $table->foreign('id_media')->references('id_media')->on('media')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('id_topik')->references('id_topik')->on('topik')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('id_penyelenggara')->references('id_penyelenggara')->on('penyelenggara')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('id_kompetensi')->references('id_kompetensi')->on('kompetensi')->onUpdate('cascade')->onDelete('cascade');
         });
         
     }

@@ -37,6 +37,7 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
+          @if($all->count())
           <table id="tabel-kompetensi" class="table table-bordered table-striped">
             <thead style="text-align: center">
               <tr>
@@ -48,28 +49,27 @@
               </tr>
             </thead>
             <tbody>
+              @foreach($all as $a)
               <tr>
-                <td>1</td>
-                <td>01</td>
-                <td>Finance</td>
-                <td><a href="/kompetensi/edit"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
-                <td><a href="#"><button type="button" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button></a></td>
+                <td>{{$loop->iteration}}</td>
+                <td>{{$a->id_kompetensi}}</td>
+                <td>{{$a->nama_kompetensi}}</td>
+                <td><a href="kompetensi/edit/{{$a->id_kompetensi}}"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
+                <td>
+                  <form action="kompetensi/delete/{{$a->id_kompetensi}}" method="post">
+                  {{csrf_field()}}
+                    <button type="submit" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button>
+                  </form>
+                </td>
               </tr>
-              <tr>
-                <td>2</td>
-                <td>02</td>
-                <td>Teknologi</td>
-                <td><a href="/kompetensi/edit"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
-                <td><a href="#"><button type="button" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button></a></td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>03</td>
-                <td>Public Speaking</td>
-                <td><a href="/kompetensi/edit"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
-                <td><a href="#"><button type="button" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button></a></td>
-              </tr>
+              @endforeach
+            </tbody>
           </table>
+          @else
+          <div class="alert alert-warning">
+            <i class="fa fa-exclamation-triangle"></i> Tidak ada data.
+          </div>
+          @endif
         </div>
         <!-- /.card-body -->
       </div>
