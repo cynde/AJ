@@ -5,7 +5,7 @@
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
       </li>
-      <h4> Sistem Informasi Training Artajasa</h4>
+      <h4 style="padding-top: 7px"> Sistem Informasi Training Artajasa</h4>
       <!-- <li class="nav-item d-none d-sm-inline-block">
         <a href="/index3.html" class="nav-link">Home</a>
       </li>
@@ -13,5 +13,14 @@
         <a href="#" class="nav-link">Contact</a>
       </li> -->
     </ul>
+    <ul class="navbar-nav ml-auto">
+    <!-- logout Menu -->
+    <li class="nav-item">
+      <form id="logout">
+        {{csrf_field()}}
+      </form>
+      <button class="btn btn-block btn-outline-danger" type="submit" form="logout"><i class="fa fa-power-off"></i></button>
+    </li>
+  </ul>
   </nav>
   <!-- /.navbar -->
