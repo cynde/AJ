@@ -23,7 +23,8 @@ class TrainingTableSeeder extends Seeder
         'invoice_training'=>'5000000',
         'id_media'=>'1',
         'id_topik'=>'K',
-		'id_penyelenggara'=>'1',
+        'id_penyelenggara'=>'1',
+		'id_kompetensi'=>'1',
 		] );
     }
 }
