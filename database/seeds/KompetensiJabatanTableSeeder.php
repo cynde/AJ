@@ -23,7 +23,7 @@ class KompetensiJabatanTableSeeder extends Seeder
 		'id_kompetensi'=>'02',
 		'id_jabatan'=>'STAF',
 		'level_kompetensi'=>'2',
-		'kompetensi_pendahulu'=>'01'
+		'kompetensi_pendahulu'=>'1'
 		] );
     }
 }
