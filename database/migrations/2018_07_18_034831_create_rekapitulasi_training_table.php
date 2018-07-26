@@ -18,14 +18,15 @@ class CreateRekapitulasiTrainingTable extends Migration
             $table->string('nik_pegawai',50);
             $table->string('status_training',20);
             $table->string('justifikasi',50);
-            $table->string('fpt_file',100);
-            $table->string('pendaftaran_file',100);
-            $table->string('undangan_file',100);
-            $table->string('absensi_file',100);
-            $table->string('sertifikat_file',100);
-            $table->string('eval_file',100);
-            $table->integer('biaya_lain');
-            $table->string('keterangan_lain',100);
+            $table->string('fpt_file',100)->nullable();
+            $table->string('pendaftaran_file',100)->nullable();
+            $table->string('undangan_file',100)->nullable();
+            $table->string('absensi_file',100)->nullable();
+            $table->string('sertifikat_file',100)->nullable();
+            $table->string('eval_file',100)->nullable();
+            $table->string('invoice_file',100)->nullable();
+            $table->integer('biaya_lain')->nullable();
+            $table->string('keterangan_lain',100)->nullable();
             $table->timestamps();
         });
 

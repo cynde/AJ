@@ -1,5 +1,5 @@
 @extends('master.app')
-@section('title') Rekapitulasi Training@endsection
+@section('title') Rekapitulasi Training @endsection
 @section('css')
 <!-- DataTables -->
 <link rel="stylesheet" href="/AdminLTE/plugins/datatables/dataTables.bootstrap4.css">
@@ -38,12 +38,13 @@
         <div class="card-header">
           <h3 class="card-title">Rekapitulasi Training
             <div style="float: right;">
-              <a href="RekapitulasiTraining/tambah"><button type="button" class="btn btn-block btn-primary">+ Tambah</button></a>
+              <a href="rekapitulasiTraining/tambah"><button type="button" class="btn btn-block btn-primary">+ Tambah</button></a>
             </div>
           </h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
+          @if($all->count())
           <table id="tabel-rekap-training" class="table table-bordered table-striped">
             <thead style="text-align: center">
               <tr>
@@ -74,36 +75,48 @@
               </tr>
             </thead>
             <tbody>
+              @foreach($all as $a)
               <tr>
-                <td>1</td>
-                <td>09-02-18</td>
-                <td>Diajukan</td>
-                <td>Farroh</td>
-                <td>HCC</td>
-                <td>Customer Engagement</td>
-                <td>2</td>
-                <td>TNA</td>
-                <td>Juara</td>
-                <td>Asik</td>
-                <td>Artajasa</td>
-                <td>Ya</td>
-                <td>Ya</td>
-                <td>Ya</td>
-                <td>Ya</td>
-                <td>Ya</td>
-                <td>5.000.000</td>
-                <td>5.000.000</td>
-                <td>Ya</td>
-                <td></td>
-                <td>Finance</td>
-                <td></td>
-                <td><a href="/RekapitulasiTraining/edit"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
-                <td><a href="#"><button type="button" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button></a></td>
+                <td>{{$loop->iteration}}</td>
+                <td>{{$a->tanggal_training}}</td>
+                <td>{{$a->status_training}}</td>
+                <td>{{$a->nama_pegawai}}</td>
+                <td>{{$a->nama_divisi}}</td>
+                <td>{{$a->nama_training}}</td>
+                <td>{{$a->jumlah_jam_training}}</td>
+                <td>{{$a->justifikasi}}</td>
+                <td>{{$a->nama_media}}</td>
+                <td>{{$a->nama_topik}}</td>
+                <td>{{$a->nama_penyelenggara}}</td>
+                <td>@if(!empty($a->fpt_file)) v @endif</td>
+                <td>@if(!empty($a->pendaftaran_file)) v @endif</td>
+                <td>@if(!empty($a->undangan_file)) v @endif</td>
+                <td>@if(!empty($a->absensi_file)) v @endif</td>
+                <td>@if(!empty($a->sertifikat_file)) v @endif</td>
+                <td>{{number_format($a->harga_training)}}</td>
+                <td>@if(!empty($a->invoice_file)) v @endif ({{number_format($a->invoice_training)}})</td>
+                <td>@if(!empty($a->eval_file)) v @endif</td>
+                <td>{{number_format($a->biaya_lain)}}</td>
+                <td>{{$a->nama_kompetensi}}</td>
+                <td>{{$a->keterangan_lain}}</td>
+                <td><a href="rekapitulasiTraining/edit/{{$a->id_rekapitulasi_training}}"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
+                <td>
+                  <form action="rekapitulasiTraining/delete/{{$a->id_rekapitulasi_training}}" method="post">
+                    {{csrf_field()}}
+                    <button type="submit" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button>
+                  </form>
+                </td>
+                @endforeach
               </tr>
           </table>
           <div style="float: right; margin-top: 20px">
             <a href="/rekapPeserta"><button type="button" class="btn btn-block btn-success btn-outline"><span class="fa fa-book"></span> Buat Rekap Peserta</button></a>
           </div>
+          @else
+          <div class="alert alert-warning">
+            <i class="fa fa-exclamation-triangle"></i> Tidak ada data.
+          </div>
+          @endif
         </div>
         <!-- /.card-body -->
       </div>

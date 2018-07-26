@@ -22,6 +22,7 @@ class RekapitulasiTrainingTableSeeder extends Seeder
         'absensi_file'=>'',
         'sertifikat_file'=>'',
         'eval_file'=>'',
+        'invoice_file'=>'',
         'biaya_lain'=>'500000',
         'keterangan_lain'=>'biaya lain untuk transport',
         'id_training'=>'01'
