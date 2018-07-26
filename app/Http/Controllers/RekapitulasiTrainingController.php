@@ -41,6 +41,12 @@ class RekapitulasiTrainingController extends Controller
      */
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'id_training' => 'required',
+            'nik_pegawai' => 'required',
+            'justifikasi' => 'required',
+            'biaya_lain' => 'numeric'
+        ]);
         $lastRow = RekapitulasiTraining::orderBy('id_rekapitulasi_training', 'desc')->first();
         if(!$lastRow) {
             $id = 0;
@@ -157,6 +163,10 @@ class RekapitulasiTrainingController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validatedData = $request->validate([
+            'justifikasi' => 'required',
+            'biaya_lain' => 'numeric'
+        ]);
         $lastRow = RekapitulasiTraining::orderBy('id_rekapitulasi_training', 'desc')->first();
         if(!$lastRow) {
             $id = 0;
