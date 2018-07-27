@@ -17,7 +17,7 @@ class CreateTrainingTable extends Migration
             $table->integer('id_training')->primary();
             $table->string('nama_training',100);
             $table->integer('harga_training');
-            $table->integer('invoice_training');
+            $table->integer('invoice_training')->nullable();
             $table->timestamps();
         });
     }

@@ -94,7 +94,7 @@
             </div>
             <div class="form-group col-sm-6" style="float: left">
               <label for="invoice_training">Invoice</label>
-              <input name="invoice_training" type="number" class="form-control" id="invoice_training" placeholder="Masukkan Invoice Training" required>
+              <input name="invoice_training" type="number" class="form-control" id="invoice_training" placeholder="Masukkan Invoice Training">
             </div>
           </div>
           <!-- /.card-body -->
@@ -111,17 +111,19 @@
   <!-- /.content-wrapper -->
 @endsection
 @section('script')
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<!-- jQuery -->
+<script src="/AdminLTE/plugins/jquery/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- Select2 -->
 <script src="/AdminLTE/plugins/select2/select2.full.min.js"></script>
 <script>
-  $(function () {
+  $(document).ready(function () {
     //Initialize Select2 Elements
     $('.select2').select2()
     $('.date').datepicker({
-      multidate: true,
-      format: 'dd-mm-yyyy'
+      multidate: true
     });
 
   })
