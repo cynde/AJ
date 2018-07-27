@@ -14,8 +14,12 @@ class RekapitulasiTrainingTableSeeder extends Seeder
     {
     	RekapitulasiTraining::create( [
         'nik_pegawai'=>'0614887',
+        'tanggal_training'=>'2018-07-03',
         'status_training'=>'Diajukan',
         'justifikasi'=>'TNA',
+        'jam_mulai'=>'10:00:00',
+        'jam_selesai'=>'15:00:00',
+        'jumlah_jam_training'=>'5',
         'fpt_file'=>'',
         'pendaftaran_file'=>'',
         'undangan_file'=>'',

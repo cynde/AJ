@@ -54,8 +54,10 @@
                 <th>Peserta</th>
                 <th>Divisi</th>
                 <th>Nama Training</th>
-                <th>Jumlah Jam</th>
                 <th>Justifikasi</th>
+                <th width="7%">Jam Mulai</th>
+                <th width="7%">Jam Selesai</th>
+                <th>Jumlah Jam</th>
                 <th>Media</th>
                 <th>Topik</th>
                 <th>Pelaksana</th>
@@ -83,8 +85,10 @@
                 <td>{{$a->nama_pegawai}}</td>
                 <td>{{$a->nama_divisi}}</td>
                 <td>{{$a->nama_training}}</td>
-                <td>{{$a->jumlah_jam_training}}</td>
                 <td>{{$a->justifikasi}}</td>
+                <td>{{$a->jam_mulai}}</td>
+                <td>{{$a->jam_selesai}}</td>
+                <td>{{$a->jumlah_jam_training}}</td>
                 <td>{{$a->nama_media}}</td>
                 <td>{{$a->nama_topik}}</td>
                 <td>{{$a->nama_penyelenggara}}</td>
@@ -183,7 +187,8 @@
       select_type: 'select2'
     }, {
       column_number: 6,
-      filter_type: "range_number"
+      filter_type: "multi_select",
+      select_type: 'select2'
     }, {
       column_number: 7,
       filter_type: "multi_select",
@@ -201,13 +206,25 @@
       filter_type: "multi_select",
       select_type: 'select2'
     }, {
-      column_number: 16,
+      column_number: 11,
+      filter_type: "multi_select",
+      select_type: 'select2'
+    }, {
+      column_number: 12,
+      filter_type: "multi_select",
+      select_type: 'select2'
+    }, {
+      column_number: 18,
       filter_type: "range_number",
       ignore_char: ","
     }, {
-      column_number: 19,
+      column_number: 21,
       filter_type: "range_number",
       ignore_char: ","
+    }, {
+      column_number: 22,
+      filter_type: "multi_select",
+      select_type: 'select2'
     }]);
   });
 </script>

@@ -16,10 +16,6 @@ class CreateTrainingTable extends Migration
         Schema::create('training', function (Blueprint $table) {
             $table->integer('id_training')->primary();
             $table->string('nama_training',100);
-            $table->date('tanggal_training');
-            $table->time('time_start');
-            $table->time('time_finish');
-            $table->integer('jumlah_jam_training');
             $table->integer('harga_training');
             $table->integer('invoice_training')->nullable();
             $table->timestamps();
