@@ -101,11 +101,9 @@
             </tr>
           </thead>
           <tbody>
-            @foreach($peserta as $p)
             <tr>
-              <td value="{{p->nama_pegawai}}">{{p->nama_pegawai}}</td>
+              <td>Lorem Ipsum</td>
             </tr>
-              @endforeach
           </tbody>
         </table>
       </div>

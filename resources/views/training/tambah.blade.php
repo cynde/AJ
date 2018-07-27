@@ -3,7 +3,6 @@
 @section('css')
 <!-- Select2 -->
 <link rel="stylesheet" href="/AdminLTE/plugins/select2/select2.min.css">
-<link rel="stylesheet" href="/AdminLTE/plugins/timepicker/bootstrap-timepicker.min.css">
 @endsection
 @section('content')
   <!-- Content Wrapper. Contains page content -->
@@ -53,31 +52,10 @@
                 <input name="id_training" type="number" class="form-control" id="id_training" placeholder="Masukkan ID Training" required>
               </div>
             </div>
-            <div class="col-sm-6" style="float:left">
-              <div class="form-group">
-                <label> <i class="fa fa-calendar"></i> Tanggal:</label>
-                <input name="tanggal_training" type="text" class="form-control date" id="tanggal_training" placeholder="Masukkan Tanggal Training" required>
-                <!-- /.input group -->
-              </div>
-            </div>
             <div class="form-group">
               <label for="nama_training">Nama Training</label>
               <input name="nama_training" type="text" class="form-control" id="nama_training" placeholder="Masukkan Nama Training" required>
             </div>
-            <div class="bootstrap-timepicker col-sm-6" style="float: left">
-              <div class="form-group">
-                <label><i class="fa fa-clock-o"></i> Jam Mulai:</label>
-                <input name="time_start" type="time" class="form-control" required>
-              </div>
-              <!-- /.form group -->
-              </div>
-            <div class="bootstrap-timepicker col-sm-6" style="float: left">
-              <div class="form-group">
-                <label><i class="fa fa-clock-o"></i> Jam Selesai:</label>
-                <input name="time_finish" type="time" class="form-control" required>
-              </div>
-                <!-- /.form group -->
-              </div> 
             <div class="form-group col-sm-6" style="float: left">
               <label for="id_media">Media</label>
               <select name="id_media" class="form-control select2" style="width: 100%;">
@@ -137,10 +115,6 @@
 <script src="/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- Select2 -->
 <script src="/AdminLTE/plugins/select2/select2.full.min.js"></script>
-<script src="/AdminLTE/plugins/timepicker/bootstrap-timepicker.min.js"></script>
-<!-- date-range-picker -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
-<script src="/AdminLTE/plugins/daterangepicker/daterangepicker.js"></script>
 <script>
   $(function () {
     //Initialize Select2 Elements
