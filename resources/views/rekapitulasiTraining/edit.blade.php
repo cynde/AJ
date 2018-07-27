@@ -43,105 +43,129 @@
             </ul>
           </div>
         @endif
-        <form role="form">
+        <form role="form" action="../update/{{$rt->id_rekapitulasi_training}}" method="post" enctype="multipart/form-data">
+          {{csrf_field()}}
           <div class="card-body">
             <div class="form-group">
-              <label for="tanggal_training">Tanggal Training</label>
-              <input name="tanggal_training" type="date" class="form-control" id="tanggal_training" placeholder="Masukkan Tanggal Training" required>
-            </div>
-            <div class="form-group col-sm-6" style="float: left">
-              <label for="divisi_pegawai">Divisi</label>
-              <select class="form-control select2" style="width: 100%;" required>
-                <option selected="selected">ABC</option>
-                <option>AAA</option>
-                <option>BBB</option>
-                <option>CCC</option>
-              </select>
-            </div>
-            <div class="form-group col-sm-6" style="float: left">
-              <label for="departemen_pegawai">Departemen</label>
-              <select name="departemen_pegawai" class="form-control select2" style="width: 100%;" required>
-                <option selected="selected">ABC</option>
-                <option>AAA</option>
-                <option>BBB</option>
-                <option>CCC</option>
+              <label for="id_training">Nama Training</label>
+              <select name="id_training" class="form-control select2" style="width: 100%;" disabled>
+                <option value="{{$rt->id_training}}">{{$rt->nama_training}} (Tgl: {{$rt->tanggal_training}})</option>
+                @foreach($training as $t)
+                <option value="{{$t->id_training}}">{{$t->nama_training}} (Tgl: {{$t->tanggal_training}})</option>
+                @endforeach
               </select>
             </div>
             <div class="form-group">
-              <label for="nama_pegawai">Peserta</label>
-              <select name="nama_pegawai" class="form-control select2" style="width: 100%;" required
-                <option selected="selected">ABC</option>
-                <option>AAA</option>
-                <option>BBB</option>
-                <option>CCC</option>
+              <label for="nik_pegawai">Peserta</label>
+              <select name="nik_pegawai" class="form-control select2" style="width: 100%;" disabled>
+                <option value="{{$rt->nik_pegawai}}">{{$rt->nama_pegawai}} (Dept: {{$rt->id_departemen}})</option>
+                @foreach($pegawai as $p)
+                <option value="{{$p->nik_pegawai}}">{{$p->nama_pegawai}} (Dept: {{$p->id_departemen}})</option>
+                @endforeach
               </select>
             </div>
             <div class="form-group">
-              <label for="nama_training">Nama Training</label>
-              <input name="nama_training" type="text" class="form-control" id="nama_training" placeholder="Masukkan Nama Training" required>
+              <label for="justifikasi">Justifikasi</label>
+              <input name="justifikasi" type="text" class="form-control" id="justifikasi" value="{{$rt->justifikasi}}" required>
             </div>
-            <div class="col-sm-3 form-group" style="float: left">
+            <div class="form-group">
+              <label for="biaya_lain">Biaya Lain</label>
+              <input name="biaya_lain" type="number" class="form-control" id="biaya_lain" value="{{$rt->biaya_lain}}">
+            </div>
+            <div class="form-group">
+              <label for="keterangan_lain">Keterangan Lain</label>
+              <input name="keterangan_lain" type="text" class="form-control" id="keterangan_lain" value="{{$rt->keterangan_lain}}">
+            </div>
+            <div class="col-sm-6 form-group" style="float: left">
               <label for="fpt_file">FPT Approved</label>
+              @if(empty($rt->fpt_file))
               <div class="input-group">
                 <div class="custom-file">
                   <input type="file" class="custom-file-input" id="fpt_file" name="fpt_file">
                   <label class="custom-file-label" for="fpt_file">Choose file</label>
                 </div>
               </div>
+              @else
+              <p>File: {{$rt->fpt_file}}</p>
+              @endif
             </div>
-            <div class="col-sm-3 form-group" style="float: left">
+            <div class="col-sm-6 form-group" style="float: left">
               <label for="pendaftaran">Pendaftaran</label>
+              @if(empty($rt->pendaftaran_file))
               <div class="input-group">
                 <div class="custom-file">
-                  <input type="file" class="custom-file-input" id="pendaftaran" name="pendaftaran">
+                  <input type="file" class="custom-file-input" id="pendaftaran" name="pendaftaran_file">
                   <label class="custom-file-label" for="pendaftaran">Choose file</label>
                 </div>
               </div>
+              @else
+                <p>File: {{$rt->pendaftaran_file}}</p>
+              @endif
             </div>
-            <div class="col-sm-3 form-group" style="float: left">
+            <div class="col-sm-6 form-group" style="float: left">
               <label for="undangan_file">Undangan</label>
+              @if(empty($rt->undangan_file))
               <div class="input-group">
                 <div class="custom-file">
                   <input type="file" class="custom-file-input" id="undangan_file" name="undangan_file">
                   <label class="custom-file-label" for="undangan_file">Choose file</label>
                 </div>
               </div>
+              @else
+                <p>File: {{$rt->undangan_file}}</p>
+              @endif
             </div>
-            <div class="col-sm-3 form-group" style="float: left">
+            <div class="col-sm-6 form-group" style="float: left">
               <label for="absensi_file">Absensi</label>
+              @if(empty($rt->absensi_file))
               <div class="input-group">
                 <div class="custom-file">
                   <input type="file" class="custom-file-input" id="absensi_file" name="absensi_file">
                   <label class="custom-file-label" for="absensi_file">Choose file</label>
                 </div>
               </div>
+              @else
+                <p>File: {{$rt->absensi_file}}</p>
+              @endif
             </div>
-            <div class="col-sm-3 form-group" style="float: left">
+            <div class="col-sm-6 form-group" style="float: left">
               <label for="sertifikat_file">Sertifikat</label>
+              @if(empty($rt->sertifikat_file))
               <div class="input-group">
                 <div class="custom-file">
                   <input type="file" class="custom-file-input" id="sertifikat_file" name="sertifikat_file">
                   <label class="custom-file-label" for="sertifikat_file">Choose file</label>
                 </div>
               </div>
+              @else
+                <p>File: {{$rt->sertifikat_file}}</p>
+              @endif
             </div>
-            <div class="col-sm-3 form-group" style="float: left">
+            <div class="col-sm-6 form-group" style="float: left">
               <label for="invoice_file">Invoice</label>
+              @if(empty($rt->invoice_file))
               <div class="input-group">
                 <div class="custom-file">
                   <input type="file" class="custom-file-input" id="invoice_file" name="invoice_file">
                   <label class="custom-file-label" for="invoice_file">Choose file</label>
                 </div>
               </div>
+              @else
+                <p>File: {{$rt->invoice_file}}</p>
+              @endif
             </div>
-            <div class="col-sm-3 form-group" style="float: left">
-              <label for="evaluasi_file">Evaluasi</label>
+            <div class="col-sm-6 form-group" style="float: left">
+              <label for="eval_file">Evaluasi</label>
+              @if(empty($rt->eval_file))
               <div class="input-group">
                 <div class="custom-file">
                   <input type="file" class="custom-file-input" id="evaluasi_file" name="evaluasi_file">
                   <label class="custom-file-label" for="evaluasi_file">Choose file</label>
                 </div>
               </div>
+              @else
+                <p>File: {{$rt->eval_file}}</p>
+              @endif
             </div>
           </div>
           <!-- /.card-body -->

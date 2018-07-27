@@ -33,7 +33,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item has-treeview" style="display: {{ Request::is('training') ? 'block' : Request::is('rekapitulasiTraining') ? 'block' : 'none'}}">
+          <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-id-badge"></i>
               <p>
@@ -41,22 +41,22 @@
                 <i class="right fa fa-angle-left"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview">
+            <ul class="nav nav-treeview" style="display: {{ Request::is('training') ? 'block' : Request::is('rekapitulasiTraining') ? 'block' : 'none'}}">
               <li class="nav-item">
-                <a href="training" class="nav-link {{ Request::is('training') ? 'active' : '' }}">
+                <a href="/training" class="nav-link {{ Request::is('training') ? 'active' : '' }}">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>List Training</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="rekapitulasiTraining" class="nav-link {{ Request::is('rekapitulasiTraining') ? 'active' : '' }}">
+                <a href="/rekapitulasiTraining" class="nav-link {{ Request::is('rekapitulasiTraining') ? 'active' : '' }}">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>Rekapitulasi Training</p>
                 </a>
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview" style="display: {{ Request::is('pegawai') ? 'block' : Request::is('jabatan') ? 'block' : Request::is('divisi') ? 'block' : Request::is('departemen') ? 'block' : 'none'}}">
+          <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-users"></i>
               <p>
@@ -64,7 +64,7 @@
                 <i class="right fa fa-angle-left"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview">
+            <ul class="nav nav-treeview" style="display: {{ Request::is('pegawai') ? 'block' : Request::is('jabatan') ? 'block' : Request::is('divisi') ? 'block' : Request::is('departemen') ? 'block' : 'none'}}">
               <li class="nav-item">
                 <a href="/pegawai" class="nav-link {{ Request::is('pegawai') ? 'active' : '' }}">
                   <i class="fa fa-circle-o nav-icon"></i>
@@ -130,7 +130,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link {{ Request::is('rekapBiaya') ? 'active' : '' }}">
+            <a href="/rekapBiaya" class="nav-link {{ Request::is('rekapBiaya') ? 'active' : '' }}">
               <i class="nav-icon fa fa-book"></i>
               <p>
                 Rekap Biaya

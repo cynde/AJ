@@ -9,9 +9,7 @@ class Topik extends Model
     protected $table = 'topik';
     protected $primaryKey = 'id_topik';
     public $incrementing = false;
-
-  	protected $guarded = ['id_topik'];
-  	
+    
   	public function training(){
     	return $this->belongsTo('App\Training');
     }

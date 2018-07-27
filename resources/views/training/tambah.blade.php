@@ -56,7 +56,7 @@
             <div class="col-sm-6" style="float:left">
               <div class="form-group">
                 <label> <i class="fa fa-calendar"></i> Tanggal:</label>
-                <input name="tanggal_training" type="date" class="form-control" id="tanggal_training" placeholder="Masukkan Tanggal Training" required>
+                <input name="tanggal_training" type="text" class="form-control date" id="tanggal_training" placeholder="Masukkan Tanggal Training" required>
                 <!-- /.input group -->
               </div>
             </div>
@@ -133,8 +133,6 @@
   <!-- /.content-wrapper -->
 @endsection
 @section('script')
-<!-- jQuery -->
-<script src="/AdminLTE/plugins/jquery/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 <script src="/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- Select2 -->
@@ -147,6 +145,11 @@
   $(function () {
     //Initialize Select2 Elements
     $('.select2').select2()
+    $('.date').datepicker({
+      multidate: true,
+      format: 'dd-mm-yyyy'
+    });
+
   })
 </script>
 @endsection

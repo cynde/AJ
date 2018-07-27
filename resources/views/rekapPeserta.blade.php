@@ -3,6 +3,9 @@
 @section('css')
 <!-- DataTables -->
 <link rel="stylesheet" href="/AdminLTE/plugins/datatables/dataTables.bootstrap4.css">
+{{-- export --}}
+<link rel="stylesheet" href="/css/buttons.dataTables.min.css">
+
 @endsection
 @section('content')
   <!-- Content Wrapper. Contains page content -->
@@ -30,9 +33,6 @@
       <div class="card">
         <div class="card-header">
           <h3 class="card-title">Data Rekap Peserta
-            <div style="float: right;">
-              <button type="button" class="btn btn-block btn-success"><span class="fa fa-file-excel-o"></span> Export to Excel</button>
-            </div>
           </h3>
         </div>
         <!-- /.card-header -->
@@ -95,9 +95,19 @@
 <script src="/AdminLTE/plugins/datatables/jquery.dataTables.js"></script>
 <script src="/AdminLTE/plugins/datatables/dataTables.bootstrap4.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+{{-- export table --}}
+<script src="/js/dataTables.buttons.min.js"></script>
+<script src="/js/jszip.min.js"></script>
+<script src="/js/buttons.html5.min.js"></script>
+<script src="/js/vfs_fonts.js"></script>
 <script>
    $(document).ready(function() {
-    $('#rekap-peserta').dataTable()});
+    $('#rekap-peserta').dataTable({
+      dom: 'Bfrtip',
+      buttons: [
+            'excelHtml5']
+    });
+  });
 </script>
 
 @endsection

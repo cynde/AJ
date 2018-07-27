@@ -16,7 +16,7 @@ class Departemen extends Model
     }
 
   	public function kompetensi_departemen(){
-    	return $this->belongsTo('App\KompetensiDepartemen');
+    	return $this->belongsToMany('App\Kompetensi','kompetensi_departemen','id_kompetensi','id_departemen')->withPivot('id_kompetensi_departemen','level_kompetensi','kompetensi_pendahulu');
     }
 
   	public function divisi(){

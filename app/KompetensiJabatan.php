@@ -12,10 +12,10 @@ class KompetensiJabatan extends Model
   	protected $guarded = ['id_kompetensi_jabatan','id_kompetensi','id_jabatan'];
 
   	public function jabatan(){
-    	return $this->hasOne('App\Jabatan');
+    	return $this->hasMany('App\Jabatan');
     }
 
     public function kompetensi(){
-    	return $this->hasOne('App\Kompetensi');
+    	return $this->hasMany('App\Kompetensi');
     }
 }

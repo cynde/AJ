@@ -45,6 +45,8 @@
 <!-- Bootstrap 4 -->
 <script src="/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="/AdminLTE/plugins/chartjs-old/Chart.min.js"></script>
+{{-- jquery 3.3.1 --}}
+<script src="/js/jquery-3.3.1.js"></script>
 <!-- Morris.js charts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
 <script src="/AdminLTE/plugins/morris/morris.min.js"></script>
