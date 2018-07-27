@@ -11,11 +11,11 @@ class Kompetensi extends Model
 
   	protected $fillable = ['id_kompetensi','nama_kompetensi'];
 
-  	public function kompetensi_jabatan(){
-    	return $this->belongsTo('App\KompetensiJabatan');
-    }
+  	// public function kompetensi_jabatan(){
+   //  	return $this->belongsToMany('App\KompetensiJabatan');
+   //  }
 
-  	public function kompetensi_departemen(){
-    	return $this->belongsTo('App\KompetensiDepartemen');
-    }
+  	// public function kompetensi_departemen(){
+   //  	return $this->belongsToMany('App\KompetensiDepartemen');
+   //  }
 }

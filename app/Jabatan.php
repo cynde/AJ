@@ -17,6 +17,6 @@ class Jabatan extends Model
     }
 
     public function kompetensi_jabatan(){
-    	return $this->belongsTo('App\KompetensiJabatan');
+    	return $this->belongsToMany('App\Kompetensi','kompetensi_jabatan','id_kompetensi','id_jabatan')->withPivot('id_kompetensi_jabatan','level_kompetensi','kompetensi_pendahulu');
     }
 }

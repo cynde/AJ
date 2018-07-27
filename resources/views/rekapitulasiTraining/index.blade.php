@@ -133,6 +133,8 @@
 <script src="/AdminLTE/plugins/datatables/jquery.dataTables.js"></script>
 <script src="/AdminLTE/plugins/datatables/dataTables.bootstrap4.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script src="/yadcf/jquery.dataTables.yadcf.js"></script>
+
 <!-- Select2 -->
 <script src="/AdminLTE/plugins/select2/select2.full.min.js"></script>
 {{-- export table --}}
@@ -148,7 +150,8 @@
 </script>
 <script>
   $(document).ready(function() {
-    $('#tabel-rekap-training').DataTable({
+    'use strict';
+    $('#tabel-rekap-training').dataTable({
         "bJQueryUI": true,
         "bStateSave": true,
         "scrollX": true,
@@ -158,7 +161,54 @@
         fixedColumns: {
           leftColumns: 5
         }
-    });
+    }).yadcf([{
+      column_number: 1,
+      filter_type: "range_date",
+      date_format:  'dd-mm-yy'
+    }, {
+      column_number: 2,
+      filter_type: "multi_select",
+      select_type: 'select2'
+    }, {
+      column_number: 3,
+      filter_type: "multi_select",
+      select_type: 'select2'
+    }, {
+      column_number: 4,
+      filter_type: "multi_select",
+      select_type: 'select2'
+    }, {
+      column_number: 5,
+      filter_type: "multi_select",
+      select_type: 'select2'
+    }, {
+      column_number: 6,
+      filter_type: "range_number"
+    }, {
+      column_number: 7,
+      filter_type: "multi_select",
+      select_type: 'select2'
+    }, {
+      column_number: 8,
+      filter_type: "multi_select",
+      select_type: 'select2'
+    }, {
+      column_number: 9,
+      filter_type: "multi_select",
+      select_type: 'select2'
+    }, {
+      column_number: 10,
+      filter_type: "multi_select",
+      select_type: 'select2'
+    }, {
+      column_number: 16,
+      filter_type: "range_number",
+      ignore_char: ","
+    }, {
+      column_number: 19,
+      filter_type: "range_number",
+      ignore_char: ","
+    }]);
   });
 </script>
 @endsection
