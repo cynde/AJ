@@ -12,10 +12,10 @@ class KompetensiDepartemen extends Model
   	protected $guarded = ['id_kompetensi_departemen','id_kompetensi','id_departemen'];
 
   	public function departemen(){
-    	return $this->hasOne('App\Departemen');
+    	return $this->hasMany('App\Departemen');
     }
 
     public function kompetensi(){
-    	return $this->hasOne('App\Kompetensi');
+    	return $this->hasMany('App\Kompetensi');
     }
 }

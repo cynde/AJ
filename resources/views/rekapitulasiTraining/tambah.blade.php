@@ -43,44 +43,38 @@
             </ul>
           </div>
         @endif
-        <form role="form">
+        <form role="form" action="store" method="post" enctype="multipart/form-data">
+          {{csrf_field()}}
           <div class="card-body">
             <div class="form-group">
-              <label for="tanggal_training">Tanggal Training</label>
-              <input name="tanggal_training" type="date" class="form-control" id="tanggal_training" placeholder="Masukkan Tanggal Training">
-            </div>
-            <div class="form-group col-sm-6" style="float: left">
-              <label for="divisi_pegawai">Divisi</label>
-              <select class="form-control select2" style="width: 100%;">
-                <option selected="selected">ABC</option>
-                <option>AAA</option>
-                <option>BBB</option>
-                <option>CCC</option>
-              </select>
-            </div>
-            <div class="form-group col-sm-6" style="float: left">
-              <label for="departemen_pegawai">Departemen</label>
-              <select name="departemen_pegawai" class="form-control select2" style="width: 100%;">
-                <option selected="selected">ABC</option>
-                <option>AAA</option>
-                <option>BBB</option>
-                <option>CCC</option>
+              <label for="id_training">Nama Training</label>
+              <select name="id_training" class="form-control select2" style="width: 100%;">
+                @foreach($training as $t)
+                <option value="{{$t->id_training}}">{{$t->nama_training}} (Tgl: {{$t->tanggal_training}})</option>
+                @endforeach
               </select>
             </div>
             <div class="form-group">
-              <label for="nama_pegawai">Peserta</label>
-              <select name="nama_pegawai" class="form-control select2" style="width: 100%;">
-                <option selected="selected">ABC</option>
-                <option>AAA</option>
-                <option>BBB</option>
-                <option>CCC</option>
+              <label for="nik_pegawai">Peserta</label>
+              <select name="nik_pegawai" class="form-control select2" style="width: 100%;">
+                @foreach($pegawai as $p)
+                <option value="{{$p->nik_pegawai}}">{{$p->nama_pegawai}} (Dept: {{$p->id_departemen}})</option>
+                @endforeach
               </select>
             </div>
             <div class="form-group">
-              <label for="nama_training">Nama Training</label>
-              <input name="nama_training" type="text" class="form-control" id="nama_training" placeholder="Masukkan Nama Training">
+              <label for="justifikasi">Justifikasi</label>
+              <input name="justifikasi" type="text" class="form-control" id="justifikasi" placeholder="Masukkan Justifikasi" required>
             </div>
-            <div class="col-sm-3 form-group" style="float: left">
+            <div class="form-group">
+              <label for="biaya_lain">Biaya Lain</label>
+              <input name="biaya_lain" type="number" class="form-control" id="biaya_lain" placeholder="Masukkan Biaya Lain">
+            </div>
+            <div class="form-group">
+              <label for="keterangan_lain">Keterangan Lain</label>
+              <input name="keterangan_lain" type="text" class="form-control" id="keterangan_lain" placeholder="Masukkan Keterangan Lain">
+            </div>
+            <div class="col-sm-6 form-group" style="float: left">
               <label for="fpt_file">FPT Approved</label>
               <div class="input-group">
                 <div class="custom-file">
@@ -89,16 +83,16 @@
                 </div>
               </div>
             </div>
-            <div class="col-sm-3 form-group" style="float: left">
+            <div class="col-sm-6 form-group" style="float: left">
               <label for="pendaftaran">Pendaftaran</label>
               <div class="input-group">
                 <div class="custom-file">
-                  <input type="file" class="custom-file-input" id="pendaftaran" name="pendaftaran">
+                  <input type="file" class="custom-file-input" id="pendaftaran" name="pendaftaran_file">
                   <label class="custom-file-label" for="pendaftaran">Choose file</label>
                 </div>
               </div>
             </div>
-            <div class="col-sm-3 form-group" style="float: left">
+            <div class="col-sm-6 form-group" style="float: left">
               <label for="undangan_file">Undangan</label>
               <div class="input-group">
                 <div class="custom-file">
@@ -107,7 +101,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-sm-3 form-group" style="float: left">
+            <div class="col-sm-6 form-group" style="float: left">
               <label for="absensi_file">Absensi</label>
               <div class="input-group">
                 <div class="custom-file">
@@ -116,7 +110,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-sm-3 form-group" style="float: left">
+            <div class="col-sm-6 form-group" style="float: left">
               <label for="sertifikat_file">Sertifikat</label>
               <div class="input-group">
                 <div class="custom-file">
@@ -125,7 +119,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-sm-3 form-group" style="float: left">
+            <div class="col-sm-6 form-group" style="float: left">
               <label for="invoice_file">Invoice</label>
               <div class="input-group">
                 <div class="custom-file">
@@ -134,7 +128,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-sm-3 form-group" style="float: left">
+            <div class="col-sm-6 form-group" style="float: left">
               <label for="evaluasi_file">Evaluasi</label>
               <div class="input-group">
                 <div class="custom-file">

@@ -60,7 +60,7 @@
                   <td>{{$a->id_divisi}}</td>
                   <td>{{$a->nama_divisi}}</td>
                   <td>{{$a->nama_direktorat}}</td>
-                  <td><button type="button" class="btn btn-block btn-secondary btn-sm" data-toggle="modal" data-target="#lihatDepartemen">lihat</button></td>
+                  <td><button id="lihat" type="button" class="btn btn-block btn-secondary btn-sm" data-id="{{$a->id_divisi}}">lihat</button></td>
                   <td><a href="divisi/edit/{{$a->id_divisi}}"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
                   <td>
                     <form action="divisi/delete/{{$a->id_divisi}}" method="post">
@@ -102,18 +102,9 @@
             <tr>
               <th width="5%">No</th>
               <th>Nama Departemen</th>
-              <th width="5%"></th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>ACB1DEPT</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>ACB2DEPT</td>
-            </tr>
+          <tbody id="DepartemenDetailBody">
           </tbody>
         </table>
       </div>
@@ -126,8 +117,6 @@
 
 @endsection
 @section('script')
-<!-- jQuery -->
-<script src="AdminLTE/plugins/jquery/jquery.min.js"></script>
 <!-- DataTables -->
 <script src="AdminLTE/plugins/datatables/jquery.dataTables.js"></script>
 <script src="AdminLTE/plugins/datatables/dataTables.bootstrap4.js"></script>
@@ -144,6 +133,36 @@
     //Initialize Select2 Elements
     $('.select2').select2()
   })
+</script>
+
+<script type="text/javascript">
+  
+$(document).ready(function() {
+  $('#lihat').on('click', function(e) {
+    jQuery.noConflict();
+    // $('#lihatDepartemen').modal('show');
+    $.ajaxSetup({
+        headers:{'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')}
+    })
+    e.preventDefault(e);
+    var triggerid = $(this).data('id');
+    $.ajax({
+      type: 'get',
+      url: '/divisi/show/'+ triggerid,
+      dataType: 'json',
+      success: function(message) {
+          jQuery.noConflict();
+          $('#lihatDepartemen').modal('show');
+          document.getElementById('DepartemenDetailBody').innerHTML = '';
+          var tableAppend = '';
+          for(var i = 0; i < message.data.length; i++) {
+              tableAppend += '<tr><td>' + (i+1) + '</td><td>' + message.data[i]['nama_departemen'] + '</td></tr>';
+          }
+          $('#DepartemenDetailBody').append(tableAppend);
+      }
+    });
+  });
+});
 </script>
 
 @endsection
