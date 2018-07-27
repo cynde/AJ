@@ -63,6 +63,7 @@ class DivisiController extends Controller
     public function show($id)
     {
         $all = Divisi::leftJoin('departemen','departemen.id_divisi','=','divisi.id_divisi')->where('divisi.id_divisi','=',$id)->get();
+        // console.log($all);
         return response()->json([
            'success' => true,
            'data' => $all

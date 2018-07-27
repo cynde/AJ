@@ -138,7 +138,7 @@
 <script type="text/javascript">
   
 $(document).ready(function() {
-  $('#lihat').on('click', function(e) {
+  $(document).on('click','#lihat',function(e) {
     jQuery.noConflict();
     // $('#lihatDepartemen').modal('show');
     $.ajaxSetup({
@@ -151,14 +151,15 @@ $(document).ready(function() {
       url: '/divisi/show/'+ triggerid,
       dataType: 'json',
       success: function(message) {
+        // console.log(message)
           jQuery.noConflict();
-          $('#lihatDepartemen').modal('show');
           document.getElementById('DepartemenDetailBody').innerHTML = '';
           var tableAppend = '';
           for(var i = 0; i < message.data.length; i++) {
               tableAppend += '<tr><td>' + (i+1) + '</td><td>' + message.data[i]['nama_departemen'] + '</td></tr>';
           }
           $('#DepartemenDetailBody').append(tableAppend);
+          $('#lihatDepartemen').modal('show');
       }
     });
   });
