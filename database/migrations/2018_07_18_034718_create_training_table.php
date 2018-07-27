@@ -21,7 +21,7 @@ class CreateTrainingTable extends Migration
             $table->time('time_finish');
             $table->integer('jumlah_jam_training');
             $table->integer('harga_training');
-            $table->integer('invoice_training');
+            $table->integer('invoice_training')->nullable();
             $table->timestamps();
         });
     }
