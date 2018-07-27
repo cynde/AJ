@@ -43,13 +43,13 @@
             </a>
             <ul class="nav nav-treeview" style="display: {{ Request::is('training') ? 'block' : Request::is('rekapitulasiTraining') ? 'block' : 'none'}}">
               <li class="nav-item">
-                <a href="training" class="nav-link {{ Request::is('training') ? 'active' : '' }}">
+                <a href="/training" class="nav-link {{ Request::is('training') ? 'active' : '' }}">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>List Training</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="rekapitulasiTraining" class="nav-link {{ Request::is('rekapitulasiTraining') ? 'active' : '' }}">
+                <a href="/rekapitulasiTraining" class="nav-link {{ Request::is('rekapitulasiTraining') ? 'active' : '' }}">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>Rekapitulasi Training</p>
                 </a>
