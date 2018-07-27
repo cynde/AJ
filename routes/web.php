@@ -23,6 +23,13 @@ Route::get('/rekapPeserta', function () {
     return view('rekapPeserta');
 });
 
+Route::get('/index4', function () {
+    return view('index4');
+});
+
+
+Route::get('/rekapbiaya', 'RekapBiayaController@index');
+
 Route::group(['prefix' => 'jabatan'], function() {
  Route::get('/', ['as' => 'jabatan', 'uses' => 'JabatanController@index']);
  Route::get('tambah', 'JabatanController@create');

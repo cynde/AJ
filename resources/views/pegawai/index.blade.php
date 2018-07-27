@@ -61,13 +61,13 @@
               <tr>
                 <td>{{$loop->iteration}}</td>
                 <td>{{$a->nik_pegawai}}</td>
-                <td>{{$a->nama_pegawai}}</td>
-                <td>{{$a->nama_departemen}}</td>
+                <td width="20%">{{$a->nama_pegawai}}</td>
+                <td width="15%">{{$a->nama_departemen}}</td>
                 <td>{{$a->nama_jabatan}}</td>
                 <td><button type="button" class="btn btn-block btn-secondary btn-sm" data-toggle="modal" data-target="#kompetensiDepartemen">lihat</button></td>
                 <td><button type="button" class="btn btn-block btn-secondary btn-sm"data-toggle="modal" data-target="#kompetensiJabatan">lihat</button></td>
-                <td><a href="/pegawai/edit/{{$a->id_pegawai}}"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
-                <td><form action="/pegawai/delete/{{$a->id_pegawai}}" method="POST">
+                <td><a href="/pegawai/edit/{{$a->nik_pegawai}}"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
+                <td><form action="/pegawai/delete/{{$a->nik_pegawai}}" method="POST">
                             {{csrf_field()}}
                             <button type="submit" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button>
                     </form></td>
@@ -238,23 +238,7 @@
         "bJQueryUI": true,
         "bStateSave": true,
         "scrollX": true
-    }).yadcf([{
-        column_number: 1,
-        filter_type: "range_date",
-        date_format:  'dd-mm-yy'
-    }, {
-        column_number: 2,
-        filter_type: "multi_select",
-        select_type: 'select2'
-    }, {
-        column_number: 3,
-        filter_type: "multi_select",
-        select_type: 'select2'
-    }, {
-        column_number: 4,
-        filter_type: "multi_select",
-        select_type: 'select2'
-    }]);
+    })
   });
 </script>
 @endsection

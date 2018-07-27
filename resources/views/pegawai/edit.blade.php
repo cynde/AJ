@@ -55,30 +55,21 @@
               <input name="nama_pegawai" type="text" class="form-control" id="nama_pegawai" value="{{$r->nama_pegawai}}" required>
             </div>
             <div class="form-group col-sm-6" style="float: left">
-              <label for="divisi_pegawai">Divisi Pegawai</label>
-              <select class="form-control select2" style="width: 100%;" required>
-                <option selected="selected">ABC</option>
-                <option>AAA</option>
-                <option>BBB</option>
-                <option>CCC</option>
+              <label for="id_departemen">Departemen</label>
+              <select name="id_departemen" class="form-control select2" style="width: 100%;" required>
+                <option value="{{$r->id_departemen}}" selected>{{$r->nama_departemen}}</option>
+                @foreach($departemen as $d)
+                <option value="{{$d->id_departemen}}">{{$d->nama_departemen}}</option>
+                @endforeach
               </select>
             </div>
             <div class="form-group col-sm-6" style="float: left">
-              <label for="departemen_pegawai">Departemen Pegawai</label>
-              <select name="departemen_pegawai" class="form-control select2" style="width: 100%;" required>
-                <option selected="selected">ABC</option>
-                <option>AAA</option>
-                <option>BBB</option>
-                <option>CCC</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="jabatan_pegawai">Jabatan</label>
-              <select name="jabatan_pegawai" class="form-control select2" style="width: 100%;" required>
-                <option selected="selected">ABC</option>
-                <option>AAA</option>
-                <option>BBB</option>
-                <option>CCC</option>
+              <label for="id_jabatan">Jabatan</label>
+              <select name="id_jabatan" class="form-control select2" style="width: 100%;" required>
+                <option value="{{$r->id_jabatan}}" selected>{{$r->nama_jabatan}}</option>
+                @foreach($jabatan as $j)
+                <option value="{{$j->id_jabatan}}">{{$j->nama_jabatan}}</option>
+                @endforeach
               </select>
             </div>
           </div>

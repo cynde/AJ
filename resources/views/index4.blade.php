@@ -37,48 +37,47 @@
       <section class="col-lg-6 connectedSortable">
         <!-- Custom tabs (Charts with tabs)-->
         <div class="col-sm-12">
+        <div class="card-body">
           <div class="box box-default">
             <div class="box-header with-border">
-              <div class="card card-default">
-                <div class="card-header">  
-                  <h3 class="box-title"><i class="fa fa-bullhorn"></i> Jangan Lupa!!!</h3>
-                </div>
-                <!-- /.box-header -->
-                <div class="box-body">
-                  <div class="callout callout-danger">
-                    <h4>I am a danger callout!</h4>
 
-                    <p>There is a problem that we need to fix. A wonderful serenity has taken possession of my entire soul,
-                      like these sweet mornings of spring which I enjoy with my whole heart.</p>
-                  </div>
-                  <div class="callout callout-info">
-                    <h4>I am an info callout!</h4>
-
-                    <p>Follow the steps to continue to payment.</p>
-                  </div>
-                  <div class="callout callout-warning">
-                    <h4>I am a warning callout!</h4>
-
-                    <p>This is a yellow callout.</p>
-                  </div>
-                  <div class="callout callout-success">
-                    <h4>I am a success callout!</h4>
-
-                    <p>This is a green callout.</p>
-                  </div>
-                <!-- /.box-body -->
-                </div>
+              <h3 class="box-title"><i class="fa fa-bullhorn"></i> Jangan Lupa !!!</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                Danger alert preview. This alert is dismissable. A wonderful serenity has taken possession of my entire
+                soul, like these sweet mornings of spring which I enjoy with my whole heart.
+              </div>
+              <div class="alert alert-info alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-info"></i> Alert!</h4>
+                Info alert preview. This alert is dismissable.
+              </div>
+              <div class="alert alert-warning alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-warning"></i> Alert!</h4>
+                Warning alert preview. This alert is dismissable.
+              </div>
+              <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-check"></i> Alert!</h4>
+                Success alert preview. This alert is dismissable.
               </div>
             </div>
+            </div>
+            <!-- /.box-body -->
           </div>
         </div>
-        <!-- DONUT CHART -->
+
         <div class="col-sm-12">
           <div class="box box-default">
             <div class="box-header with-border">
               <div class="card card-danger card-outline">
                 <div class="card-header">
-                  <h3 class="card-title">Donut Chart</h3>
+                  <h3 class="card-title">Jumlah Kegiatan</h3>
 
                   <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -101,7 +100,7 @@
             <div class="box-header with-border">
               <div class="card card-danger card-outline">
                 <div class="card-header">
-                  <h3 class="card-title">Donut Chart</h3>
+                  <h3 class="card-title">Jumlah Kegiatan</h3>
 
                   <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -140,7 +139,7 @@
           <!-- BAR CHART -->
           <div class="card card-success card-outline">
             <div class="card-header">
-              <h3 class="card-title">Bar Chart</h3>
+              <h3 class="card-title">Jumlah Pegawai Berpartisipasi</h3>
 
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -241,7 +240,7 @@
           <!-- DONUT CHART -->
           <div class="card card-danger card-outline">
             <div class="card-header">
-              <h3 class="card-title">Donut Chart</h3>
+              <h3 class="card-title">Jumlah Peserta</h3>
 
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fa fa-minus"></i>
