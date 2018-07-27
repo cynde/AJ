@@ -4,6 +4,9 @@
 <!-- Select2 -->
 <link rel="stylesheet" href="/AdminLTE/plugins/select2/select2.min.css">
 <link rel="stylesheet" href="/AdminLTE/plugins/timepicker/bootstrap-timepicker.min.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" rel="stylesheet"/>
+
 @endsection
 @section('content')
   <!-- Content Wrapper. Contains page content -->
@@ -56,7 +59,7 @@
             <div class="col-sm-6" style="float:left">
               <div class="form-group">
                 <label> <i class="fa fa-calendar"></i> Tanggal:</label>
-                <input name="tanggal_training" type="text" class="form-control date" id="tanggal_training" placeholder="Masukkan Tanggal Training" required>
+                <input type="text" class="form-control date" placeholder="Masukkan Tanggal Training" name="tanggal_training">
                 <!-- /.input group -->
               </div>
             </div>
@@ -116,7 +119,7 @@
             </div>
             <div class="form-group col-sm-6" style="float: left">
               <label for="invoice_training">Invoice</label>
-              <input name="invoice_training" type="number" class="form-control" id="invoice_training" placeholder="Masukkan Invoice Training" required>
+              <input name="invoice_training" type="number" class="form-control" id="invoice_training" placeholder="Masukkan Invoice Training">
             </div>
           </div>
           <!-- /.card-body -->
@@ -133,21 +136,22 @@
   <!-- /.content-wrapper -->
 @endsection
 @section('script')
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<!-- jQuery -->
+<script src="/AdminLTE/plugins/jquery/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- Select2 -->
 <script src="/AdminLTE/plugins/select2/select2.full.min.js"></script>
-<script src="/AdminLTE/plugins/timepicker/bootstrap-timepicker.min.js"></script>
-<!-- date-range-picker -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
-<script src="/AdminLTE/plugins/daterangepicker/daterangepicker.js"></script>
+{{-- datepicker --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
+
 <script>
-  $(function () {
+  $(document).ready(function () {
     //Initialize Select2 Elements
     $('.select2').select2()
     $('.date').datepicker({
-      multidate: true,
-      format: 'dd-mm-yyyy'
+      multidate: true
     });
 
   })

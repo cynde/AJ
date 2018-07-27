@@ -59,7 +59,7 @@ class TrainingController extends Controller
             'id_kompetensi' => 'required',
             'id_penyelenggara' => 'required',
             'harga_training' => 'required|numeric',
-            'invoice_training' => 'required|numeric',
+            'invoice_training' => 'numeric',
         ]);
         $train = new Training();
         $train->id_training = $request->id_training;
@@ -130,7 +130,7 @@ class TrainingController extends Controller
             'id_kompetensi' => 'required',
             'id_penyelenggara' => 'required',
             'harga_training' => 'required|numeric',
-            'invoice_training' => 'required|numeric',
+            'invoice_training' => 'numeric',
         ]);
         $train = Training::findorfail($id);
         $train->id_training = $request->id_training;
