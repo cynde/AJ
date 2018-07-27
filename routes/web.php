@@ -28,6 +28,8 @@ Route::get('/index4', function () {
 });
 
 
+Route::get('/rekapbiaya', 'RekapBiayaController@index');
+
 Route::group(['prefix' => 'jabatan'], function() {
  Route::get('/', ['as' => 'jabatan', 'uses' => 'JabatanController@index']);
  Route::get('tambah', 'JabatanController@create');

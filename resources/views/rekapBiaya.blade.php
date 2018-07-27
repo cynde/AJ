@@ -41,6 +41,7 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
+         @if($all->count())
           <table id="rekap-biaya" class="table table-bordered table-striped">
             <thead style="text-align: center">
               <tr>
@@ -55,17 +56,25 @@
               </tr>
             </thead>
             <tbody>
+            @foreach($all as $a)
               <tr>
-                <td>1</td>
-                <td>Maret</td>
-                <td>Customer Engagement</td>
-                <td>Giat (Inhouse)</td>
-                <td>05-03-18</td>
-                <td>ANT</td>
+                <td>{{$loop->iteration}}</td>
+                <td> {{ Carbon\Carbon::parse($a->tanggal_training)->format('F') }}</td>
+                <td>{{$a->nama_training}}</td>
+                <td>{{$a->nama_media}} ({{$a->kategori_media}})</td>
+                <td>{{$a->tanggal_training}}</td>
+                <td>{{$a->nama_penyelenggara}}</td>
                 <td><button type="button" class="btn btn-block btn-secondary btn-sm" data-toggle="modal" data-target="#lihatPeserta">lihat</button></td>
-                <td>36.000.000</td>
+                <td>{{$a->harga_training}}</td>
               </tr>
+              @endforeach
+              </tbody>
           </table>
+          @else
+          <div class="alert alert-warning">
+            <i class="fa fa-exclamation-triangle"></i> Tidak ada data.
+          </div>
+          @endif
         </div>
         <!-- /.card-body -->
       </div>
@@ -92,15 +101,11 @@
             </tr>
           </thead>
           <tbody>
+            @foreach($peserta as $p)
             <tr>
-              <td>Lorem ipsum</td>
+              <td value="{{p->nama_pegawai}}">{{p->nama_pegawai}}</td>
             </tr>
-            <tr>
-              <td>Lorem ipsum</td>
-            </tr>
-            <tr>
-              <td>Lorem ipsum</td>
-            </tr>
+              @endforeach
           </tbody>
         </table>
       </div>
