@@ -111,7 +111,11 @@ Route::group(['prefix' => 'departemen'], function() {
 	Route::post('update/{id}', 'DepartemenController@update');
 	Route::post('delete/{id}', 'DepartemenController@destroy');
 	Route::get('show/{id}', 'DepartemenController@show');
-	Route::post('addKompetensi', 'DepartemenController@addKompetensi');
+	Route::get('tambahKompetensi', 'DepartemenController@tambahKompetensi');
+	Route::post('storeKompetensi/{id}', 'DepartemenController@storeKompetensi');
+	Route::get('editKompetensi/{iddept}/{id}', 'DepartemenController@editKompetensi');
+	Route::post('updateKompetensi/{iddept}/{id}', 'DepartemenController@updateKompetensi');
+	Route::post('deleteKompetensi/{id}', 'DepartemenController@destroyKompetensi');
 });
 
 Route::group(['prefix' => 'training'], function() {
