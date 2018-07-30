@@ -21,9 +21,9 @@ class CreateAnggaranTable extends Migration
         });
 
         Schema::table('rekapitulasi_training', function (Blueprint $table) {
-            $table->foreign('nik_pegawai')->references('nik_pegawai')->on('pegawai')->onUpdate('cascade')->onDelete('cascade');
             $table->integer('id_training');
             $table->foreign('id_training')->references('id_training')->on('training')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('nik_pegawai')->references('nik_pegawai')->on('pegawai')->onUpdate('cascade')->onDelete('cascade');
         });
 
         Schema::table('divisi', function (Blueprint $table) {

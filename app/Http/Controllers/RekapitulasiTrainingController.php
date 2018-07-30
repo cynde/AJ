@@ -45,7 +45,6 @@ class RekapitulasiTrainingController extends Controller
             'id_training' => 'required',
             'nik_pegawai' => 'required',
             'justifikasi' => 'required',
-            'biaya_lain' => 'numeric',
             'tanggal_training' => 'required',
             'jam_mulai' => 'required',
             'jam_selesai' => 'required',
@@ -172,7 +171,6 @@ class RekapitulasiTrainingController extends Controller
     {
         $validatedData = $request->validate([
             'justifikasi' => 'required',
-            'biaya_lain' => 'numeric',
             'tanggal_training' => 'required',
             'jam_mulai' => 'required',
             'jam_selesai' => 'required',

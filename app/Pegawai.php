@@ -9,7 +9,7 @@ class Pegawai extends Model
     protected $table = 'pegawai';
     protected $primaryKey = 'nik_pegawai';
 
-  	protected $guarded = ['nik_pegawai'];
+    public $incrementing = false;
 
   	public function rekapitulasi_training(){
     	return $this->belongsTo('App\RekapitulasiTraining');
