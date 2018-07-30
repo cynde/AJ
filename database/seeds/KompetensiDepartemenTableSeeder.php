@@ -16,7 +16,7 @@ class KompetensiDepartemenTableSeeder extends Seeder
 		'id_kompetensi'=>'01',
 		'id_departemen'=>'ACB1DEPT',
 		'level_kompetensi'=>'1',
-		'kompetensi_pendahulu'=>''
+		'kompetensi_pendahulu'=>NULL
 		] );
 
         KompetensiDepartemen::create( [
