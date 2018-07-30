@@ -50,9 +50,9 @@
             <div class="form-group">
               <label for="id_training">Nama Training</label>
               <select name="id_training" class="form-control select2" style="width: 100%;" disabled>
-                <option value="{{$rt->id_training}}">{{$rt->nama_training}} (Tgl: {{$rt->tanggal_training}})</option>
+                <option value="{{$rt->id_training}}">{{$rt->nama_training}}</option>
                 @foreach($training as $t)
-                <option value="{{$t->id_training}}">{{$t->nama_training}} (Tgl: {{$t->tanggal_training}})</option>
+                <option value="{{$t->id_training}}">{{$t->nama_training}}</option>
                 @endforeach
               </select>
             </div>
@@ -77,14 +77,14 @@
               <div class="bootstrap-timepicker col-sm-6" style="float: left">
                 <div class="form-group">
                   <label><i class="fa fa-clock-o"></i> Jam Mulai:</label>
-                  <input name="time_start" type="time" class="form-control" value="{{$rt->time_start}}" required>
+                  <input name="jam_mulai" type="time" class="form-control" value="{{$rt->jam_mulai}}" required>
                 </div>
                 <!-- /.form group -->
               </div>
             <div class="bootstrap-timepicker col-sm-6" style="float: left">
                 <div class="form-group">
                   <label><i class="fa fa-clock-o"></i> Jam Selesai:</label>
-                  <input name="time_finish" type="time" class="form-control" value="{{$rt->time_finish}}" required>
+                  <input name="jam_selesai" type="time" class="form-control" value="{{$rt->jam_selesai}}" required>
                   <!-- /.input group -->
                 </div>
                 <!-- /.form group -->

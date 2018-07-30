@@ -98,7 +98,7 @@
             </div>
             <div class="form-group col-sm-6" style="float: left">
               <label for="invoice_training">Invoice</label>
-              <input name="invoice_training" type="number" class="form-control" id="invoice_training" value="{{$train->invoice}}" required>
+              <input name="invoice_training" type="number" class="form-control" id="invoice_training" value="{{$train->invoice_training}}">
             </div>
           </div>
           <!-- /.card-body -->

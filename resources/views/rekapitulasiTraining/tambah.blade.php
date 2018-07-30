@@ -59,7 +59,7 @@
               <label for="nik_pegawai">Peserta</label>
               <select name="nik_pegawai" class="form-control select2" style="width: 100%;">
                 @foreach($pegawai as $p)
-                <option value="{{$p->nik_pegawai}}">{{$p->nama_pegawai}} (Dept: {{$p->id_departemen}})</option>
+                <option value="{{$p->nik_pegawai}}">{{$p->nama_pegawai}}</option>
                 @endforeach
               </select>
             </div>
