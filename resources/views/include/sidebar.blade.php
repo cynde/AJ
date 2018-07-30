@@ -130,7 +130,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/rekapBiaya" class="nav-link {{ Request::is('rekapBiaya') ? 'active' : '' }}">
+            <a href="/rekapbiaya" class="nav-link {{ Request::is('rekapBiaya') ? 'active' : '' }}">
               <i class="nav-icon fa fa-book"></i>
               <p>
                 Rekap Biaya
