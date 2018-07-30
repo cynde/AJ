@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Jabatan;
+use App\KompetensiJabatan;
+use App\Kompetensi;
 use Illuminate\Http\Request;
 use DB;
 
@@ -56,7 +58,57 @@ class JabatanController extends Controller
      */
     public function show($id_jabatan)
     {
-        //
+        $id_now = $id_jabatan;
+        $all = KompetensiJabatan::where('id_jabatan','=',$id_jabatan)->leftJoin('kompetensi as komp','komp.id_kompetensi','=','kompetensi_jabatan.id_kompetensi')->leftJoin('kompetensi as pend','pend.id_kompetensi','=','kompetensi_jabatan.kompetensi_pendahulu')->select('kompetensi_jabatan.*','komp.*','pend.nama_kompetensi as nama_kompetensi_pendahulu')->get();
+        return view('jabatan.kompetensi', compact('all','id_now'));
+    }
+
+    public function tambahKompetensi()
+    {
+        $komp = Kompetensi::all();
+        return response()->json([
+           'success' => true,
+           'data' => $komp
+        ]);
+    }
+
+    public function editKompetensi($idjab, $id)
+    {
+        $nih = KompetensiJabatan::leftJoin('kompetensi as komp','komp.id_kompetensi','=','kompetensi_jabatan.id_kompetensi')->leftJoin('kompetensi as pend','pend.id_kompetensi','=','kompetensi_jabatan.kompetensi_pendahulu')->select('kompetensi_jabatan.*','komp.*','pend.id_kompetensi as id_kompetensi_pendahulu','pend.nama_kompetensi as nama_kompetensi_pendahulu')->where('kompetensi_jabatan.id_kompetensi_jabatan','=',$id)->first();
+        $komp = Kompetensi::all();
+        return response()->json([
+           'success' => true,
+           'data' => $komp,
+           'now' => $nih
+        ]);
+    }
+
+    public function storeKompetensi(Request $request, $id)
+    {
+        $kd = new KompetensiJabatan();
+        $kd->id_jabatan = $id;
+        $kd->id_kompetensi = $request->id_kompetensi;
+        $kd->level_kompetensi = $request->level_kompetensi;
+        $kd->kompetensi_pendahulu = $request->kompetensi_pendahulu;
+        $kd->save();
+        return response()->json([
+           'success' => true,
+           'data' => $kd
+        ]);
+    }
+
+    public function updateKompetensi(Request $request, $idjab, $id)
+    {
+        $kd = KompetensiJabatan::findorfail($id);
+        $kd->id_jabatan = $idjab;
+        $kd->id_kompetensi = $request->id_kompetensi;
+        $kd->level_kompetensi = $request->level_kompetensi;
+        $kd->kompetensi_pendahulu = $request->kompetensi_pendahulu;
+        $kd->save();
+        return response()->json([
+           'success' => true,
+           'data' => $kd
+        ]);
     }
 
     /**
@@ -100,6 +152,12 @@ class JabatanController extends Controller
     public function destroy($id_jabatan)
     {
         Jabatan::findorfail($id_jabatan)->delete();
+        return back();
+    }
+
+    public function destroyKompetensi($id)
+    {
+        KompetensiJabatan::findorfail($id)->delete();
         return back();
     }
 }
