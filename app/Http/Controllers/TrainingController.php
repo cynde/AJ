@@ -50,24 +50,16 @@ class TrainingController extends Controller
     {
         $validatedData = $request->validate([
             'id_training' => 'required|unique:training',
-            'tanggal_training' => 'required',
             'nama_training' => 'required',
-            'time_start' => 'required',
-            'time_finish' => 'required',
             'id_media' => 'required',
             'id_topik' => 'required',
             'id_kompetensi' => 'required',
             'id_penyelenggara' => 'required',
             'harga_training' => 'required|numeric',
-            'invoice_training' => 'numeric',
         ]);
         $train = new Training();
         $train->id_training = $request->id_training;
-        $train->tanggal_training = $request->tanggal_training;
         $train->nama_training = $request->nama_training;
-        $train->time_start = $request->time_start;
-        $train->time_finish = $request->time_finish;
-        $train->jumlah_jam_training = (int)$request->time_finish - (int)$request->time_start;
         $train->id_media = $request->id_media;
         $train->id_topik = $request->id_topik;
         $train->id_kompetensi = $request->id_kompetensi;
@@ -121,24 +113,16 @@ class TrainingController extends Controller
     {
         $validatedData = $request->validate([
             'id_training' => 'required',
-            'tanggal_training' => 'required',
             'nama_training' => 'required',
-            'time_start' => 'required',
-            'time_finish' => 'required',
             'id_media' => 'required',
             'id_topik' => 'required',
             'id_kompetensi' => 'required',
             'id_penyelenggara' => 'required',
             'harga_training' => 'required|numeric',
-            'invoice_training' => 'numeric',
         ]);
         $train = Training::findorfail($id);
         $train->id_training = $request->id_training;
-        $train->tanggal_training = $request->tanggal_training;
         $train->nama_training = $request->nama_training;
-        $train->time_start = $request->time_start;
-        $train->time_finish = $request->time_finish;
-        $train->jumlah_jam_training = (int)$request->time_finish - (int)$request->time_start;
         $train->id_media = $request->id_media;
         $train->id_topik = $request->id_topik;
         $train->id_kompetensi = $request->id_kompetensi;

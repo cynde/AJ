@@ -3,6 +3,7 @@
 @section('css')
 <!-- Select2 -->
 <link rel="stylesheet" href="/AdminLTE/plugins/select2/select2.min.css">
+<link rel="stylesheet" href="/AdminLTE/plugins/timepicker/bootstrap-timepicker.min.css">
 @endsection
 @section('content')
   <!-- Content Wrapper. Contains page content -->
@@ -50,7 +51,7 @@
               <label for="id_training">Nama Training</label>
               <select name="id_training" class="form-control select2" style="width: 100%;">
                 @foreach($training as $t)
-                <option value="{{$t->id_training}}">{{$t->nama_training}} (Tgl: {{$t->tanggal_training}})</option>
+                <option value="{{$t->id_training}}">{{$t->nama_training}}</option>
                 @endforeach
               </select>
             </div>
@@ -66,6 +67,25 @@
               <label for="justifikasi">Justifikasi</label>
               <input name="justifikasi" type="text" class="form-control" id="justifikasi" placeholder="Masukkan Justifikasi" required>
             </div>
+            <div class="form-group>
+                <label> <i class="fa fa-calendar"></i> Tanggal:</label>
+                <input name="tanggal_training" type="date" class="form-control" id="tanggal_training" placeholder="Masukkan Tanggal Training" required>
+                <!-- /.input group -->
+            </div>
+            <div class="bootstrap-timepicker col-sm-6" style="float: left">
+              <div class="form-group">
+                <label><i class="fa fa-clock-o"></i> Jam Mulai:</label>
+                <input name="jam_mulai" type="time" class="form-control" required>
+              </div>
+              <!-- /.form group -->
+              </div>
+            <div class="bootstrap-timepicker col-sm-6" style="float: left">
+              <div class="form-group">
+                <label><i class="fa fa-clock-o"></i> Jam Selesai:</label>
+                <input name="jam_selesai" type="time" class="form-control" required>
+              </div>
+                <!-- /.form group -->
+              </div> 
             <div class="form-group">
               <label for="biaya_lain">Biaya Lain</label>
               <input name="biaya_lain" type="number" class="form-control" id="biaya_lain" placeholder="Masukkan Biaya Lain">
@@ -156,6 +176,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 <!-- Select2 -->
 <script src="/AdminLTE/plugins/select2/select2.full.min.js"></script>
+<script src="/AdminLTE/plugins/timepicker/bootstrap-timepicker.min.js"></script>
+<!-- date-range-picker -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+<script src="/AdminLTE/plugins/daterangepicker/daterangepicker.js"></script>
 <script>
   $(function () {
     //Initialize Select2 Elements
