@@ -27,61 +27,66 @@ Route::get('/index4', function () {
     return view('index4');
 });
 
-
 Route::get('/rekapbiaya', 'RekapBiayaController@index');
 
 Route::group(['prefix' => 'jabatan'], function() {
- Route::get('/', ['as' => 'jabatan', 'uses' => 'JabatanController@index']);
- Route::get('tambah', 'JabatanController@create');
- Route::post('store', 'JabatanController@store');
- Route::get('edit/{id}', 'JabatanController@edit');
- Route::post('update/{id}', 'JabatanController@update');
- Route::post('delete/{id}', 'JabatanController@destroy');
+	Route::get('/', ['as' => 'jabatan', 'uses' => 'JabatanController@index']);
+	Route::get('tambah', 'JabatanController@create');
+	Route::post('store', 'JabatanController@store');
+	Route::get('edit/{id}', 'JabatanController@edit');
+	Route::post('update/{id}', 'JabatanController@update');
+	Route::post('delete/{id}', 'JabatanController@destroy');
+	Route::get('show/{id}', 'JabatanController@show');
+	Route::get('tambahKompetensi', 'JabatanController@tambahKompetensi');
+	Route::post('storeKompetensi/{id}', 'JabatanController@storeKompetensi');
+	Route::get('editKompetensi/{iddept}/{id}', 'JabatanController@editKompetensi');
+	Route::post('updateKompetensi/{iddept}/{id}', 'JabatanController@updateKompetensi');
+	Route::post('deleteKompetensi/{id}', 'JabatanController@destroyKompetensi');
 });
 
 Route::group(['prefix' => 'pegawai'], function() {
- Route::get('/', ['as' => 'pegawai', 'uses' => 'PegawaiController@index']);
- Route::get('tambah', 'PegawaiController@create');
- Route::post('store', 'PegawaiController@store');
- Route::get('edit/{id}', 'PegawaiController@edit');
- Route::post('update/{id}', 'PegawaiController@update');
- Route::post('delete/{id}', 'PegawaiController@destroy');
+	Route::get('/', ['as' => 'pegawai', 'uses' => 'PegawaiController@index']);
+	Route::get('tambah', 'PegawaiController@create');
+	Route::post('store', 'PegawaiController@store');
+	Route::get('edit/{id}', 'PegawaiController@edit');
+	Route::post('update/{id}', 'PegawaiController@update');
+	Route::post('delete/{id}', 'PegawaiController@destroy');
 });
 
 Route::group(['prefix' => 'media'], function() {
- Route::get('/', ['as' => 'media', 'uses' => 'MediaController@index']);
- Route::get('tambah', 'MediaController@create');
- Route::post('store', 'MediaController@store');
- Route::get('edit/{id}', 'MediaController@edit');
- Route::post('update/{id}', 'MediaController@update');
- Route::post('delete/{id}', 'MediaController@destroy');
+	Route::get('/', ['as' => 'media', 'uses' => 'MediaController@index']);
+	Route::get('tambah', 'MediaController@create');
+	Route::post('store', 'MediaController@store');
+	Route::get('edit/{id}', 'MediaController@edit');
+	Route::post('update/{id}', 'MediaController@update');
+	Route::post('delete/{id}', 'MediaController@destroy');
 });
 
 Route::group(['prefix' => 'topik'], function() {
- Route::get('/', ['as' => 'topik', 'uses' => 'TopikController@index']);
- Route::get('tambah', 'TopikController@create');
- Route::post('store', 'TopikController@store');
- Route::get('edit/{id}', 'TopikController@edit');
- Route::post('update/{id}', 'TopikController@update');
- Route::post('delete/{id}', 'TopikController@destroy');
+	Route::get('/', ['as' => 'topik', 'uses' => 'TopikController@index']);
+	Route::get('tambah', 'TopikController@create');
+	Route::post('store', 'TopikController@store');
+	Route::get('edit/{id}', 'TopikController@edit');
+	Route::post('update/{id}', 'TopikController@update');
+	Route::post('delete/{id}', 'TopikController@destroy');
 });
 
 Route::group(['prefix' => 'penyelenggara'], function() {
- Route::get('/', ['as' => 'penyelenggara', 'uses' => 'PenyelenggaraController@index']);
- Route::get('tambah', 'PenyelenggaraController@create');
- Route::post('store', 'PenyelenggaraController@store');
- Route::get('edit/{id}', 'PenyelenggaraController@edit');
- Route::post('update/{id}', 'PenyelenggaraController@update');
- Route::post('delete/{id}', 'PenyelenggaraController@destroy');
+	Route::get('/', ['as' => 'penyelenggara', 'uses' => 'PenyelenggaraController@index']);
+	Route::get('tambah', 'PenyelenggaraController@create');
+	Route::post('store', 'PenyelenggaraController@store');
+	Route::get('edit/{id}', 'PenyelenggaraController@edit');
+	Route::post('update/{id}', 'PenyelenggaraController@update');
+	Route::post('delete/{id}', 'PenyelenggaraController@destroy');
 });
 
 Route::group(['prefix' => 'direktorat'], function() {
- Route::get('/', ['as' => 'direktorat', 'uses' => 'DirektoratController@index']);
- Route::get('tambah', 'DirektoratController@create');
- Route::post('store', 'DirektoratController@store');
- Route::get('edit/{id}', 'DirektoratController@edit');
- Route::post('update/{id}', 'DirektoratController@update');
- Route::post('delete/{id}', 'DirektoratController@destroy');
+	Route::get('/', ['as' => 'direktorat', 'uses' => 'DirektoratController@index']);
+	Route::get('tambah', 'DirektoratController@create');
+	Route::post('store', 'DirektoratController@store');
+	Route::get('edit/{id}', 'DirektoratController@edit');
+	Route::post('update/{id}', 'DirektoratController@update');
+	Route::post('delete/{id}', 'DirektoratController@destroy');
 });
 
 
@@ -111,7 +116,11 @@ Route::group(['prefix' => 'departemen'], function() {
 	Route::post('update/{id}', 'DepartemenController@update');
 	Route::post('delete/{id}', 'DepartemenController@destroy');
 	Route::get('show/{id}', 'DepartemenController@show');
-	Route::post('addKompetensi', 'DepartemenController@addKompetensi');
+	Route::get('tambahKompetensi', 'DepartemenController@tambahKompetensi');
+	Route::post('storeKompetensi/{id}', 'DepartemenController@storeKompetensi');
+	Route::get('editKompetensi/{iddept}/{id}', 'DepartemenController@editKompetensi');
+	Route::post('updateKompetensi/{iddept}/{id}', 'DepartemenController@updateKompetensi');
+	Route::post('deleteKompetensi/{id}', 'DepartemenController@destroyKompetensi');
 });
 
 Route::group(['prefix' => 'training'], function() {

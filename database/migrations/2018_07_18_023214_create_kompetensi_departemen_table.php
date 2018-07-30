@@ -18,7 +18,7 @@ class CreateKompetensiDepartemenTable extends Migration
             $table->integer('id_kompetensi');
             $table->string('id_departemen',50);
             $table->integer('level_kompetensi');
-            $table->string('kompetensi_pendahulu',100);
+            $table->integer('kompetensi_pendahulu')->nullable();
             $table->timestamps();
         });
     }

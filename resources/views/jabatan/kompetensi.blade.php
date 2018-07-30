@@ -1,5 +1,5 @@
 @extends('master.app')
-@section('title') Data Kompetensi Departemen @endsection
+@section('title') Data Kompetensi Jabatan @endsection
 @section('css')
 <!-- DataTables -->
   <link rel="stylesheet" href="/AdminLTE/plugins/datatables/dataTables.bootstrap4.css">
@@ -14,12 +14,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Kompetensi Departemen</h1>
+            <h1 class="m-0 text-dark">Kompetensi Jabatan</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/">Home</a></li>
-              <li class="breadcrumb-item active">Kompetensi Departemen</li>
+              <li class="breadcrumb-item active">Kompetensi Jabatan</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -31,7 +31,7 @@
     <section class="content">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Data Kompetensi Departemen
+          <h3 class="card-title">Data Kompetensi jabatan
             <div style="float: right; margin-bottom: 20px">
               <button id="tambah" type="button" class="btn btn-block btn-sm btn-primary" style="padding-top: 2px; padding-bottom: 2px">+ Tambah</button>
             </div>
@@ -40,7 +40,7 @@
         <!-- /.card-header -->
         <div class="card-body">
           @if($all->count())
-          <table id="tabel-kompetensi-departemen" class="table table-striped">
+          <table id="tabel-kompetensi-jabatan" class="table table-striped">
             <thead>
               <tr>
                 <th>No</th>
@@ -58,9 +58,9 @@
                 <td>{{$a->nama_kompetensi}}</td>
                 <td>{{$a->level_kompetensi}}</td>
                 <td>{{$a->nama_kompetensi_pendahulu}}</td>
-                <td><button id="edit" data-id="{{$a->id_kompetensi_departemen}}" data-iddept="{{$id_now}}" type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></td>
+                <td><button id="edit" data-id="{{$a->id_kompetensi_jabatan}}" data-idjab="{{$id_now}}" type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></td>
                 <td>
-                  <form action="/departemen/deleteKompetensi/{{$a->id_kompetensi_departemen}}" method="post">
+                  <form action="/jabatan/deleteKompetensi/{{$a->id_kompetensi_jabatan}}" method="post">
                     {{csrf_field()}}
                     <button type="submit" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button>
                   </form>
@@ -159,7 +159,7 @@
           <!-- /.card-body -->
 
           <div class="card-footer">
-            <button data-iddept="{{$id_now}}" id="update" type="submit" class="btn btn-primary">Simpan</button>
+            <button data-idjab="{{$id_now}}" id="update" type="submit" class="btn btn-primary">Simpan</button>
           </div>
         </form>
       </div>
@@ -174,7 +174,7 @@
 <script src="/AdminLTE/plugins/datatables/dataTables.bootstrap4.js"></script>
 <script>
   $(function () {
-    $("#tabel-kompetensi-departemen").DataTable();
+    $("#tabel-kompetensi-jabatan").DataTable();
   });
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
@@ -190,14 +190,14 @@
 $(document).ready(function() {
   $(document).on('click', '#tambah', function(e) {
     jQuery.noConflict();
-    // $('#lihatDepartemen').modal('show');
+    // $('#lihatjabatan').modal('show');
     $.ajaxSetup({
         headers:{'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')}
     })
     e.preventDefault(e);
     $.ajax({
       type: 'get',
-      url: '/departemen/tambahKompetensi',
+      url: '/jabatan/tambahKompetensi',
       dataType: 'json',
       success: function(message) {
         jQuery.noConflict();
@@ -228,10 +228,10 @@ $(document).ready(function() {
     e.preventDefault(e);
     $.ajax({
       type: 'post',
-      url: '/departemen/storeKompetensi/' + id,
+      url: '/jabatan/storeKompetensi/' + id,
       data: {
         '_token' : $('input[name=_token]').val(),
-        'id_departemen' : id,
+        'id_jabatan' : id,
         'id_kompetensi' : $('#id_kompetensi_add').val(),
         'level_kompetensi' : $('#level_kompetensi_add').val(),
         'kompetensi_pendahulu' : $('#kompetensi_pendahulu_add').val()
@@ -253,16 +253,16 @@ $(document).ready(function() {
 
   $(document).on('click', '#edit', function(e) {
     jQuery.noConflict();
-    // $('#lihatDepartemen').modal('show');
+    // $('#lihatjabatan').modal('show');
     $.ajaxSetup({
         headers:{'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')}
     })
     e.preventDefault(e);
-    var iddept = $(this).data('iddept'); 
+    var idjab = $(this).data('idjab'); 
     var id = $(this).data('id');
     $.ajax({
       type: 'get',
-      url: '/departemen/editKompetensi/' + iddept + '/' + id,
+      url: '/jabatan/editKompetensi/' + idjab + '/' + id,
       dataType: 'json',
       success: function(message) {
         jQuery.noConflict();
@@ -293,14 +293,14 @@ $(document).ready(function() {
       }
     });
     var id = $("#id_edit").val()
-    var iddept = $(this).data('iddept');
+    var idjab = $(this).data('idjab');
     e.preventDefault(e);
     $.ajax({
       type: 'post',
-      url: '/departemen/updateKompetensi/' + iddept + '/' + id,
+      url: '/jabatan/updateKompetensi/' + idjab + '/' + id,
       data: {
         '_token' : $('input[name=_token]').val(),
-        'id_departemen' : id,
+        'id_jabatan' : id,
         'id_kompetensi' : $('#id_kompetensi_edit').val(),
         'level_kompetensi' : $('#level_kompetensi_edit').val(),
         'kompetensi_pendahulu' : $('#kompetensi_pendahulu_edit').val()

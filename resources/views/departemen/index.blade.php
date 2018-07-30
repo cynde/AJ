@@ -59,10 +59,10 @@
                 <td>{{$a->id_departemen}}</td>
                 <td>{{$a->nama_departemen}}</td>
                 <td>{{$a->id_divisi}}</td>
-                <td><a href="departemen/show/{{$a->id_departemen}}"><button type="button" class="btn btn-block btn-secondary btn-sm">lihat</button></td>
-                <td><a href="departemen/edit/{{$a->id_departemen}}"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
+                <td><a href="/departemen/show/{{$a->id_departemen}}"><button type="button" class="btn btn-block btn-secondary btn-sm">lihat</button></td>
+                <td><a href="/departemen/edit/{{$a->id_departemen}}"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
                 <td>
-                  <form action="departemen/delete/{{$a->id_departemen}}" method="post">
+                  <form action="/departemen/delete/{{$a->id_departemen}}" method="post">
                     {{csrf_field()}}
                     <button type="submit" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button>
                   </form>
