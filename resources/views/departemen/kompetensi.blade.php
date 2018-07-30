@@ -14,7 +14,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">KompetensiDepartemen</h1>
+            <h1 class="m-0 text-dark">Kompetensi Departemen</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -33,7 +33,7 @@
         <div class="card-header">
           <h3 class="card-title">Data Kompetensi Departemen
             <div style="float: right; margin-bottom: 20px">
-              <button type="button" class="btn btn-block btn-sm btn-primary" style="padding-top: 2px; padding-bottom: 2px" data-toggle="modal" data-target="#tambahKompetensi">+ Tambah</button>
+              <button id="tambah" type="button" class="btn btn-block btn-sm btn-primary" style="padding-top: 2px; padding-bottom: 2px">+ Tambah</button>
             </div>
           </h3>
         </div>
@@ -57,9 +57,14 @@
                 <td>{{$loop->iteration}}</td>
                 <td>{{$a->nama_kompetensi}}</td>
                 <td>{{$a->level_kompetensi}}</td>
-                <td>{{$a->kompetensi_pendahulu}}</td>
-                <td><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit" data-toggle="modal" data-target="#editKompetensi"></span></button></td>
-                <td><a href="#"><button type="button" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button></a></td>
+                <td>{{$a->nama_kompetensi_pendahulu}}</td>
+                <td><button id="edit" data-id="{{$a->id_kompetensi_departemen}}" data-iddept="{{$id_now}}" type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></td>
+                <td>
+                  <form action="/departemen/deleteKompetensi/{{$a->id_kompetensi_departemen}}" method="post">
+                    {{csrf_field()}}
+                    <button type="submit" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button>
+                  </form>
+                </td>
               </tr>
               @endforeach
             </tbody>
@@ -91,30 +96,26 @@
         <form role="form">
           <div class="card-body">
             <div class="form-group">
-              <label for="id_kompetensi">Nama Kompetensi</label>
-              <select name="id_kompetensi" class="form-control select2" style="width: 100%;">
-                <option selected="selected">Manajemen</option>
-                <option>Finance</option>
-                <option>Public Speaking</option>
+              <label for="id_kompetensi_add">Nama Kompetensi</label>
+              <select id="id_kompetensi_add" name="id_kompetensi_add" class="form-control select2" style="width: 100%;" required>
+
               </select>
             </div>
             <div class="form-group">
-              <label for="level_kompetensi">Level</label>
-              <input name="level_kompetensi" type="number" class="form-control" id="level_kompetensi" placeholder="Masukkan Level Kompetensi">
+              <label for="level_kompetensi_add">Level</label>
+              <input id="level_kompetensi_add" name="level_kompetensi_add" type="number" class="form-control" id="level_kompetensi" placeholder="Masukkan Level Kompetensi" required>
             </div>
             <div class="form-group">
-              <label for="kompetensi_pendahulu">Kompetensi Pendahulu</label>
-              <select name="kompetensi_pendahulu" class="form-control select2" style="width: 100%;">
-                <option>Manajemen</option>
-                <option selected="selected">Finance</option>
-                <option>Public Speaking</option>
+              <label for="kompetensi_pendahulu_add">Kompetensi Pendahulu</label>
+              <select id="kompetensi_pendahulu_add" name="kompetensi_pendahulu_add" class="form-control select2" style="width: 100%;" required>
+
               </select>
             </div>
           </div>
           <!-- /.card-body -->
 
           <div class="card-footer">
-            <button id="add" type="submit" class="btn btn-primary">Tambah</button>
+            <button data-id="{{$id_now}}" id="store" type="submit" class="btn btn-primary">Tambah</button>
           </div>
         </form>
       </div>
@@ -136,30 +137,29 @@
         <form role="form">
           <div class="card-body">
             <div class="form-group">
-              <label for="id_kompetensi">Nama Kompetensi</label>
-              <select name="id_kompetensi" class="form-control select2" style="width: 100%;">
-                <option selected="selected">Manajemen</option>
-                <option>Finance</option>
-                <option>Public Speaking</option>
+              <label for="id_kompetensi_edit">ID Kompetensi</label>
+              <input type="number" class="form-control" id="id_edit" disabled>
+            </div>
+            <div class="form-group">
+              <label for="id_kompetensi_edit">Nama Kompetensi</label>
+              <select id="id_kompetensi_edit" name="id_kompetensi_edit" class="form-control select2" style="width: 100%;">
+
               </select>
             </div>
             <div class="form-group">
-              <label for="level_kompetensi">Level</label>
-              <input name="level_kompetensi" type="number" class="form-control" id="level_kompetensi" placeholder="Masukkan Level Kompetensi">
+              <label for="level_kompetensi_edit">Level</label>
+              <input id="level_kompetensi_edit" name="level_kompetensi_edit" type="number" class="form-control" id="level_kompetensi_edit" placeholder="Masukkan Level Kompetensi">
             </div>
             <div class="form-group">
-              <label for="kompetensi_pendahulu">Kompetensi Pendahulu</label>
-              <select name="kompetensi_pendahulu" class="form-control select2" style="width: 100%;">
-                <option>Manajemen</option>
-                <option selected="selected">Finance</option>
-                <option>Public Speaking</option>
+              <label for="kompetensi_pendahulu_edit">Kompetensi Pendahulu</label>
+              <select id="kompetensi_pendahulu_edit" name="kompetensi_pendahulu_edit" class="form-control select2" style="width: 100%;">
               </select>
             </div>
           </div>
           <!-- /.card-body -->
 
           <div class="card-footer">
-            <button type="submit" class="btn btn-primary">Simpan</button>
+            <button data-iddept="{{$id_now}}" id="update" type="submit" class="btn btn-primary">Simpan</button>
           </div>
         </form>
       </div>
@@ -169,11 +169,9 @@
 
 @endsection
 @section('script')
-<!-- jQuery -->
-<script src="AdminLTE/plugins/jquery/jquery.min.js"></script>
 <!-- DataTables -->
-<script src="AdminLTE/plugins/datatables/jquery.dataTables.js"></script>
-<script src="AdminLTE/plugins/datatables/dataTables.bootstrap4.js"></script>
+<script src="/AdminLTE/plugins/datatables/jquery.dataTables.js"></script>
+<script src="/AdminLTE/plugins/datatables/dataTables.bootstrap4.js"></script>
 <script>
   $(function () {
     $("#tabel-kompetensi-departemen").DataTable();
@@ -189,28 +187,139 @@
   })
 </script>
 <script>
-  $('#add').click(function()){
-    $.ajax({
-      type: 'POST',
-      url: 'addKompetensi',
-      data: {
-        '_token' : $('input[name=_token]').val();
-        'id_kompetensi' : $('input[name=id_kompetensi]').val();
-        'level_kompetensi' : $('input[name=level_kompetensi]').val();
-        'kompetensi_pendahulu' : $('input[name=kompetensi_pendahulu]').val();
-      },
-      success: function(data){
-        $('#table').append("<tr>"+
-                "<td></td>"+
-                "<td>" + data.id_kompetensi + "</td>"+
-                "<td>" + data.level_kompetensi + "</td>"+
-                "<td>" + data.kompetensi_pendahulu + "</td>"+
-                "<td><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit" data-toggle="modal" data-target="#editKompetensi"></span></button></td>"+
-                "<td><a href="#"><button type="button" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button></a></td>"+
-              "</tr>")
-      }
+$(document).ready(function() {
+  $(document).on('click', '#tambah', function(e) {
+    jQuery.noConflict();
+    // $('#lihatDepartemen').modal('show');
+    $.ajaxSetup({
+        headers:{'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')}
     })
-  }
+    e.preventDefault(e);
+    $.ajax({
+      type: 'get',
+      url: '/departemen/tambahKompetensi',
+      dataType: 'json',
+      success: function(message) {
+        jQuery.noConflict();
+        document.getElementById('id_kompetensi_add').innerHTML = '';
+        document.getElementById('kompetensi_pendahulu_add').innerHTML = '';
+        var optionAppendId = '';
+        var optionAppendPendahulu = '<option value=""> - </option>';
+        for(var i = 0; i < message.data.length; i++) {
+            optionAppendId += '<option value="' + message.data[i]['id_kompetensi'] + '">' + message.data[i]['nama_kompetensi'] + '</option>';
+            optionAppendPendahulu += '<option value="' + message.data[i]['id_kompetensi'] + '">' + message.data[i]['nama_kompetensi'] + '</option>';
+            console.log(optionAppendPendahulu)
+        }
+        $('#id_kompetensi_add').append(optionAppendId);
+        $('#kompetensi_pendahulu_add').append(optionAppendPendahulu);
+        $('#tambahKompetensi').modal('show');
+      }
+    });
+  });
+
+  $(document).on('click','#store',function(e) {
+    jQuery.noConflict();
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+    var id = $(this).data('id');
+    e.preventDefault(e);
+    $.ajax({
+      type: 'post',
+      url: '/departemen/storeKompetensi/' + id,
+      data: {
+        '_token' : $('input[name=_token]').val(),
+        'id_departemen' : id,
+        'id_kompetensi' : $('#id_kompetensi_add').val(),
+        'level_kompetensi' : $('#level_kompetensi_add').val(),
+        'kompetensi_pendahulu' : $('#kompetensi_pendahulu_add').val()
+      },
+      dataType: 'json',
+      success: function(message) {
+        // console.log(message)
+        if(message.success == true){ // if true (1)
+          setTimeout(function(){// wait for 0.7 secs(2)
+               location.reload(); // then reload the page.(3)
+          }, 700); 
+        }
+      },
+      error: function(message){
+        console.log(message)
+      }
+    });
+  });
+
+  $(document).on('click', '#edit', function(e) {
+    jQuery.noConflict();
+    // $('#lihatDepartemen').modal('show');
+    $.ajaxSetup({
+        headers:{'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')}
+    })
+    e.preventDefault(e);
+    var iddept = $(this).data('iddept'); 
+    var id = $(this).data('id');
+    $.ajax({
+      type: 'get',
+      url: '/departemen/editKompetensi/' + iddept + '/' + id,
+      dataType: 'json',
+      success: function(message) {
+        jQuery.noConflict();
+        document.getElementById('id_kompetensi_edit').innerHTML = '';
+        document.getElementById('kompetensi_pendahulu_edit').innerHTML = '';
+        var optionAppendId = '';
+        var optionAppendPendahulu = '<option value=""> - </option>';
+        for(var i = 0; i < message.data.length; i++) {
+            optionAppendId += '<option value="' + message.data[i]['id_kompetensi'] + '">' + message.data[i]['nama_kompetensi'] + '</option>';
+            optionAppendPendahulu += '<option value="' + message.data[i]['id_kompetensi'] + '">' + message.data[i]['nama_kompetensi'] + '</option>';
+        }
+        $("#id_edit").val(id);
+        $('#id_kompetensi_edit').append('<option value="' + message.now['id_kompetensi'] + '" selected>' + message.now['nama_kompetensi'] + '</option>');
+        $('#level_kompetensi_edit').val(message.now['level_kompetensi']);
+        $('#kompetensi_pendahulu_edit').append('<option value="' + message.now['id_kompetensi_pendahulu'] + '" selected>' + message.now['nama_kompetensi_pendahulu'] + '</option>');
+        $('#id_kompetensi_edit').append(optionAppendId);
+        $('#kompetensi_pendahulu_edit').append(optionAppendPendahulu);
+        $('#editKompetensi').modal('show');
+      }
+    });
+  });
+
+  $(document).on('click','#update',function(e) {
+    jQuery.noConflict();
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+    var id = $("#id_edit").val()
+    var iddept = $(this).data('iddept');
+    e.preventDefault(e);
+    $.ajax({
+      type: 'post',
+      url: '/departemen/updateKompetensi/' + iddept + '/' + id,
+      data: {
+        '_token' : $('input[name=_token]').val(),
+        'id_departemen' : id,
+        'id_kompetensi' : $('#id_kompetensi_edit').val(),
+        'level_kompetensi' : $('#level_kompetensi_edit').val(),
+        'kompetensi_pendahulu' : $('#kompetensi_pendahulu_edit').val()
+      },
+      dataType: 'json',
+      success: function(message) {
+        console.log(message)
+        if(message.success == true){ // if true (1)
+          setTimeout(function(){// wait for 0.7 secs(2)
+               location.reload(); // then reload the page.(3)
+          }, 700); 
+        }
+      },
+      error: function(message){
+        console.log(message)
+      }
+    });
+  });
+});
 </script>
 
 @endsection

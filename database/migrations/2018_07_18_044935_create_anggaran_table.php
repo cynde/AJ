@@ -44,10 +44,12 @@ class CreateAnggaranTable extends Migration
         Schema::table('kompetensi_jabatan', function (Blueprint $table) {
             $table->foreign('id_kompetensi')->references('id_kompetensi')->on('kompetensi')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('id_jabatan')->references('id_jabatan')->on('jabatan')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('kompetensi_pendahulu')->references('id_kompetensi')->on('kompetensi')->onUpdate('cascade')->onDelete('cascade');
         });
         Schema::table('kompetensi_departemen', function (Blueprint $table) {
             $table->foreign('id_kompetensi')->references('id_kompetensi')->on('kompetensi')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('id_departemen')->references('id_departemen')->on('departemen')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('kompetensi_pendahulu')->references('id_kompetensi')->on('kompetensi')->onUpdate('cascade')->onDelete('cascade');
         });
 
         Schema::table('training', function (Blueprint $table) {

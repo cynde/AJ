@@ -63,20 +63,57 @@ class DepartemenController extends Controller
      */
     public function show($id)
     {
-        $all = KompetensiDepartemen::where('id_departemen','=',$id)->leftJoin('kompetensi','kompetensi.id_kompetensi','=','kompetensi_departemen.id_kompetensi')->get();
-        // $all = KompetensiDepartemen::where('id_departemen','=',$id)->leftJoin('kompetensi','kompetensi.id_kompetensi','=','kompetensi_departemen.id_kompetensi')->leftJoin('kompetensi','kompetensi.kompetensi_id','=','kompetensi_departemen.kompetensi_pendahulu')->get();
-        // dd($all);
-        return view('departemen.kompetensi', compact('all'));
+        $id_now = $id;
+        $all = KompetensiDepartemen::where('id_departemen','=',$id)->leftJoin('kompetensi as komp','komp.id_kompetensi','=','kompetensi_departemen.id_kompetensi')->leftJoin('kompetensi as pend','pend.id_kompetensi','=','kompetensi_departemen.kompetensi_pendahulu')->select('kompetensi_departemen.*','komp.*','pend.nama_kompetensi as nama_kompetensi_pendahulu')->get();
+        return view('departemen.kompetensi', compact('all','id_now'));
     }
 
-    public function addKompetensi(Request $request)
+    public function tambahKompetensi()
+    {
+        $komp = Kompetensi::all();
+        return response()->json([
+           'success' => true,
+           'data' => $komp
+        ]);
+    }
+
+    public function editKompetensi($iddept, $id)
+    {
+        $nih = KompetensiDepartemen::leftJoin('kompetensi as komp','komp.id_kompetensi','=','kompetensi_departemen.id_kompetensi')->leftJoin('kompetensi as pend','pend.id_kompetensi','=','kompetensi_departemen.kompetensi_pendahulu')->select('kompetensi_departemen.*','komp.*','pend.id_kompetensi as id_kompetensi_pendahulu','pend.nama_kompetensi as nama_kompetensi_pendahulu')->where('kompetensi_departemen.id_kompetensi_departemen','=',$id)->first();
+        $komp = Kompetensi::all();
+        return response()->json([
+           'success' => true,
+           'data' => $komp,
+           'now' => $nih
+        ]);
+    }
+
+    public function storeKompetensi(Request $request, $id)
     {
         $kd = new KompetensiDepartemen();
+        $kd->id_departemen = $id;
         $kd->id_kompetensi = $request->id_kompetensi;
         $kd->level_kompetensi = $request->level_kompetensi;
         $kd->kompetensi_pendahulu = $request->kompetensi_pendahulu;
         $kd->save();
-        return response()->json($kd);
+        return response()->json([
+           'success' => true,
+           'data' => $kd
+        ]);
+    }
+
+    public function updateKompetensi(Request $request, $iddept, $id)
+    {
+        $kd = KompetensiDepartemen::findorfail($id);
+        $kd->id_departemen = $iddept;
+        $kd->id_kompetensi = $request->id_kompetensi;
+        $kd->level_kompetensi = $request->level_kompetensi;
+        $kd->kompetensi_pendahulu = $request->kompetensi_pendahulu;
+        $kd->save();
+        return response()->json([
+           'success' => true,
+           'data' => $kd
+        ]);
     }
 
     /**
@@ -123,6 +160,12 @@ class DepartemenController extends Controller
     public function destroy($id)
     {
         Departemen::findorfail($id)->delete();
+        return back();
+    }
+
+    public function destroyKompetensi($id)
+    {
+        KompetensiDepartemen::findorfail($id)->delete();
         return back();
     }
 }

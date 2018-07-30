@@ -16,7 +16,7 @@ class KompetensiJabatanTableSeeder extends Seeder
 		'id_kompetensi'=>'01',
 		'id_jabatan'=>'STAF',
 		'level_kompetensi'=>'1',
-		'kompetensi_pendahulu'=>''
+		'kompetensi_pendahulu'=>NULL
 		] );
 
         KompetensiJabatan::create( [
