@@ -135,10 +135,14 @@
         select_type: 'select2'
     }, {
         column_number: 7,
-        filter_type: "range_number"
+        filter_type: "range_number",
+        ignore_char: ","
+
     }, {
         column_number: 8,
-        filter_type: "range_number"
+        filter_type: "range_number",
+        ignore_char: ","
+
     }]);
   });
 </script>

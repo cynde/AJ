@@ -64,7 +64,7 @@
                 <td>{{$a->nama_media}} ({{$a->kategori_media}})</td>
                 <td>{{$a->tanggal_training}}</td>
                 <td>{{$a->nama_penyelenggara}}</td>
-                <td><button type="button" class="btn btn-block btn-secondary btn-sm" data-toggle="modal" data-target="#lihatPeserta">lihat</button></td>
+                <td><button id="lihat" type="button" class="btn btn-block btn-secondary btn-sm" data-id="{{$a->id_training}}">lihat</button></td>
                 <td>{{$a->harga_training}}</td>
               </tr>
               @endforeach
@@ -84,7 +84,7 @@
   <!-- /.content-wrapper -->
 
 <!-- Modal lihat peserta -->
-<div class="modal fade" id="lihatPeserta" tabindex="-1" role="dialog" aria-labelledby="lihatPeserta" aria-hidden="true">
+<div class="modal fade" id="lihatRekapBiaya" tabindex="-1" role="dialog" aria-labelledby="lihatRekapBiaya" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -100,10 +100,7 @@
               <th>Nama Peserta</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>Lorem Ipsum</td>
-            </tr>
+          <tbody id=RekapBiayaDetailBody>
           </tbody>
         </table>
       </div>
@@ -127,6 +124,7 @@
 <script src="/js/jszip.min.js"></script>
 <script src="/js/buttons.html5.min.js"></script>
 <script src="/js/vfs_fonts.js"></script>
+
 <script>
   $(function () {
     //Initialize Select2 Elements
@@ -170,6 +168,37 @@
   });
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script type="text/javascript">
+  
+$(document).ready(function() {
+  $(document).on('click','#lihat',function(e) {
+    jQuery.noConflict();
+    // $('#lihatDepartemen').modal('show');
+    $.ajaxSetup({
+        headers:{'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')}
+    })
+    e.preventDefault(e);
+    var triggerid = $(this).data('id');
+    $.ajax({
+      type: 'get',
+      url: '/rekapbiaya/show/'+ triggerid,
+      dataType: 'json',
+      success: function(message) {
+        // console.log(message)
+          jQuery.noConflict();
+          document.getElementById('RekapBiayaDetailBody').innerHTML = '';
+          var tableAppend = '';
+          for(var i = 0; i < message.data.length; i++) {
+              tableAppend += '<tr><td>' + (i+1) + '</td><td>' + message.data[i]['nama_pegawai'] + '</td></tr>';
+          }
+          $('#RekapBiayaDetailBody').append(tableAppend);
+          $('#lihatRekapBiaya').modal('show');
+      }
+    });
+  });
+});
+</script>
+
 
 @endsection
 
