@@ -26,14 +26,6 @@ class RekapBiayaController extends Controller
                         ->leftJoin('penyelenggara', 'training.id_penyelenggara', '=', 'penyelenggara.id_penyelenggara')
                         ->leftJoin('rekapitulasi_training', 'rekapitulasi_training.id_training', '=', 'training.id_training')
                         ->get();
-        // $peserta = DB::table('rekapitulasi_training')
-        //             ->leftJoin('training', 'id_training', '=', 'training.id_training')
-        //             ->leftJoin('pegawai', 'nik_pegawai', '=', 'pegawai.nik_pegawai')
-        //             ->where('rekapitulasi_training.id_training', '=', 'training.id_training')
-        //             ->where('training.tanggal_training', '=', 'training.tanggal_training')
-        //             ->select('pegawai.nama_pegawai')
-        //             ->get();
-        // return view('rekapBiaya', compact('all', 'peserta'));
         return view('rekapBiaya', compact('all'));
 
     }
@@ -67,7 +59,12 @@ class RekapBiayaController extends Controller
      */
     public function show($id)
     {
-        //
+        $all = RekapitulasiTraining::leftJoin('training','training.id_training','=','rekapitulasi_training.id_training')->where('rekapitulasi_training.id_training','=',$id)->get();
+        // console.log($all);
+        return response()->json([
+           'success' => true,
+           'data' => $all
+        ]);
     }
 
     /**

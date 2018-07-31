@@ -27,7 +27,12 @@ Route::get('/index4', function () {
     return view('index4');
 });
 
-Route::get('/rekapbiaya', 'RekapBiayaController@index');
+
+Route::group(['prefix' => 'rekapbiaya'], function() {
+ Route::get('/', ['as' => 'rekapbiaya', 'uses' => 'RekapBiayaController@index']);
+ Route::get('show/{id}', 'RekapBiayaController@show');
+});
+
 
 Route::group(['prefix' => 'jabatan'], function() {
 	Route::get('/', ['as' => 'jabatan', 'uses' => 'JabatanController@index']);
