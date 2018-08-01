@@ -141,11 +141,15 @@
         </button>
       </div>
       <div class="modal-body" style="text-align: center;">
+        <div style="float: right; margin-bottom: 17px">
+          <button type="button" class="btn btn-sm btn-block btn-primary" data-toggle="modal" data-target="#tambahTanggal">+ Tambah</button>
+        </div>
         <table class="table table-striped">
           <thead>
             <tr>
               <th width="5%">No</th>
               <th>Tanggal</th>
+              <th width="5%"></th>
             </tr>
           </thead>
           <tbody id="TanggalDetailBody">
@@ -154,6 +158,38 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal tambah tanggal -->
+<div class="modal fade" id="tambahTanggal" tabindex="-1" role="dialog" aria-labelledby="tambahTanggal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="tambahTanggal">Tambah Tanggal</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="text-align: center;">
+        <form role="form">
+          <div class="card-body">
+            <div class="form-group">
+              <label for="id_rekapitulasi_training_add">ID Rekapitulasi Training</label>
+              <input type="number" id="id_rekapitulasi_training_add" name="id_rekapitulasi_training_add" class="form-control" disabled>
+            </div>
+            <div class="form-group">
+              <label for="tanggal_training_add">Tanggal Training</label>
+              <input type="date" id="tanggal_training_add" name="tanggal_training_add" class="form-control" required>
+            </div>
+          </div>
+          <!-- /.card-body -->
+          <div class="card-footer">
+            <button id="storeTanggal" type="submit" class="btn btn-primary">Tambah</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -275,15 +311,48 @@ $(document).ready(function() {
           document.getElementById('TanggalDetailBody').innerHTML = '';
           var tableAppend = '';
           for(var i = 0; i < message.data.length; i++) {
-              tableAppend += '<tr><td>' + (i+1) + '</td><td>' + message.data[i]['tanggal_training'] + '</td></tr>';
+              tableAppend += '<tr><td>' + (i+1) + '</td><td>' + message.data[i]['tanggal_training'] + '</td><td><form action="/rekapitulasiTraining/deleteTanggal/' + triggerid + '" method="post">{{csrf_field()}}<button type="submit" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button></td></tr>';
           }
           $('#TanggalDetailBody').append(tableAppend);
+          $('#id_rekapitulasi_training_add').val(triggerid);
           $('#lihatTanggal').modal('show');
       },
       error: function(message){
         console.log(message);
       }
     });
+  });
+});
+
+$(document).on('click','#storeTanggal',function(e) {
+  jQuery.noConflict();
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
+  e.preventDefault(e);
+  var id = $('#id_rekapitulasi_training_add').val();
+  $.ajax({
+    type: 'post',
+    url: '/rekapitulasiTraining/storeTanggal/' + id,
+    data: {
+      '_token' : $('input[name=_token]').val(),
+      'id_rekapitulasi_training' : $('#id_rekapitulasi_training_add').val(),
+      'tanggal_training' : $('#tanggal_training_add').val()
+    },
+    dataType: 'json',
+    success: function(message) {
+      // console.log(message)
+      if(message.success == true){ // if true (1)
+        setTimeout(function(){// wait for 0.7 secs(2)
+             location.reload(); // then reload the page.(3)
+        }, 700); 
+      }
+    },
+    error: function(message){
+      console.log(message)
+    }
   });
 });
 </script>

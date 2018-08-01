@@ -293,6 +293,33 @@ class RekapitulasiTrainingController extends Controller
         return redirect()->route('rekapitulasiTraining');
     }
 
+    public function storeTanggal(Request $request, $id)
+    {
+        $tgl_train = new TanggalTraining();
+        $lastRowtt = TanggalTraining::orderBy('id_tanggal_training', 'desc')->first();
+        if(!$lastRowtt) {
+            $idtt = 0;
+        }
+        else $idtt = $lastRowtt->id_tanggal_training;
+        $tgl_train->id_tanggal_training = $idtt + 1;
+        $tgl_train->tanggal_training = $request->tanggal_training;
+        $tgl_train->save();
+
+        $tgl_rekap = new TanggalRekapitulasi();
+        $lastRowtr = TanggalRekapitulasi::orderBy('id_tanggal_rekapitulasi', 'desc')->first();
+        if(!$lastRowtr) {
+            $idtr = 0;
+        }
+        else $idtr = $lastRowtr->id_tanggal_rekapitulasi;
+        $tgl_rekap->id_rekapitulasi_training = $id;
+        $tgl_rekap->id_tanggal_rekapitulasi = $idtr + 1;
+        $tgl_rekap->id_tanggal_training = $idtt + 1;
+        $tgl_rekap->save();
+        return response()->json([
+           'success' => true
+        ]);
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -302,6 +329,14 @@ class RekapitulasiTrainingController extends Controller
     public function destroy($id)
     {
         RekapitulasiTraining::findorfail($id)->delete();
+        return back();
+    }
+
+    public function destroyTanggal($id)
+    {
+        $tr = TanggalRekapitulasi::findorfail($id);
+        TanggalTraining::findorfail($tr->id_tanggal_training)->delete();
+        $tr->delete();
         return back();
     }
 }
