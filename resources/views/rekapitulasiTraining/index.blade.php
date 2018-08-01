@@ -49,18 +49,17 @@
             <thead style="text-align: center">
               <tr>
                 <th width="5%">No</th>
-                <th>Tanggal</th>
+                <th>Tanggal Awal</th>
+                <th>Tanggal Akhir</th>
                 <th>Status</th>
                 <th>Peserta</th>
                 <th>Divisi</th>
                 <th>Nama Training</th>
                 <th>Justifikasi</th>
-                <th width="7%">Jam Mulai</th>
-                <th width="7%">Jam Selesai</th>
                 <th>Jumlah Jam</th>
                 <th>Media</th>
                 <th>Topik</th>
-                <th>Pelaksana</th>
+                <th>Penyelenggara</th>
                 <th>FPT Approved</th>
                 <th>Pendaftaran</th>
                 <th>Undangan</th>
@@ -72,6 +71,7 @@
                 <th>Biaya Lain</th>
                 <th>Kompetensi</th>
                 <th>Keterangan</th>
+                <th>Detail Tanggal</th>
                 <th width="5%"></th>
                 <th width="5%"></th>
               </tr>
@@ -80,14 +80,13 @@
               @foreach($all as $a)
               <tr>
                 <td>{{$loop->iteration}}</td>
-                <td>{{$a->tanggal_training}}</td>
+                <td>{{$a->tgl_min}}</td>
+                <td>{{$a->tgl_max}}</td>
                 <td>{{$a->status_training}}</td>
                 <td>{{$a->nama_pegawai}}</td>
                 <td>{{$a->nama_divisi}}</td>
                 <td>{{$a->nama_training}}</td>
                 <td>{{$a->justifikasi}}</td>
-                <td>{{$a->jam_mulai}}</td>
-                <td>{{$a->jam_selesai}}</td>
                 <td>{{$a->jumlah_jam_training}}</td>
                 <td>{{$a->nama_media}}</td>
                 <td>{{$a->nama_topik}}</td>
@@ -103,6 +102,7 @@
                 <td>{{number_format($a->biaya_lain)}}</td>
                 <td>{{$a->nama_kompetensi}}</td>
                 <td>{{$a->keterangan_lain}}</td>
+                <td><a href="#"><button type="button" class="btn btn-block btn-secondary btn-sm">lihat</button></a></td>
                 <td><a href="rekapitulasiTraining/edit/{{$a->id_rekapitulasi_training}}"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
                 <td>
                   <form action="rekapitulasiTraining/delete/{{$a->id_rekapitulasi_training}}" method="post">
@@ -131,12 +131,9 @@
 
 @endsection
 @section('script')
-<!-- jQuery -->
-<script src="/AdminLTE/plugins/jquery/jquery.min.js"></script>
 <!-- DataTables -->
 <script src="/AdminLTE/plugins/datatables/jquery.dataTables.js"></script>
 <script src="/AdminLTE/plugins/datatables/dataTables.bootstrap4.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 <script src="/yadcf/jquery.dataTables.yadcf.js"></script>
 
 <!-- Select2 -->
@@ -171,8 +168,8 @@
       date_format:  'dd-mm-yy'
     }, {
       column_number: 2,
-      filter_type: "multi_select",
-      select_type: 'select2'
+      filter_type: "range_date",
+      date_format:  'dd-mm-yy'
     }, {
       column_number: 3,
       filter_type: "multi_select",
@@ -195,8 +192,7 @@
       select_type: 'select2'
     }, {
       column_number: 8,
-      filter_type: "multi_select",
-      select_type: 'select2'
+      filter_type: "range_number"
     }, {
       column_number: 9,
       filter_type: "multi_select",
@@ -210,19 +206,15 @@
       filter_type: "multi_select",
       select_type: 'select2'
     }, {
-      column_number: 12,
-      filter_type: "multi_select",
-      select_type: 'select2'
+      column_number: 17,
+      filter_type: "range_number",
+      ignore_char: ","
     }, {
-      column_number: 18,
+      column_number: 20,
       filter_type: "range_number",
       ignore_char: ","
     }, {
       column_number: 21,
-      filter_type: "range_number",
-      ignore_char: ","
-    }, {
-      column_number: 22,
       filter_type: "multi_select",
       select_type: 'select2'
     }]);

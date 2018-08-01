@@ -24,6 +24,8 @@ class DatabaseSeeder extends Seeder
         $this->call(KompetensiDepartemenTableSeeder::class);
         $this->call(KompetensiJabatanTableSeeder::class);
         $this->call(PegawaiTableSeeder::class);
+        $this->call(TanggalTrainingTableSeeder::class);
         $this->call(RekapitulasiTrainingTableSeeder::class);
+        $this->call(TanggalRekapitulasiTableSeeder::class);
     }
 }
