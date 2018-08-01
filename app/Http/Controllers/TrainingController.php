@@ -114,7 +114,6 @@ class TrainingController extends Controller
             'id_topik' => 'required',
             'id_kompetensi' => 'required',
             'id_penyelenggara' => 'required',
-            'harga_training' => 'required|numeric',
         ]);
         $train = Training::findorfail($id);
         $train->nama_training = $request->nama_training;
