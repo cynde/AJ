@@ -47,7 +47,6 @@ class RekapitulasiTrainingController extends Controller
             'id_training' => 'required',
             'nik_pegawai' => 'required',
             'justifikasi' => 'required',
-            'tanggal_training' => 'required',
             'jumlah_jam_training' => 'required',
         ]);
         // dd($request->nik_pegawai);
@@ -59,30 +58,6 @@ class RekapitulasiTrainingController extends Controller
             else $id = $lastRow->id_rekapitulasi_training;
             $rt = new RekapitulasiTraining();
             $rt->id_training = $request->id_training;
-            $data = $request->tanggal_training;
-            $dates = explode(",", $data);
-            foreach ($dates as $d) {
-                $tgl_train = new TanggalTraining();
-                $lastRowtt = TanggalTraining::orderBy('id_tanggal_training', 'desc')->first();
-                if(!$lastRowtt) {
-                    $idtt = 0;
-                }
-                else $idtt = $lastRowtt->id_tanggal_training;
-                $tgl_train->id_tanggal_training = $idtt + 1;
-                $tgl_train->tanggal_training = $d;
-                $tgl_train->save();
-
-                $tgl_rekap = new TanggalRekapitulasi();
-                $lastRowtr = TanggalRekapitulasi::orderBy('id_tanggal_rekapitulasi', 'desc')->first();
-                if(!$lastRowtr) {
-                    $idtr = 0;
-                }
-                else $idtr = $lastRowtr->id_tanggal_rekapitulasi;
-                $tgl_rekap->id_rekapitulasi_training = $request->id_training;
-                $tgl_rekap->id_tanggal_rekapitulasi = $idtr + 1;
-                $tgl_rekap->id_tanggal_training = $idtt + 1;
-                $tgl_rekap->save();
-            }
             $rt->justifikasi = $request->justifikasi;
             $rt->nik_pegawai = $nik;
             $rt->jumlah_jam_training = $request->jumlah_jam_training;
@@ -155,8 +130,39 @@ class RekapitulasiTrainingController extends Controller
             $rt->keterangan_lain = $request->keterangan_lain;
             // dd($rt);
             $rt->save();
+
+            $lastRow = RekapitulasiTraining::orderBy('id_rekapitulasi_training', 'desc')->first();
+            if(!$lastRow) {
+                $id = 0;
+            }
+            else $id = $lastRow->id_rekapitulasi_training;
+            $data = $request->tanggal_training;
+            $dates = explode(",", $data);
+            foreach ($dates as $d) {
+                $tgl_train = new TanggalTraining();
+                $lastRowtt = TanggalTraining::orderBy('id_tanggal_training', 'desc')->first();
+                if(!$lastRowtt) {
+                    $idtt = 0;
+                }
+                else $idtt = $lastRowtt->id_tanggal_training;
+                $tgl_train->id_tanggal_training = $idtt + 1;
+                $tgl_train->tanggal_training = $d;
+                $tgl_train->save();
+
+                $tgl_rekap = new TanggalRekapitulasi();
+                $lastRowtr = TanggalRekapitulasi::orderBy('id_tanggal_rekapitulasi', 'desc')->first();
+                if(!$lastRowtr) {
+                    $idtr = 0;
+                }
+                else $idtr = $lastRowtr->id_tanggal_rekapitulasi;
+                $tgl_rekap->id_rekapitulasi_training = $id;
+                $tgl_rekap->id_tanggal_rekapitulasi = $idtr + 1;
+                $tgl_rekap->id_tanggal_training = $idtt + 1;
+                $tgl_rekap->save();
+            }
         }
         return redirect()->route('rekapitulasiTraining');
+        // return view('rekapitulasiTraining.tambahTanggal',compact('rt'));
     }
 
     /**
@@ -165,9 +171,13 @@ class RekapitulasiTrainingController extends Controller
      * @param  \App\RekapitulasiTraining  $rekapitulasiTraining
      * @return \Illuminate\Http\Response
      */
-    public function show(RekapitulasiTraining $rekapitulasiTraining)
+    public function show($id)
     {
-        //
+        $all = RekapitulasiTraining::leftJoin('tanggal_rekapitulasi','tanggal_rekapitulasi.id_rekapitulasi_training','=','rekapitulasi_training.id_rekapitulasi_training')->leftJoin('tanggal_training','tanggal_training.id_tanggal_training','=','tanggal_rekapitulasi.id_tanggal_training')->where('rekapitulasi_training.id_rekapitulasi_training','=',$id)->orderBy('tanggal_training.tanggal_training','ASC')->get();
+        return response()->json([
+           'success' => true,
+           'data' => $all
+        ]);
     }
 
     /**
@@ -192,25 +202,20 @@ class RekapitulasiTrainingController extends Controller
      * @param  \App\RekapitulasiTraining  $rekapitulasiTraining
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $idnow)
     {
         $validatedData = $request->validate([
             'justifikasi' => 'required',
-            'tanggal_training' => 'required',
-            'jam_mulai' => 'required',
-            'jam_selesai' => 'required',
+            'jumlah_jam_training' => 'required'
         ]);
         $lastRow = RekapitulasiTraining::orderBy('id_rekapitulasi_training', 'desc')->first();
         if(!$lastRow) {
             $id = 0;
         }
         else $id = $lastRow->id_rekapitulasi_training;
-        $rt = RekapitulasiTraining::findorfail($id);
+        $rt = RekapitulasiTraining::findorfail($idnow);
         $rt->justifikasi = $request->justifikasi;
-        $rt->tanggal_training = $request->tanggal_training;
-        $rt->jam_mulai = $request->jam_mulai;
-        $rt->jam_selesai = $request->jam_selesai;
-        $rt->jumlah_jam_training = (int)$request->jam_selesai - (int)$request->jam_mulai;
+        $rt->jumlah_jam_training = $request->jumlah_jam_training;
         // dd($request->file('fpt_file'));
         if(empty($rt->fpt_file) && $request->file('fpt_file')){
             // fpt

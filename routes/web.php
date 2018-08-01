@@ -154,5 +154,6 @@ Route::group(['prefix' => 'rekapitulasiTraining'], function() {
 	Route::get('edit/{id}', 'RekapitulasiTrainingController@edit');
 	Route::post('update/{id}', 'RekapitulasiTrainingController@update');
 	Route::post('delete/{id}', 'RekapitulasiTrainingController@destroy');
+	Route::get('show/{id}', 'RekapitulasiTrainingController@show');
 });
 

@@ -102,7 +102,7 @@
                 <td>{{number_format($a->biaya_lain)}}</td>
                 <td>{{$a->nama_kompetensi}}</td>
                 <td>{{$a->keterangan_lain}}</td>
-                <td><a href="#"><button type="button" class="btn btn-block btn-secondary btn-sm">lihat</button></a></td>
+                <td><button id="lihat" type="button" class="btn btn-block btn-secondary btn-sm" data-id="{{$a->id_rekapitulasi_training}}">lihat</button></td>
                 <td><a href="rekapitulasiTraining/edit/{{$a->id_rekapitulasi_training}}"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
                 <td>
                   <form action="rekapitulasiTraining/delete/{{$a->id_rekapitulasi_training}}" method="post">
@@ -128,6 +128,34 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+<!-- Modal lihat tanggal -->
+<div class="modal fade" id="lihatTanggal" tabindex="-1" role="dialog" aria-labelledby="lihatTanggal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="listTanggal">List Tanggal</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="text-align: center;">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th width="5%">No</th>
+              <th>Tanggal</th>
+            </tr>
+          </thead>
+          <tbody id="TanggalDetailBody">
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 @endsection
 @section('script')
@@ -219,6 +247,39 @@
       select_type: 'select2'
     }]);
   });
+</script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $(document).on('click','#lihat',function(e) {
+    jQuery.noConflict();
+    // $('#lihatDepartemen').modal('show');
+    $.ajaxSetup({
+        headers:{'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')}
+    })
+    e.preventDefault(e);
+    var triggerid = $(this).data('id');
+    $.ajax({
+      type: 'get',
+      url: '/rekapitulasiTraining/show/'+ triggerid,
+      dataType: 'json',
+      success: function(message) {
+        // console.log(message)
+          jQuery.noConflict();
+          document.getElementById('TanggalDetailBody').innerHTML = '';
+          var tableAppend = '';
+          for(var i = 0; i < message.data.length; i++) {
+              tableAppend += '<tr><td>' + (i+1) + '</td><td>' + message.data[i]['tanggal_training'] + '</td></tr>';
+          }
+          $('#TanggalDetailBody').append(tableAppend);
+          $('#lihatTanggal').modal('show');
+      },
+      error: function(message){
+        console.log(message);
+      }
+    });
+  });
+});
 </script>
 @endsection
 
