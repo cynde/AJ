@@ -18,7 +18,7 @@ class RekapitulasiTrainingController extends Controller
      */
     public function index()
     {
-        $all = RekapitulasiTraining::leftJoin('training','rekapitulasi_training.id_training','=','training.id_training')->leftJoin('pegawai', 'rekapitulasi_training.nik_pegawai', '=', 'pegawai.nik_pegawai')->leftJoin('departemen', 'pegawai.id_departemen','=','departemen.id_departemen')->leftJoin('divisi','departemen.id_divisi','=','divisi.id_divisi')->leftJoin('media','media.id_media','=','training.id_media')->leftJoin('topik','topik.id_topik','=','training.id_topik')->leftJoin('penyelenggara','penyelenggara.id_penyelenggara','=','training.id_penyelenggara')->leftJoin('kompetensi','kompetensi.id_kompetensi','=','training.id_kompetensi')->leftJoin('maxmin_tanggal_training','rekapitulasi_training.id_rekapitulasi_training','=','maxmin_tanggal_training.id_rekapitulasi_training')->select('rekapitulasi_training.*','training.nama_training','training.harga_training','training.invoice_training','pegawai.nama_pegawai','divisi.nama_divisi','media.nama_media','topik.nama_topik','penyelenggara.nama_penyelenggara','kompetensi.nama_kompetensi','maxmin_tanggal_training.tgl_min','maxmin_tanggal_training.tgl_max')->get();
+        $all = RekapitulasiTraining::leftJoin('training','rekapitulasi_training.id_training','=','training.id_training')->leftJoin('pegawai', 'rekapitulasi_training.nik_pegawai', '=', 'pegawai.nik_pegawai')->leftJoin('departemen', 'pegawai.id_departemen','=','departemen.id_departemen')->leftJoin('divisi','departemen.id_divisi','=','divisi.id_divisi')->leftJoin('media','media.id_media','=','training.id_media')->leftJoin('topik','topik.id_topik','=','training.id_topik')->leftJoin('penyelenggara','penyelenggara.id_penyelenggara','=','training.id_penyelenggara')->leftJoin('kompetensi','kompetensi.id_kompetensi','=','training.id_kompetensi')->leftJoin('maxmin_tanggal_training','rekapitulasi_training.id_rekapitulasi_training','=','maxmin_tanggal_training.id_rekapitulasi_training')->select('rekapitulasi_training.*','training.nama_training','rekapitulasi_training.harga_training','rekapitulasi_training.invoice_training','pegawai.nama_pegawai','divisi.nama_divisi','media.nama_media','topik.nama_topik','penyelenggara.nama_penyelenggara','kompetensi.nama_kompetensi','maxmin_tanggal_training.tgl_min','maxmin_tanggal_training.tgl_max')->get();
         // dd($all);
         return view('rekapitulasiTraining.index', compact('all'));
     }
@@ -48,7 +48,7 @@ class RekapitulasiTrainingController extends Controller
             'nik_pegawai' => 'required',
             'justifikasi' => 'required',
             'jumlah_jam_training' => 'required',
-            'harga_training' => 'required|numeric',
+            'harga_training' => 'required|numeric'
         ]);
         // dd($request->nik_pegawai);
         foreach($request->nik_pegawai as $nik) {
@@ -129,7 +129,7 @@ class RekapitulasiTrainingController extends Controller
                 $rt->eval_file = $path_eval;
                 $rt->status_training = 'Terlaksana';
             }
-            $rt->biaya_lain = $request->biaya_lain;
+            $rt->biaya_lain = $request->biaya_lain/count($request->nik_pegawai);
             $rt->keterangan_lain = $request->keterangan_lain;
             // dd($rt);
             $rt->save();
@@ -209,8 +209,8 @@ class RekapitulasiTrainingController extends Controller
     {
         $validatedData = $request->validate([
             'justifikasi' => 'required',
-            'jumlah_jam_training' => 'required'
-            'harga_training' => 'required|numeric',
+            'jumlah_jam_training' => 'required',
+            'harga_training' => 'required|numeric'
         ]);
         $lastRow = RekapitulasiTraining::orderBy('id_rekapitulasi_training', 'desc')->first();
         if(!$lastRow) {

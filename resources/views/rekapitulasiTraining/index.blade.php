@@ -65,10 +65,10 @@
                 <th>Undangan</th>
                 <th>Absensi</th>
                 <th>Sertifikat</th>
-                <th>Harga Training</th>
-                <th>Invoice</th>
+                <th>Harga Training/peserta</th>
+                <th>Invoice/peserta</th>
                 <th>Evaluasi</th>
-                <th>Biaya Lain</th>
+                <th>Biaya Lain/peserta</th>
                 <th>Kompetensi</th>
                 <th>Keterangan</th>
                 <th>Detail Tanggal</th>

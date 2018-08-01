@@ -109,7 +109,6 @@ class TrainingController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'id_training' => 'required',
             'nama_training' => 'required',
             'id_media' => 'required',
             'id_topik' => 'required',
@@ -117,7 +116,6 @@ class TrainingController extends Controller
             'id_penyelenggara' => 'required',
         ]);
         $train = Training::findorfail($id);
-        $train->id_training = $request->id_training;
         $train->nama_training = $request->nama_training;
         $train->id_media = $request->id_media;
         $train->id_topik = $request->id_topik;
