@@ -48,6 +48,7 @@ class RekapitulasiTrainingController extends Controller
             'nik_pegawai' => 'required',
             'justifikasi' => 'required',
             'jumlah_jam_training' => 'required',
+            'harga_training' => 'required|numeric',
         ]);
         // dd($request->nik_pegawai);
         foreach($request->nik_pegawai as $nik) {
@@ -61,6 +62,8 @@ class RekapitulasiTrainingController extends Controller
             $rt->justifikasi = $request->justifikasi;
             $rt->nik_pegawai = $nik;
             $rt->jumlah_jam_training = $request->jumlah_jam_training;
+            $rt->harga_training = $request->harga_training;
+            $rt->invoice_training = $request->invoice_training;
             $rt->status_training = 'Diajukan';
             // dd($request->file('fpt_file'));
             if($request->file('fpt_file')){
@@ -207,6 +210,7 @@ class RekapitulasiTrainingController extends Controller
         $validatedData = $request->validate([
             'justifikasi' => 'required',
             'jumlah_jam_training' => 'required'
+            'harga_training' => 'required|numeric',
         ]);
         $lastRow = RekapitulasiTraining::orderBy('id_rekapitulasi_training', 'desc')->first();
         if(!$lastRow) {
@@ -216,6 +220,8 @@ class RekapitulasiTrainingController extends Controller
         $rt = RekapitulasiTraining::findorfail($idnow);
         $rt->justifikasi = $request->justifikasi;
         $rt->jumlah_jam_training = $request->jumlah_jam_training;
+        $rt->harga_training = $request->harga_training;
+        $rt->invoice_training = $request->invoice_training;
         // dd($request->file('fpt_file'));
         if(empty($rt->fpt_file) && $request->file('fpt_file')){
             // fpt
