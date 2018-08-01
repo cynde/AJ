@@ -46,11 +46,9 @@
         <form role="form" action="store" method="post">
           {{csrf_field()}}
           <div class="card-body">
-            <div class="col-sm-6" style="float:left">
-              <div class="form-group">
-                <label>ID</label>
-                <input name="id_training" type="number" class="form-control" id="id_training" placeholder="Masukkan ID Training" required>
-              </div>
+            <div class="form-group">
+              <label>ID</label>
+              <input name="id_training" type="number" class="form-control" id="id_training" placeholder="Masukkan ID Training" required>
             </div>
             <div class="form-group">
               <label for="nama_training">Nama Training</label>
@@ -87,14 +85,6 @@
                 <option value="{{$p->id_penyelenggara}}">{{$p->nama_penyelenggara}}</option>
                 @endforeach
               </select>
-            </div>
-            <div class="form-group col-sm-6" style="float: left">
-              <label for="harga_training">Harga</label>
-              <input name="harga_training" type="number" class="form-control" id="harga_training" placeholder="Masukkan Harga Training" required>
-            </div>
-            <div class="form-group col-sm-6" style="float: left">
-              <label for="invoice_training">Invoice</label>
-              <input name="invoice_training" type="number" class="form-control" id="invoice_training" placeholder="Masukkan Invoice Training">
             </div>
           </div>
           <!-- /.card-body -->
