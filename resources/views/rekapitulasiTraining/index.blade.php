@@ -60,16 +60,17 @@
                 <th>Media</th>
                 <th>Topik</th>
                 <th>Penyelenggara</th>
+                <th>Kompetensi</th>
                 <th>FPT Approved</th>
                 <th>Pendaftaran</th>
                 <th>Undangan</th>
                 <th>Absensi</th>
                 <th>Sertifikat</th>
+                <th>File Invoice</th>
+                <th>Evaluasi</th>
                 <th>Harga Training/peserta</th>
                 <th>Invoice/peserta</th>
-                <th>Evaluasi</th>
                 <th>Biaya Lain/peserta</th>
-                <th>Kompetensi</th>
                 <th>Keterangan</th>
                 <th>Detail Tanggal</th>
                 <th width="5%"></th>
@@ -91,16 +92,17 @@
                 <td>{{$a->nama_media}}</td>
                 <td>{{$a->nama_topik}}</td>
                 <td>{{$a->nama_penyelenggara}}</td>
+                <td>{{$a->nama_kompetensi}}</td>
                 <td>@if(!empty($a->fpt_file)) v @endif</td>
                 <td>@if(!empty($a->pendaftaran_file)) v @endif</td>
                 <td>@if(!empty($a->undangan_file)) v @endif</td>
                 <td>@if(!empty($a->absensi_file)) v @endif</td>
                 <td>@if(!empty($a->sertifikat_file)) v @endif</td>
-                <td>{{number_format($a->harga_training)}}</td>
-                <td>@if(!empty($a->invoice_file)) v @endif ({{number_format($a->invoice_training)}})</td>
                 <td>@if(!empty($a->eval_file)) v @endif</td>
+                <td>@if(!empty($a->invoice_file)) v @endif</td>
+                <td>{{number_format($a->harga_training)}}</td>
+                <td>{{number_format($a->invoice_training)}}</td>
                 <td>{{number_format($a->biaya_lain)}}</td>
-                <td>{{$a->nama_kompetensi}}</td>
                 <td>{{$a->keterangan_lain}}</td>
                 <td><button id="lihat" type="button" class="btn btn-block btn-secondary btn-sm" data-id="{{$a->id_rekapitulasi_training}}">lihat</button></td>
                 <td><a href="rekapitulasiTraining/edit/{{$a->id_rekapitulasi_training}}"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
@@ -234,15 +236,19 @@
       filter_type: "multi_select",
       select_type: 'select2'
     }, {
-      column_number: 17,
-      filter_type: "range_number",
-      ignore_char: ","
-    }, {
       column_number: 20,
       filter_type: "range_number",
       ignore_char: ","
     }, {
       column_number: 21,
+      filter_type: "range_number",
+      ignore_char: ","
+    }, {
+      column_number: 22,
+      filter_type: "range_number",
+      ignore_char: ","
+    }, {
+      column_number: 12,
       filter_type: "multi_select",
       select_type: 'select2'
     }]);
