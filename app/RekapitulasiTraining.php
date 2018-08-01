@@ -18,4 +18,8 @@ class RekapitulasiTraining extends Model
   	public function pegawai(){
     	return $this->hasOne('App\Pegawai');
     }
+
+  	public function tanggal_training(){
+    	return $this->hasMany('App\TanggalTraining');
+    }
 }

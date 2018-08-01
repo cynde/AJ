@@ -118,15 +118,5 @@
 <script src="/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- Select2 -->
 <script src="/AdminLTE/plugins/select2/select2.full.min.js"></script>
-<script>
-  $(document).ready(function () {
-    //Initialize Select2 Elements
-    $('.select2').select2()
-    $('.date').datepicker({
-      multidate: true
-    });
-
-  })
-</script>
 @endsection
 
