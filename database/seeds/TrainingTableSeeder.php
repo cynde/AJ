@@ -15,8 +15,6 @@ class TrainingTableSeeder extends Seeder
         Training::create( [
         'id_training'=>'1',
         'nama_training'=>'Customer Engagement',
-        'harga_training'=>'5000000',
-        'invoice_training'=>'5000000',
         'id_media'=>'1',
         'id_topik'=>'K',
         'id_penyelenggara'=>'1',

@@ -55,7 +55,6 @@ class TrainingController extends Controller
             'id_topik' => 'required',
             'id_kompetensi' => 'required',
             'id_penyelenggara' => 'required',
-            'harga_training' => 'required|numeric',
         ]);
         $train = new Training();
         $train->id_training = $request->id_training;
@@ -64,8 +63,6 @@ class TrainingController extends Controller
         $train->id_topik = $request->id_topik;
         $train->id_kompetensi = $request->id_kompetensi;
         $train->id_penyelenggara = $request->id_penyelenggara;
-        $train->harga_training = $request->harga_training;
-        $train->invoice_training = $request->invoice_training;
         $train->save();
         return redirect()->route('training');
     }
@@ -118,7 +115,6 @@ class TrainingController extends Controller
             'id_topik' => 'required',
             'id_kompetensi' => 'required',
             'id_penyelenggara' => 'required',
-            'harga_training' => 'required|numeric',
         ]);
         $train = Training::findorfail($id);
         $train->id_training = $request->id_training;
@@ -127,8 +123,6 @@ class TrainingController extends Controller
         $train->id_topik = $request->id_topik;
         $train->id_kompetensi = $request->id_kompetensi;
         $train->id_penyelenggara = $request->id_penyelenggara;
-        $train->harga_training = $request->harga_training;
-        $train->invoice_training = $request->invoice_training;
         $train->save();
         return redirect()->route('training');
     }

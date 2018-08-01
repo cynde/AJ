@@ -18,6 +18,8 @@ class RekapitulasiTrainingTableSeeder extends Seeder
         'status_training'=>'Diajukan',
         'justifikasi'=>'TNA',
         'jumlah_jam_training'=>'5',
+        'harga_training'=>'5000000',
+        'invoice_training'=>'5000000',
         'fpt_file'=>'',
         'pendaftaran_file'=>'',
         'undangan_file'=>'',
