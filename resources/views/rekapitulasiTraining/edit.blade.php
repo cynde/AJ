@@ -49,46 +49,20 @@
           <div class="card-body">
             <div class="form-group">
               <label for="id_training">Nama Training</label>
-              <select name="id_training" class="form-control select2" style="width: 100%;" disabled>
-                <option value="{{$rt->id_training}}">{{$rt->nama_training}}</option>
-                @foreach($training as $t)
-                <option value="{{$t->id_training}}">{{$t->nama_training}}</option>
-                @endforeach
-              </select>
+              <input name="id_training" type="text" class="form-control" id="id_training" value="{{$rt->nama_training}}" disabled>
             </div>
             <div class="form-group">
               <label for="nik_pegawai">Peserta</label>
-              <select name="nik_pegawai" class="form-control select2" style="width: 100%;" disabled>
-                <option value="{{$rt->nik_pegawai}}">{{$rt->nama_pegawai}} (Dept: {{$rt->id_departemen}})</option>
-                @foreach($pegawai as $p)
-                <option value="{{$p->nik_pegawai}}">{{$p->nama_pegawai}} (Dept: {{$p->id_departemen}})</option>
-                @endforeach
-              </select>
+              <input name="nik_pegawai" type="text" class="form-control" id="nik_pegawai" value="{{$rt->nama_pegawai}}" disabled>
             </div>
             <div class="form-group">
               <label for="justifikasi">Justifikasi</label>
               <input name="justifikasi" type="text" class="form-control" id="justifikasi" value="{{$rt->justifikasi}}" required>
             </div>
-              <div class="form-group>
-                <label> <i class="fa fa-calendar"></i> Tanggal:</label>
-                <input name="tanggal_training" type="date" class="form-control" id="tanggal_training" value="{{$rt->tanggal_training}}" required>
-                <!-- /.input group -->
+            <div class="form-group">
+              <label><i class="fa fa-clock-o"></i> Jumlah Jam:</label>
+              <input name="jumlah_jam_training" type="number" class="form-control" value="{{$rt->jumlah_jam_training}}" required>
             </div>
-              <div class="bootstrap-timepicker col-sm-6" style="float: left">
-                <div class="form-group">
-                  <label><i class="fa fa-clock-o"></i> Jam Mulai:</label>
-                  <input name="jam_mulai" type="time" class="form-control" value="{{$rt->jam_mulai}}" required>
-                </div>
-                <!-- /.form group -->
-              </div>
-            <div class="bootstrap-timepicker col-sm-6" style="float: left">
-                <div class="form-group">
-                  <label><i class="fa fa-clock-o"></i> Jam Selesai:</label>
-                  <input name="jam_selesai" type="time" class="form-control" value="{{$rt->jam_selesai}}" required>
-                  <!-- /.input group -->
-                </div>
-                <!-- /.form group -->
-              </div> 
             <div class="form-group">
               <label for="biaya_lain">Biaya Lain</label>
               <input name="biaya_lain" type="number" class="form-control" id="biaya_lain" value="{{$rt->biaya_lain}}">
