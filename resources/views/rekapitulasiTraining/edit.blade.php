@@ -65,14 +65,14 @@
             </div>
             <div class="form-group">
               <label for="harga_training">Harga Training/peserta</label>
-              <input name="harga_training" type="number" class="form-control" id="harga_training" value="{{$rt->harga_training}}">
+              <input name="harga_training" type="number" class="form-control" id="harga_training" value="{{$rt->harga_training}}" required>
             </div>
             <div class="form-group">
               <label for="invoice_training">Invoice/peserta</label>
               <input name="invoice_training" type="number" class="form-control" id="invoice_training" value="{{$rt->invoice_training}}">
             </div>
             <div class="form-group">
-              <label for="biaya_lain">Biaya Lain (total)</label>
+              <label for="biaya_lain">Biaya Lain/peserta</label>
               <input name="biaya_lain" type="number" class="form-control" id="biaya_lain" value="{{$rt->biaya_lain}}">
             </div>
             <div class="form-group">
