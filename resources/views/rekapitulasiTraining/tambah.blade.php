@@ -3,7 +3,6 @@
 @section('css')
 <!-- Select2 -->
 <link rel="stylesheet" href="/AdminLTE/plugins/select2/select2.min.css">
-<link rel="stylesheet" href="/AdminLTE/plugins/timepicker/bootstrap-timepicker.min.css">
 @endsection
 @section('content')
   <!-- Content Wrapper. Contains page content -->
@@ -57,7 +56,7 @@
             </div>
             <div class="form-group">
               <label for="nik_pegawai">Peserta</label>
-              <select name="nik_pegawai" class="form-control select2" style="width: 100%;">
+              <select name="nik_pegawai[]" class="form-control select2" multiple="multiple" style="width: 100%;">
                 @foreach($pegawai as $p)
                 <option value="{{$p->nik_pegawai}}">{{$p->nama_pegawai}}</option>
                 @endforeach
@@ -67,25 +66,16 @@
               <label for="justifikasi">Justifikasi</label>
               <input name="justifikasi" type="text" class="form-control" id="justifikasi" placeholder="Masukkan Justifikasi" required>
             </div>
-            <div class="form-group>
-                <label> <i class="fa fa-calendar"></i> Tanggal:</label>
-                <input name="tanggal_training" type="date" class="form-control" id="tanggal_training" placeholder="Masukkan Tanggal Training" required>
-                <!-- /.input group -->
+            <div class="form-group">
+              <label> <i class="fa fa-calendar"></i> Tanggal:</label>
+              <input name="tanggal_training" type="text" class="date form-control" id="tanggal_training" placeholder="Masukkan Tanggal Training" required>
+              <!-- /.input group -->
             </div>
-            <div class="bootstrap-timepicker col-sm-6" style="float: left">
-              <div class="form-group">
-                <label><i class="fa fa-clock-o"></i> Jam Mulai:</label>
-                <input name="jam_mulai" type="time" class="form-control" required>
-              </div>
-              <!-- /.form group -->
-              </div>
-            <div class="bootstrap-timepicker col-sm-6" style="float: left">
-              <div class="form-group">
-                <label><i class="fa fa-clock-o"></i> Jam Selesai:</label>
-                <input name="jam_selesai" type="time" class="form-control" required>
-              </div>
-                <!-- /.form group -->
-              </div> 
+            <div class="form-group">
+              <label><i class="fa fa-clock-o"></i> Jumlah Jam:</label>
+              <input name="jumlah_jam_training" type="number" class="form-control" placeholder="Masukkan Jumlah Jam Training" required>
+            </div>
+            <!-- /.form group -->
             <div class="form-group">
               <label for="biaya_lain">Biaya Lain</label>
               <input name="biaya_lain" type="number" class="form-control" id="biaya_lain" placeholder="Masukkan Biaya Lain">
@@ -171,19 +161,16 @@
   <!-- /.content-wrapper -->
 @endsection
 @section('script')
-<!-- jQuery -->
-<script src="/AdminLTE/plugins/jquery/jquery.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 <!-- Select2 -->
 <script src="/AdminLTE/plugins/select2/select2.full.min.js"></script>
-<script src="/AdminLTE/plugins/timepicker/bootstrap-timepicker.min.js"></script>
-<!-- date-range-picker -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
-<script src="/AdminLTE/plugins/daterangepicker/daterangepicker.js"></script>
 <script>
-  $(function () {
+  $(document).ready(function () {
     //Initialize Select2 Elements
     $('.select2').select2()
+    $('.date').datepicker({
+      multidate: true,
+      format: 'yyyy-mm-dd'
+    });
   })
 </script>
 @endsection
