@@ -52,8 +52,6 @@
                 <th>Topik</th>
                 <th>Penyelenggara</th>
                 <th>Kompetensi</th>
-                <th>Harga (Rp)</th>
-                <th>Invoice (Rp)</th>
                 <th width="5%"></th>
                 <th width="5%"></th>
               </tr>
@@ -68,8 +66,6 @@
                 <td>{{$a->nama_topik}}</td>
                 <td>{{$a->nama_penyelenggara}}</td>
                 <td>{{$a->nama_kompetensi}}</td>
-                <td>{{number_format($a->harga_training)}}</td>
-                <td>{{number_format($a->invoice_training)}}</td>
                 <td><a href="training/edit/{{$a->id_training}}"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
                 <form action="training/delete/{{$a->id_training}}" method="post">
                   {{csrf_field()}}
@@ -133,16 +129,6 @@
         column_number: 6,
         filter_type: "multi_select",
         select_type: 'select2'
-    }, {
-        column_number: 7,
-        filter_type: "range_number",
-        ignore_char: ","
-
-    }, {
-        column_number: 8,
-        filter_type: "range_number",
-        ignore_char: ","
-
     }]);
   });
 </script>
