@@ -77,7 +77,15 @@
             </div>
             <!-- /.form group -->
             <div class="form-group">
-              <label for="biaya_lain">Biaya Lain</label>
+              <label for="harga_training">Harga Training/peserta</label>
+              <input name="harga_training" type="number" class="form-control" id="harga_training" value="{{$rt->harga_training}}">
+            </div>
+            <div class="form-group">
+              <label for="invoice_training">Invoice/peserta</label>
+              <input name="invoice_training" type="number" class="form-control" id="invoice_training" value="{{$rt->invoice_training}}">
+            </div>
+            <div class="form-group">
+              <label for="biaya_lain">Biaya Lain (total)</label>
               <input name="biaya_lain" type="number" class="form-control" id="biaya_lain" placeholder="Masukkan Biaya Lain">
             </div>
             <div class="form-group">
@@ -130,7 +138,7 @@
               </div>
             </div>
             <div class="col-sm-6 form-group" style="float: left">
-              <label for="invoice_file">Invoice</label>
+              <label for="invoice_file">File Invoice</label>
               <div class="input-group">
                 <div class="custom-file">
                   <input type="file" class="custom-file-input" id="invoice_file" name="invoice_file">

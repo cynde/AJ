@@ -64,7 +64,15 @@
               <input name="jumlah_jam_training" type="number" class="form-control" value="{{$rt->jumlah_jam_training}}" required>
             </div>
             <div class="form-group">
-              <label for="biaya_lain">Biaya Lain</label>
+              <label for="harga_training">Harga Training/peserta</label>
+              <input name="harga_training" type="number" class="form-control" id="harga_training" value="{{$rt->harga_training}}">
+            </div>
+            <div class="form-group">
+              <label for="invoice_training">Invoice/peserta</label>
+              <input name="invoice_training" type="number" class="form-control" id="invoice_training" value="{{$rt->invoice_training}}">
+            </div>
+            <div class="form-group">
+              <label for="biaya_lain">Biaya Lain (total)</label>
               <input name="biaya_lain" type="number" class="form-control" id="biaya_lain" value="{{$rt->biaya_lain}}">
             </div>
             <div class="form-group">
@@ -137,7 +145,7 @@
               @endif
             </div>
             <div class="col-sm-6 form-group" style="float: left">
-              <label for="invoice_file">Invoice</label>
+              <label for="invoice_file">File Invoice</label>
               @if(empty($rt->invoice_file))
               <div class="input-group">
                 <div class="custom-file">
