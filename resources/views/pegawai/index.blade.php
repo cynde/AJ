@@ -5,8 +5,9 @@
 <link rel="stylesheet" href="/AdminLTE/plugins/datatables/dataTables.bootstrap4.css">
 <!-- Select2 -->
 <link rel="stylesheet" href="/AdminLTE/plugins/select2/select2.min.css">
-{{-- yadcf --}}
-<link rel="stylesheet" href="/yadcf/jquery.dataTables.yadcf.css">
+{{-- export --}}
+<link rel="stylesheet" href="/css/buttons.dataTables.min.css">
+
 @endsection
 @section('content')
   <!-- Content Wrapper. Contains page content -->
@@ -64,13 +65,13 @@
                 <td width="20%">{{$a->nama_pegawai}}</td>
                 <td width="15%">{{$a->nama_departemen}}</td>
                 <td>{{$a->nama_jabatan}}</td>
-                <td><button type="button" class="btn btn-block btn-secondary btn-sm" data-toggle="modal" data-target="#kompetensiDepartemen">lihat</button></td>
-                <td><button type="button" class="btn btn-block btn-secondary btn-sm"data-toggle="modal" data-target="#kompetensiJabatan">lihat</button></td>
+                <td><button type="button" class="btn btn-block btn-secondary btn-sm" id="lihatKD" data-id="{{$a->nik_pegawai}}">lihat</button></td>
+                <td><button type="button" class="btn btn-block btn-secondary btn-sm" id="lihatKJ" data-id="{{$a->nik_pegawai}}">lihat</button></td>
                 <td><a href="/pegawai/edit/{{$a->nik_pegawai}}"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
                 <td><form action="/pegawai/delete/{{$a->nik_pegawai}}" method="POST">
-                            {{csrf_field()}}
-                            <button type="submit" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button>
-                    </form></td>
+                  {{csrf_field()}}
+                  <button type="submit" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button>
+                </form></td>
               </tr>
               @endforeach
           </table>
@@ -96,50 +97,14 @@
         </button>
       </div>
       <div class="modal-body" style="text-align: center;">
-        <h5>Kompetensi Finance</h5>
-        <table class="table table-striped">
+        <table id="table-kompetensi-departemen" class="table table-striped">
           <thead>
             <tr>
-              <th>Training yang Sudah</th>
-              <th>Training yang Belum</th>
+              <th>Nama Kompetensi</th>
+              <th>Nama Training</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>Lorem ipsum</td>
-              <td>Lorem ipsum</td>
-            </tr>
-            <tr>
-              <td>Lorem ipsum</td>
-              <td>Lorem ipsum</td>
-            </tr>
-            <tr>
-              <td>Lorem ipsum</td>
-              <td>Lorem ipsum</td>
-            </tr>
-          </tbody>
-        </table>
-        <h5>Kompetensi Teknologi</h5>
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th>Training yang Sudah</th>
-              <th>Training yang Belum</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Lorem ipsum</td>
-              <td>Lorem ipsum</td>
-            </tr>
-            <tr>
-              <td>Lorem ipsum</td>
-              <td>Lorem ipsum</td>
-            </tr>
-            <tr>
-              <td>Lorem ipsum</td>
-              <td>Lorem ipsum</td>
-            </tr>
+          <tbody id="KDDetailBody">
           </tbody>
         </table>
       </div>
@@ -161,50 +126,15 @@
         </button>
       </div>
       <div class="modal-body" style="text-align: center;">
-        <h5>Kompetensi Finance</h5>
-        <table class="table table-striped">
+        <table id="table-kompetensi-jabatan" class="table table-striped">
           <thead>
             <tr>
-              <th>Training yang Sudah</th>
-              <th>Training yang Belum</th>
+              <th>Nama Kompetensi</th>
+              <th>Nama Training</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>Lorem ipsum</td>
-              <td>Lorem ipsum</td>
-            </tr>
-            <tr>
-              <td>Lorem ipsum</td>
-              <td>Lorem ipsum</td>
-            </tr>
-            <tr>
-              <td>Lorem ipsum</td>
-              <td>Lorem ipsum</td>
-            </tr>
-          </tbody>
-        </table>
-        <h5>Kompetensi Teknologi</h5>
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th>Training yang Sudah</th>
-              <th>Training yang Belum</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Lorem ipsum</td>
-              <td>Lorem ipsum</td>
-            </tr>
-            <tr>
-              <td>Lorem ipsum</td>
-              <td>Lorem ipsum</td>
-            </tr>
-            <tr>
-              <td>Lorem ipsum</td>
-              <td>Lorem ipsum</td>
-            </tr>
+          <tbody id="KJDetailBody">
+
           </tbody>
         </table>
       </div>
@@ -214,17 +144,22 @@
     </div>
   </div>
 </div>
+
+</div>
 @endsection
 @section('script')
-<!-- jQuery -->
-<script src="/AdminLTE/plugins/jquery/jquery.min.js"></script>
 <!-- DataTables -->
 <script src="/AdminLTE/plugins/datatables/jquery.dataTables.js"></script>
 <script src="/AdminLTE/plugins/datatables/dataTables.bootstrap4.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-<script src="/yadcf/jquery.dataTables.yadcf.js"></script>
+
 <!-- Select2 -->
 <script src="/AdminLTE/plugins/select2/select2.full.min.js"></script>
+{{-- export table --}}
+<script src="/js/dataTables.buttons.min.js"></script>
+<script src="/js/jszip.min.js"></script>
+<script src="/js/buttons.html5.min.js"></script>
+<script src="/js/vfs_fonts.js"></script>
 <script>
   $(function () {
     //Initialize Select2 Elements
@@ -239,7 +174,103 @@
         "bStateSave": true,
         "scrollX": true
     })
+    $('#table-kompetensi-departemen').dataTable({
+        "bJQueryUI": true,
+        "bStateSave": true,
+        "paging":   false,
+        "ordering": false,
+        "info": false,
+        "bFilter": false,
+        dom: 'Bfrtip',
+        buttons: [
+            'excelHtml5']
+    })
+    $('#table-kompetensi-jabatan').dataTable({
+        "bJQueryUI": true,
+        "bStateSave": true,
+        "paging":   false,
+        "ordering": false,
+        "info": false,
+        "bFilter": false,
+        dom: 'Bfrtip',
+        buttons: [
+            'excelHtml5']
+    })
   });
+</script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $(document).on('click','#lihatKD',function(e) {
+    jQuery.noConflict();
+    // $('#lihatDepartemen').modal('show');
+    $.ajaxSetup({
+        headers:{'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')}
+    })
+    e.preventDefault(e);
+    var triggerid = $(this).data('id');
+    $.ajax({
+      type: 'get',
+      url: '/pegawai/showKD/'+ triggerid,
+      dataType: 'json',
+      success: function(message) {
+        // console.log(message)
+          jQuery.noConflict();
+          document.getElementById('KDDetailBody').innerHTML = '';
+          var tableAppend = '<tr><td colspan="2"><b>SUDAH</b></td></tr>';
+          for(var i = 0; i < message.done.length; i++) {
+              tableAppend += '<tr><td>' + message.done[i]['nama_kompetensi'] + '</td><td>' + message.done[i]['nama_training'] + '</td></tr>';
+          };
+          tableAppend += '<tr><td colspan="2"><b>BELUM</b></td></tr>';
+          for(var i = 0; i < message.undone.length; i++) {
+              tableAppend += '<tr><td>' + message.undone[i]['nama_kompetensi'] + '</td><td>' + message.undone[i]['nama_training'] + '</td></tr>';
+          };
+          $('#KDDetailBody').append(tableAppend);
+          $('#kompetensiDepartemen').modal('show');
+      },
+      error: function(message){
+        console.log(message);
+      }
+    });
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $(document).on('click','#lihatKJ',function(e) {
+    jQuery.noConflict();
+    // $('#lihatDepartemen').modal('show');
+    $.ajaxSetup({
+        headers:{'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')}
+    })
+    e.preventDefault(e);
+    var triggerid = $(this).data('id');
+    $.ajax({
+      type: 'get',
+      url: '/pegawai/showKJ/'+ triggerid,
+      dataType: 'json',
+      success: function(message) {
+        // console.log(message)
+          jQuery.noConflict();
+          document.getElementById('KJDetailBody').innerHTML = '';
+          var tableAppend = '<tr><td colspan="2"><b>SUDAH</b></td></tr>';
+          for(var i = 0; i < message.done.length; i++) {
+              tableAppend += '<tr><td>' + message.done[i]['nama_kompetensi'] + '</td><td>' + message.done[i]['nama_training'] + '</td></tr>';
+          };
+          tableAppend += '<tr><td colspan="2"><b>BELUM</b></td></tr>';
+          for(var i = 0; i < message.undone.length; i++) {
+              tableAppend += '<tr><td>' + message.undone[i]['nama_kompetensi'] + '</td><td>' + message.undone[i]['nama_training'] + '</td></tr>';
+          };
+          $('#KJDetailBody').append(tableAppend);
+          $('#kompetensiJabatan').modal('show');
+      },
+      error: function(message){
+        console.log(message);
+      }
+    });
+  });
+});
 </script>
 @endsection
 

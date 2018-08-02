@@ -56,6 +56,8 @@ Route::group(['prefix' => 'pegawai'], function() {
 	Route::get('edit/{id}', 'PegawaiController@edit');
 	Route::post('update/{id}', 'PegawaiController@update');
 	Route::post('delete/{id}', 'PegawaiController@destroy');
+	Route::get('showKD/{id}', 'PegawaiController@showKD');
+	Route::get('showKJ/{id}', 'PegawaiController@showKJ');
 });
 
 Route::group(['prefix' => 'media'], function() {
