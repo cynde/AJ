@@ -20,6 +20,18 @@ class TanggalTrainingTableSeeder extends Seeder
         	'id_tanggal_training' => '2',
         	'tanggal_training' => '2018-07-31'
         ] );
+        TanggalTraining::create( [
+            'id_tanggal_training' => '3',
+            'tanggal_training' => '2018-11-20'
+        ] );
+        TanggalTraining::create( [
+            'id_tanggal_training' => '4',
+            'tanggal_training' => '2018-11-15'
+        ] );
+        TanggalTraining::create( [
+            'id_tanggal_training' => '5',
+            'tanggal_training' => '2018-11-09'
+        ] );
 
     }
 }

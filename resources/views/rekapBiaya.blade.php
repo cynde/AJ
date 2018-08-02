@@ -41,7 +41,7 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-         @if($all->count())
+         @if($rekapbiaya->count())
           <table id="rekap-biaya" class="table table-bordered table-striped">
             <thead style="text-align: center">
               <tr>
@@ -56,16 +56,16 @@
               </tr>
             </thead>
             <tbody>
-            @foreach($all as $a)
+            @foreach($rekapbiaya as $a)
               <tr>
                 <td>{{$loop->iteration}}</td>
-                <td> {{ Carbon\Carbon::parse($a->tanggal_training)->format('F') }}</td>
+                <td>{{$a->bulan}}</td>
                 <td>{{$a->nama_training}}</td>
                 <td>{{$a->nama_media}} ({{$a->kategori_media}})</td>
-                <td>{{$a->tanggal_training}}</td>
+                <td>{{$a->tgl_max}}</td>
                 <td>{{$a->nama_penyelenggara}}</td>
-                <td><button id="lihat" type="button" class="btn btn-block btn-secondary btn-sm" data-id="{{$a->id_training}}">lihat</button></td>
-                <td>{{$a->harga_training}}</td>
+                <td><button id="lihat" type="button" class="btn btn-block btn-secondary btn-sm" data-id="{{$a->id_training}}" data-bulan="{{$a->bulan}}">lihat</button></td>
+                <td>{{$a->total}}</td>
               </tr>
               @endforeach
               </tbody>
@@ -179,6 +179,11 @@ $(document).ready(function() {
     })
     e.preventDefault(e);
     var triggerid = $(this).data('id');
+    var bulanjs = $(this).data('bulan');
+    var monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
+    // console.log(d);
     $.ajax({
       type: 'get',
       url: '/rekapbiaya/show/'+ triggerid,
@@ -189,8 +194,21 @@ $(document).ready(function() {
           document.getElementById('RekapBiayaDetailBody').innerHTML = '';
           var tableAppend = '';
           for(var i = 0; i < message.data.length; i++) {
-              tableAppend += '<tr><td>' + (i+1) + '</td><td>' + message.data[i]['nama_pegawai'] + '</td></tr>';
+            var d = new Date(message.data[i]['tgl_max']);
+            var n = monthNames[d.getMonth()];
+            if (i == 0){
+              if(bulanjs == n && triggerid == message.data[i]['id_training']){
+                tableAppend += '<tr><td>' + message.data[i]['nama_pegawai'] + '</td></tr>';  
+              }
+            }
+            else if(i>0){
+              if(bulanjs == n && triggerid == message.data[i]['id_training'] && message.data[i-1]['id_rekapitulasi_training'] != message.data[i]['id_rekapitulasi_training']){
+              // console.log(message.data[i]);
+              // if(message.data[i]['fg'] == bulanjs)
+              tableAppend += '<tr><td>' + message.data[i]['nama_pegawai'] + '</td></tr>';
+            }
           }
+        }
           $('#RekapBiayaDetailBody').append(tableAppend);
           $('#lihatRekapBiaya').modal('show');
       }

@@ -20,5 +20,29 @@ class TrainingTableSeeder extends Seeder
         'id_penyelenggara'=>'1',
 		'id_kompetensi'=>'1',
 		] );
+        Training::create( [
+        'id_training'=>'2',
+        'nama_training'=>'Customer Service',
+        'id_media'=>'1',
+        'id_topik'=>'K',
+        'id_penyelenggara'=>'1',
+        'id_kompetensi'=>'1',
+        ] );
+        Training::create( [
+        'id_training'=>'3',
+        'nama_training'=>'Negotiation Skill',
+        'id_media'=>'1',
+        'id_topik'=>'K',
+        'id_penyelenggara'=>'1',
+        'id_kompetensi'=>'1',
+        ] );
+        Training::create( [
+        'id_training'=>'4',
+        'nama_training'=>'Lobbying',
+        'id_media'=>'1',
+        'id_topik'=>'K',
+        'id_penyelenggara'=>'1',
+        'id_kompetensi'=>'1',
+        ] );
     }
 }

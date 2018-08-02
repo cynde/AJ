@@ -31,5 +31,63 @@ class RekapitulasiTrainingTableSeeder extends Seeder
         'keterangan_lain'=>'biaya lain untuk transport',
         'id_training'=>'01'
     	]);
+        RekapitulasiTraining::create( [
+        'id_rekapitulasi_training'=>'2',
+        'nik_pegawai'=>'0215918',
+        'status_training'=>'Diajukan',
+        'justifikasi'=>'HOHO',
+        'jumlah_jam_training'=>'4',
+        'harga_training'=>'500000',
+        'invoice_training'=>'400000',
+        'fpt_file'=>'',
+        'pendaftaran_file'=>'',
+        'undangan_file'=>'',
+        'absensi_file'=>'',
+        'sertifikat_file'=>'',
+        'eval_file'=>'',
+        'invoice_file'=>'',
+        'biaya_lain'=>'500000',
+        'keterangan_lain'=>'biaya lain untuk transport',
+        'id_training'=>'02'
+        ]);
+        RekapitulasiTraining::create( [
+        'id_rekapitulasi_training'=>'3',
+        'nik_pegawai'=>'0312779',
+        'status_training'=>'Diajukan',
+        'justifikasi'=>'HEHE',
+        'jumlah_jam_training'=>'3',
+        'harga_training'=>'900000',
+        'invoice_training'=>'900000',
+        'fpt_file'=>'',
+        'pendaftaran_file'=>'',
+        'undangan_file'=>'',
+        'absensi_file'=>'',
+        'sertifikat_file'=>'',
+        'eval_file'=>'',
+        'invoice_file'=>'',
+        'biaya_lain'=>'500000',
+        'keterangan_lain'=>'biaya lain untuk transport',
+        'id_training'=>'03'
+        ]);
+
+        RekapitulasiTraining::create( [
+        'id_rekapitulasi_training'=>'4',
+        'nik_pegawai'=>'0316942',
+        'status_training'=>'Diajukan',
+        'justifikasi'=>'HAHA',
+        'jumlah_jam_training'=>'2',
+        'harga_training'=>'1000000',
+        'invoice_training'=>'1000000',
+        'fpt_file'=>'',
+        'pendaftaran_file'=>'',
+        'undangan_file'=>'',
+        'absensi_file'=>'',
+        'sertifikat_file'=>'',
+        'eval_file'=>'',
+        'invoice_file'=>'',
+        'biaya_lain'=>'500000',
+        'keterangan_lain'=>'biaya lain untuk transport',
+        'id_training'=>'03'
+        ]);
     }
 }

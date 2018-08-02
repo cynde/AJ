@@ -65,9 +65,9 @@
                 <th>Undangan</th>
                 <th>Absensi</th>
                 <th>Sertifikat</th>
-                <th>Harga Training/peserta</th>
                 <th>Invoice/peserta</th>
                 <th>Evaluasi</th>
+                <th>Harga Training/peserta</th>
                 <th>Biaya Lain/peserta</th>
                 <th>Kompetensi</th>
                 <th>Keterangan</th>
@@ -96,9 +96,9 @@
                 <td>@if(!empty($a->undangan_file)) v @endif</td>
                 <td>@if(!empty($a->absensi_file)) v @endif</td>
                 <td>@if(!empty($a->sertifikat_file)) v @endif</td>
-                <td>{{number_format($a->harga_training)}}</td>
                 <td>@if(!empty($a->invoice_file)) v @endif ({{number_format($a->invoice_training)}})</td>
                 <td>@if(!empty($a->eval_file)) v @endif</td>
+                <td>{{number_format($a->harga_training)}}</td>
                 <td>{{number_format($a->biaya_lain)}}</td>
                 <td>{{$a->nama_kompetensi}}</td>
                 <td>{{$a->keterangan_lain}}</td>
@@ -234,7 +234,7 @@
       filter_type: "multi_select",
       select_type: 'select2'
     }, {
-      column_number: 17,
+      column_number: 19,
       filter_type: "range_number",
       ignore_char: ","
     }, {
