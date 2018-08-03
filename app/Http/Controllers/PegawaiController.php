@@ -79,20 +79,22 @@ class PegawaiController extends Controller
         ->get();
         $done = Training::leftJoin('rekapitulasi_training','training.id_training','=','rekapitulasi_training.id_training')
         ->leftJoin('kompetensi','kompetensi.id_kompetensi','=','training.id_kompetensi')
+        ->leftJoin('kompetensi_departemen','kompetensi_departemen.id_kompetensi','kompetensi.id_kompetensi')
         ->whereIn('training.id_kompetensi',$kd)
         ->where('rekapitulasi_training.nik_pegawai','=',$nik_pegawai)
-        ->select('training.nama_training','kompetensi.nama_kompetensi')
+        ->select('training.nama_training','kompetensi.nama_kompetensi','kompetensi_departemen.level_kompetensi')
         ->distinct()
-        ->orderBy('kompetensi.nama_kompetensi','ASC')
+        ->orderBy('kompetensi_departemen.level_kompetensi','ASC')
         ->get();
 
         $rk = RekapitulasiTraining::where('rekapitulasi_training.nik_pegawai','=',$nik_pegawai)->select('rekapitulasi_training.id_training')->get();
         $undone = Training::leftJoin('kompetensi','kompetensi.id_kompetensi','=','training.id_kompetensi')
+        ->leftJoin('kompetensi_departemen','kompetensi_departemen.id_kompetensi','kompetensi.id_kompetensi')
         ->whereNotIn('training.id_training',$rk)
         ->whereIn('training.id_kompetensi',$kd)
-        ->select('training.nama_training','kompetensi.nama_kompetensi')
+        ->select('training.nama_training','kompetensi.nama_kompetensi','kompetensi_departemen.level_kompetensi')
         ->distinct()
-        ->orderBy('kompetensi.nama_kompetensi','ASC')
+        ->orderBy('kompetensi_departemen.level_kompetensi','ASC')
         ->get();
         return response()->json([
            'success' => true,
@@ -111,20 +113,22 @@ class PegawaiController extends Controller
         ->get();
         $done = Training::leftJoin('rekapitulasi_training','training.id_training','=','rekapitulasi_training.id_training')
         ->leftJoin('kompetensi','kompetensi.id_kompetensi','=','training.id_kompetensi')
+        ->leftJoin('kompetensi_jabatan','kompetensi_jabatan.id_kompetensi','kompetensi.id_kompetensi')
         ->whereIn('training.id_kompetensi',$kj)
         ->where('rekapitulasi_training.nik_pegawai','=',$nik_pegawai)
-        ->select('training.nama_training','kompetensi.nama_kompetensi')
+        ->select('training.nama_training','kompetensi.nama_kompetensi','kompetensi_jabatan.level_kompetensi')
         ->distinct()
-        ->orderBy('kompetensi.nama_kompetensi','ASC')
+        ->orderBy('kompetensi_jabatan.level_kompetensi','ASC')
         ->get();
 
         $rk = RekapitulasiTraining::where('rekapitulasi_training.nik_pegawai','=',$nik_pegawai)->select('rekapitulasi_training.id_training')->get();
         $undone = Training::leftJoin('kompetensi','kompetensi.id_kompetensi','=','training.id_kompetensi')
+        ->leftJoin('kompetensi_jabatan','kompetensi_jabatan.id_kompetensi','kompetensi.id_kompetensi')
         ->whereNotIn('training.id_training',$rk)
         ->whereIn('training.id_kompetensi',$kj)
-        ->select('training.nama_training','kompetensi.nama_kompetensi')
+        ->select('training.nama_training','kompetensi.nama_kompetensi','kompetensi_jabatan.level_kompetensi')
         ->distinct()
-        ->orderBy('kompetensi.nama_kompetensi','ASC')
+        ->orderBy('kompetensi_jabatan.level_kompetensi','ASC')
         ->get();
         return response()->json([
            'success' => true,
