@@ -100,6 +100,7 @@
         <table id="table-kompetensi-departemen" class="table table-striped">
           <thead>
             <tr>
+              <th width="7%">Level</th>
               <th>Nama Kompetensi</th>
               <th>Nama Training</th>
             </tr>
@@ -129,6 +130,7 @@
         <table id="table-kompetensi-jabatan" class="table table-striped">
           <thead>
             <tr>
+              <th width="7%">Level</th>
               <th>Nama Kompetensi</th>
               <th>Nama Training</th>
             </tr>
@@ -217,13 +219,13 @@ $(document).ready(function() {
         // console.log(message)
           jQuery.noConflict();
           document.getElementById('KDDetailBody').innerHTML = '';
-          var tableAppend = '<tr><td colspan="2"><b>SUDAH</b></td></tr>';
+          var tableAppend = '<tr><td colspan="3"><b>SUDAH</b></td></tr>';
           for(var i = 0; i < message.done.length; i++) {
-              tableAppend += '<tr><td>' + message.done[i]['nama_kompetensi'] + '</td><td>' + message.done[i]['nama_training'] + '</td></tr>';
+               tableAppend += '<tr><td>' + message.done[i]['level_kompetensi'] + '</td><td>' + message.done[i]['nama_kompetensi'] + '</td><td>' + message.done[i]['nama_training'] + '</td></tr>';
           };
-          tableAppend += '<tr><td colspan="2"><b>BELUM</b></td></tr>';
+          tableAppend += '<tr><td colspan="3"><b>BELUM</b></td></tr>';
           for(var i = 0; i < message.undone.length; i++) {
-              tableAppend += '<tr><td>' + message.undone[i]['nama_kompetensi'] + '</td><td>' + message.undone[i]['nama_training'] + '</td></tr>';
+               tableAppend += '<tr><td>' + message.undone[i]['level_kompetensi'] + '</td><td>' + message.undone[i]['nama_kompetensi'] + '</td><td>' + message.undone[i]['nama_training'] + '</td></tr>';
           };
           $('#KDDetailBody').append(tableAppend);
           $('#kompetensiDepartemen').modal('show');
@@ -254,13 +256,13 @@ $(document).ready(function() {
         // console.log(message)
           jQuery.noConflict();
           document.getElementById('KJDetailBody').innerHTML = '';
-          var tableAppend = '<tr><td colspan="2"><b>SUDAH</b></td></tr>';
+          var tableAppend = '<tr><td colspan="3"><b>SUDAH</b></td></tr>';
           for(var i = 0; i < message.done.length; i++) {
-              tableAppend += '<tr><td>' + message.done[i]['nama_kompetensi'] + '</td><td>' + message.done[i]['nama_training'] + '</td></tr>';
+              tableAppend += '<tr><td>' + message.done[i]['level_kompetensi'] + '</td><td>' + message.done[i]['nama_kompetensi'] + '</td><td>' + message.done[i]['nama_training'] + '</td></tr>';
           };
-          tableAppend += '<tr><td colspan="2"><b>BELUM</b></td></tr>';
+          tableAppend += '<tr><td colspan="3"><b>BELUM</b></td></tr>';
           for(var i = 0; i < message.undone.length; i++) {
-              tableAppend += '<tr><td>' + message.undone[i]['nama_kompetensi'] + '</td><td>' + message.undone[i]['nama_training'] + '</td></tr>';
+              tableAppend += '<tr><td>' + message.undone[i]['level_kompetensi'] + '</td><td>' + message.undone[i]['nama_kompetensi'] + '</td><td>' + message.undone[i]['nama_training'] + '</td></tr>';
           };
           $('#KJDetailBody').append(tableAppend);
           $('#kompetensiJabatan').modal('show');

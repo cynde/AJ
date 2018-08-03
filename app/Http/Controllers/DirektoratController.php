@@ -54,7 +54,12 @@ class DirektoratController extends Controller
      */
     public function show($id_direktorat)
     {
-        //
+        $all = Direktorat::leftJoin('divisi','divisi.id_direktorat','=','direktorat.id_direktorat')->where('direktorat.id_direktorat','=',$id_direktorat)->get();
+        // console.log($all);
+        return response()->json([
+           'success' => true,
+           'data' => $all
+        ]);
     }
 
     /**
