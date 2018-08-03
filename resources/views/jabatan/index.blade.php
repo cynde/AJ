@@ -40,7 +40,6 @@
             <thead style="text-align: center">
               <tr>
                 <th width="5%">No</th>
-                <th>ID Jabatan</th>
                 <th>Nama Jabatan</th>
                 <th width="20%">Kompetensi</th>
                 <th width="5%"></th>
@@ -51,7 +50,6 @@
             @foreach($all as $a)
               <tr>
                 <td>{{$loop->iteration}}</td>
-                <td>{{$a->id_jabatan}}</td>
                 <td>{{$a->nama_jabatan}}</td>
                 <td><a href="/jabatan/show/{{$a->id_jabatan}}"><button type="button" class="btn btn-block btn-secondary btn-sm">lihat</button></a></td>
                 <td><a href="/jabatan/edit/{{$a->id_jabatan}}"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
