@@ -71,6 +71,19 @@ class RekapBiayaController extends Controller
         ]);
     }
 
+    public function showrekapbulan()
+    {
+        $rekapbiayabulan = RekapitulasiTraining::leftJoin('training','rekapitulasi_training.id_training','=','training.id_training')
+        ->leftJoin('maxmin_tanggal_training','rekapitulasi_training.id_rekapitulasi_training','=','maxmin_tanggal_training.id_rekapitulasi_training')
+        ->select(DB::raw('SUM(invoice_training) as total'), DB::raw('MONTHNAME(tgl_max) as bulanrekap'))
+        ->groupBy('bulanrekap')->get();
+
+        return response()->json([
+           'success' => true,
+           'data' => $rekapbiayabulan
+        ]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

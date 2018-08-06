@@ -31,6 +31,7 @@ Route::get('/index4', function () {
 Route::group(['prefix' => 'rekapbiaya'], function() {
  Route::get('/', ['as' => 'rekapbiaya', 'uses' => 'RekapBiayaController@index']);
  Route::get('show/{id}', 'RekapBiayaController@show');
+ Route::get('showrekapbulan', 'RekapBiayaController@showrekapbulan');
 });
 
 
