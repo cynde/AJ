@@ -23,8 +23,8 @@ Route::get('/rekapPeserta', function () {
     return view('rekapPeserta');
 });
 
-Route::get('/index4', function () {
-    return view('index4');
+Route::group(['prefix' => 'index4'], function() {
+ Route::get('/', ['as' => 'index4', 'uses' => 'DashboardController@index']);
 });
 
 
