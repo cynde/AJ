@@ -54,11 +54,11 @@
               <label for="nama_pegawai">Nama Pegawai</label>
               <input name="nama_pegawai" type="text" class="form-control" id="nama_pegawai" value="{{$r->nama_pegawai}}" required>
             </div>
-            <div class="form-group col-sm-6" style="float: left"
+            <div class="form-group col-sm-6" style="float: left">
                 <label for="tanggal_masuk">Tanggal Masuk</label>
                 <input name="tanggal_masuk" type="date" class="form-control" id="tanggal_masuk" value="{{$r->tanggal_masuk}}">
             </div>
-            <div class="form-group col-sm-6" style="float: left"
+            <div class="form-group col-sm-6" style="float: left">
                 <label for="tanggal_keluar">Tanggal Keluar</label>
                 <input name="tanggal_keluar" type="date" class="form-control" id="tanggal_keluar" value="{{$r->tanggal_keluar}}">
             </div>  
