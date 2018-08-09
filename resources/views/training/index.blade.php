@@ -62,7 +62,7 @@
                 <td>{{$loop->iteration}}</td>
                 <td>{{$a->id_training}}</td>
                 <td>{{$a->nama_training}}</td>
-                <td>{{$a->nama_media}}</td>
+                <td>{{$a->nama_media}} ({{$a->kategori_media}})</td>
                 <td>{{$a->nama_topik}}</td>
                 <td>{{$a->nama_penyelenggara}}</td>
                 <td>{{$a->nama_kompetensi}}</td>

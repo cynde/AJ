@@ -51,6 +51,7 @@
                 <th width="5%">No</th>
                 <th>Tanggal Awal</th>
                 <th>Tanggal Akhir</th>
+                <th>Detail Tanggal</th>
                 <th>Status</th>
                 <th>Peserta</th>
                 <th>Divisi</th>
@@ -72,7 +73,7 @@
                 <th>Invoice/peserta</th>
                 <th>Biaya Lain/peserta</th>
                 <th>Keterangan</th>
-                <th>Detail Tanggal</th>
+                <th>Periode Training</th>
                 <th width="5%"></th>
                 <th width="5%"></th>
               </tr>
@@ -83,6 +84,7 @@
                 <td>{{$loop->iteration}}</td>
                 <td>{{$a->tgl_min}}</td>
                 <td>{{$a->tgl_max}}</td>
+                <td><button id="lihat" type="button" class="btn btn-block btn-secondary btn-sm" data-id="{{$a->id_rekapitulasi_training}}">lihat</button></td>
                 <td>{{$a->status_training}}</td>
                 <td>{{$a->nama_pegawai}}</td>
                 <td>{{$a->nama_divisi}}</td>
@@ -104,7 +106,7 @@
                 <td>{{number_format($a->invoice_training)}}</td>
                 <td>{{number_format($a->biaya_lain)}}</td>
                 <td>{{$a->keterangan_lain}}</td>
-                <td><button id="lihat" type="button" class="btn btn-block btn-secondary btn-sm" data-id="{{$a->id_rekapitulasi_training}}">lihat</button></td>
+                <td>{{$a->periode}}</td>
                 <td><a href="rekapitulasiTraining/edit/{{$a->id_rekapitulasi_training}}"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
                 <td>
                   <form action="rekapitulasiTraining/delete/{{$a->id_rekapitulasi_training}}" method="post">
@@ -116,7 +118,7 @@
               </tr>
           </table>
           <div style="float: right; margin-top: 20px">
-            <a href="/rekapPeserta"><button type="button" class="btn btn-block btn-success btn-outline"><span class="fa fa-book"></span> Buat Rekap Peserta</button></a>
+            <button id="rekapPeserta" type="button" class="btn btn-block btn-success btn-outline"><span class="fa fa-book"></span> Buat Rekap Peserta</button>
           </div>
           @else
           <div class="alert alert-warning">
@@ -222,6 +224,7 @@
         "bJQueryUI": true,
         "bStateSave": true,
         "scrollX": true,
+        "stateSave": true,
         dom: 'Bfrtip',
         buttons: [
             'excelHtml5'],
@@ -236,10 +239,6 @@
       column_number: 2,
       filter_type: "range_date",
       date_format:  'dd-mm-yy'
-    }, {
-      column_number: 3,
-      filter_type: "multi_select",
-      select_type: 'select2'
     }, {
       column_number: 4,
       filter_type: "multi_select",
@@ -258,11 +257,11 @@
       select_type: 'select2'
     }, {
       column_number: 8,
-      filter_type: "range_number"
-    }, {
-      column_number: 9,
       filter_type: "multi_select",
       select_type: 'select2'
+    }, {
+      column_number: 9,
+      filter_type: "range_number"
     }, {
       column_number: 10,
       filter_type: "multi_select",
@@ -272,9 +271,9 @@
       filter_type: "multi_select",
       select_type: 'select2'
     }, {
-      column_number: 20,
-      filter_type: "range_number",
-      ignore_char: ","
+      column_number: 12,
+      filter_type: "multi_select",
+      select_type: 'select2'
     }, {
       column_number: 21,
       filter_type: "range_number",
@@ -284,7 +283,11 @@
       filter_type: "range_number",
       ignore_char: ","
     }, {
-      column_number: 12,
+      column_number: 23,
+      filter_type: "range_number",
+      ignore_char: ","
+    }, {
+      column_number: 13,
       filter_type: "multi_select",
       select_type: 'select2'
     }]);
@@ -354,6 +357,45 @@ $(document).on('click','#storeTanggal',function(e) {
       console.log(message)
     }
   });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $(document).on('click','#rekapPeserta',function(e) {
+    var isiTabel = $('#tabel-rekap-training').DataTable();
+    var data = isiTabel.rows({ filter : 'applied'}).data().toArray();
+    console.log(data);
+    alert( 'The table has ' + data.length + ' records' );
+    jQuery.noConflict();
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+    console.log('c');
+    e.preventDefault(e);
+    $.ajax({
+      type: 'post',
+      url: '/rekapitulasiTraining/rekapPeserta',
+      data: {
+        '_token' : $('input[name=_token]').val(),
+        'data' : data
+      },
+      dataType: 'json',
+      success: function(message) {
+        console.log(message)
+        if(message.success == true){ // if true (1)
+          setTimeout(function(){// wait for 0.7 secs(2)
+            window.location.href = 'rekapPeserta';
+          }, 700); 
+        }
+      },
+      error: function(message){
+        console.log(message)
+      }
+    });
+  }); 
 });
 </script>
 @endsection

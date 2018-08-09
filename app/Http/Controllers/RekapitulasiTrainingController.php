@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\RekapitulasiTraining;
+use App\RekapPeserta;
 use App\TanggalTraining;
 use App\TanggalRekapitulasi;
 use App\Training;
 use App\Pegawai;
+use DB;
 use Illuminate\Http\Request;
 
 class RekapitulasiTrainingController extends Controller
@@ -139,6 +141,7 @@ class RekapitulasiTrainingController extends Controller
                 $id = 0;
             }
             else $id = $lastRow->id_rekapitulasi_training;
+
             $data = $request->tanggal_training;
             $dates = explode(",", $data);
             foreach ($dates as $d) {
@@ -163,6 +166,27 @@ class RekapitulasiTrainingController extends Controller
                 $tgl_rekap->id_tanggal_training = $idtt + 1;
                 $tgl_rekap->save();
             }
+            //cek periode
+            $latest = RekapitulasiTraining::findorfail($id);
+            $last = DB::select("select w.id_rekapitulasi_training, w.periode, w.id_training from rekapitulasi_training w where w.id_rekapitulasi_training = (select min(x.id_rekapitulasi_training) from maxmin_tanggal_training x where x.tgl_min = (select y.tgl_min from maxmin_tanggal_training y where y.id_rekapitulasi_training = '$latest->id_rekapitulasi_training'))");
+            // dd($last);
+            $x = $last[0]->id_training;
+            if($last[0]->id_training == $latest->id_training){
+                if($last[0]->periode == NULL){  
+                    $maks = DB::select("select max(periode) as mx from rekapitulasi_training where id_training = '$x'");
+                    $latest->periode = $maks[0]->mx + 1;
+                    $latest->save();
+                }
+                else{
+                    $latest->periode = $last[0]->periode;
+                    $latest->save();
+                }
+            }
+            else{
+                $latest->periode = 1;
+                $latest->save();
+            }
+
         }
         return redirect()->route('rekapitulasiTraining');
         // return view('rekapitulasiTraining.tambahTanggal',compact('rt'));
@@ -326,6 +350,27 @@ class RekapitulasiTrainingController extends Controller
      * @param  \App\RekapitulasiTraining  $rekapitulasiTraining
      * @return \Illuminate\Http\Response
      */
+    public function rekapPeserta(Request $request)
+    {
+        RekapPeserta::truncate();
+        $data = $request->data;
+        foreach ($data as $d) { 
+            // if($d[3] == 'Terlaksana'){
+                $rp = new RekapPeserta();
+                $rp->tanggal_akhir = $d[2];
+                $rp->nama_peserta = $d[5];
+                $rp->nama_training = $d[7];
+                $rp->jumlah_jam = $d[9];
+                $rp->media = $d[10];
+                $rp->periode = $d[25];
+                $rp->save();
+            // }
+        }
+        return response()->json([
+           'success' => true
+        ]);
+    }
+
     public function destroy($id)
     {
         RekapitulasiTraining::findorfail($id)->delete();
