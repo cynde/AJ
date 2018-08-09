@@ -45,27 +45,15 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
+            @if($rekapalert->count())
+              @foreach($rekapalert as $r)
               <div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                 <h4><i class="icon fa fa-ban"></i> Alert!</h4>
-                Danger alert preview. This alert is dismissable. A wonderful serenity has taken possession of my entire
-                soul, like these sweet mornings of spring which I enjoy with my whole heart.
+                <h5>Training <b>{{$r->nama_training}}</b> akan berlangsung pada tanggal <b>{{$r->t}}</b>.</h5>
               </div>
-              <div class="alert alert-info alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                <h4><i class="icon fa fa-info"></i> Alert!</h4>
-                Info alert preview. This alert is dismissable.
-              </div>
-              <div class="alert alert-warning alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                <h4><i class="icon fa fa-warning"></i> Alert!</h4>
-                Warning alert preview. This alert is dismissable.
-              </div>
-              <div class="alert alert-success alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                <h4><i class="icon fa fa-check"></i> Alert!</h4>
-                Success alert preview. This alert is dismissable.
-              </div>
+              @endforeach
+            @endif
             </div>
             </div>
             <!-- /.box-body -->
@@ -77,7 +65,7 @@
             <div class="box-header with-border">
               <div class="card card-danger card-outline">
                 <div class="card-header">
-                  <h3 class="card-title">Jumlah Kegiatan</h3>
+                  <h3 class="card-title">Jumlah Jam</h3>
 
                   <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -100,7 +88,7 @@
             <div class="box-header with-border">
               <div class="card card-danger card-outline">
                 <div class="card-header">
-                  <h3 class="card-title">Jumlah Kegiatan</h3>
+                  <h3 class="card-title">Jumlah Peserta</h3>
 
                   <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -129,9 +117,10 @@
             <span class="info-box-icon"><i class="fa fa-tag"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text" style="font-size: 25px">Rata-rata training pegawai dari 1 Januari 2018</span>
-              <span class="info-box-number"> 82.5 jam/pegawai </span>
-              <span class="info-box-number"> 10.3125 hari/pegawai </span>
+              <span class="info-box-text" style="font-size: 22px">Rata-rata training pegawai dari 1 Januari 2018</span>
+              <span> -------------------------------------------------------------------------------------------</span>
+              <span class="info-box-number"> <h5><b>{{$jamperpegawai}}  jam/pegawai</b></h5></span>
+              <span class="info-box-number"> <h5><b>{{$hariperpegawai}}  hari/pegawai</b></h5></span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -157,6 +146,7 @@
           <!-- /.card -->
 
           <div class="card">
+          <!-- @if($toptrainee->count()) -->
             <div class="card-header">
               <h3 class="card-title">Lima Besar Peserta Training</h3>
               <div class="card-tools">
@@ -173,74 +163,36 @@
               <ul class="products-list product-list-in-card pl-2 pr-2">
                 <li class="item">
                   <div class="product-img">
-                    1
+                    No
                   </div>
                   <div class="product-info">
                     <span class="product-description">
-                      Andi
-                      <span class="float-right">19</span></a>
+                      Nama Pegawai
+                      <span class="float-right">Total Training</span></a>
                     </span>
                   </div>
-                </li>
-                <!-- /.item -->
-                <li class="item">
+                @foreach($toptrainee as $t)
                   <div class="product-img">
-                    2
+                    {{$loop->iteration}}
                   </div>
                   <div class="product-info">
                     <span class="product-description">
-                      Budi
-                      <span class="float-right">15</span></a>
+                      {{$t->nama_pegawai}}
+                      <span class="float-right">{{$t->total_training}}</span></a>
                     </span>
                   </div>
-                </li>
-                <!-- /.item -->
-                <li class="item">
-                  <div class="product-img">
-                    3
-                  </div>
-                  <div class="product-info">
-                    <span class="product-description">
-                      Susan
-                      <span class="float-right">14</span></a>
-                    </span>
-                  </div>
-                </li>
-                <!-- /.item -->
-                <li class="item">
-                  <div class="product-img">
-                    4
-                  </div>
-                  <div class="product-info">
-                    <span class="product-description">
-                      Santi
-                      <span class="float-right">12</span></a>
-                    </span>
-                  </div>
-                </li>
-                <!-- /.item -->
-                <!-- /.item -->
-                <li class="item">
-                  <div class="product-img">
-                    5
-                  </div>
-                  <div class="product-info">
-                    <span class="product-description">
-                      Joko
-                      <span class="float-right">10</span></a>
-                    </span>
-                  </div>
-                </li>
+                @endforeach
                 <!-- /.item -->
               </ul>
             </div>
+          <!--   @endif -->
+            </div>
             <!-- /.card-body -->
-          </div>
           
           <!-- DONUT CHART -->
           <div class="card card-danger card-outline">
             <div class="card-header">
-              <h3 class="card-title">Jumlah Peserta</h3>
+              <h3 class="card-title">Jumlah Kegiatan</h3>
 
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -263,7 +215,7 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h5 class="card-title">Monthly Recap Report</h5>
+                <h5 class="card-title">Report Rekap Biaya</h5>
 
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-widget="collapse">
@@ -289,105 +241,102 @@
               <!-- /.card-header -->
               <div class="card-body">
                 <div class="row">
-                  <div class="col-md-8">
-                    <p class="text-center">
-                      <strong>Sales: 1 Jan, 2014 - 30 Jul, 2014</strong>
-                    </p>
-
-                    <div class="chart">
-                      <!-- Sales Chart Canvas -->
-                      <canvas id="salesChart" height="180" style="height: 180px;"></canvas>
-                    </div>
-                    <!-- /.chart-responsive -->
-                  </div>
-                  <!-- /.col -->
-                  <div class="col-md-4">
-                    <p class="text-center">
-                      <strong>Goal Completion</strong>
-                    </p>
+                  <div class="col-md-6" >
+                   
 
                     <div class="progress-group">
-                      Add Products to Cart
-                      <span class="float-right"><b>160</b>/200</span>
+                      A. Total Harga Training
+                      <span class="float-right"><b>Rp. {{$total_harga}}</b></span>
                       <div class="progress progress-sm">
-                        <div class="progress-bar bg-primary" style="width: 80%"></div>
+                        <div class="progress-bar bg-primary" style="width: 100%"></div>
                       </div>
                     </div>
                     <!-- /.progress-group -->
 
                     <div class="progress-group">
-                      Complete Purchase
-                      <span class="float-right"><b>310</b>/400</span>
+                      B. Total Invoice
+                      <span class="float-right"><b>Rp. {{$total_invoice}}</b></span>
                       <div class="progress progress-sm">
-                        <div class="progress-bar bg-danger" style="width: 75%"></div>
+                        <div class="progress-bar bg-danger" style="width: 100%"></div>
+                      </div>
+                    </div>
+                    
+                    <div class="progress-group">
+                      Inhouse
+                      <span class="float-right">Rp. {{$total_invoice_inhouse}}</span>
+                  
+                        
+                    </div>
+
+                    <div class="progress-group">
+                      Publik
+                      <span class="float-right">Rp. -{{$total_invoice_publik}}</span>
+                      
+                    </div>
+                    <!-- /.progress-group -->
+                    <div class="progress-group">
+                      <span class="progress-text">C. Total Biaya Lain</span>
+                      <span class="float-right"><b>Rp. {{$total_biaya_lain}}</b></span>
+                      <div class="progress progress-sm">
+                        <div class="progress-bar bg-success" style="width: 100%"></div>
                       </div>
                     </div>
 
                     <!-- /.progress-group -->
                     <div class="progress-group">
-                      <span class="progress-text">Visit Premium Page</span>
-                      <span class="float-right"><b>480</b>/800</span>
+                      D. Anggaran 2018
+                      <span class="float-right"><b>Rp. {{$anggaran[0]->jumlah_anggaran}}</b></span>
                       <div class="progress progress-sm">
-                        <div class="progress-bar bg-success" style="width: 60%"></div>
-                      </div>
-                    </div>
-
-                    <!-- /.progress-group -->
-                    <div class="progress-group">
-                      Send Inquiries
-                      <span class="float-right"><b>250</b>/500</span>
-                      <div class="progress progress-sm">
-                        <div class="progress-bar bg-warning" style="width: 50%"></div>
+                        <div class="progress-bar bg-warning" style="width: 100%"></div>
                       </div>
                     </div>
                     <!-- /.progress-group -->
                   </div>
-                  <!-- /.col -->
-                </div>
-                <!-- /.row -->
-              </div>
-              <!-- ./card-body -->
-              <div class="card-footer">
-                <div class="row">
-                  <div class="col-sm-3 col-6">
+
+                  <div class="col-md-6" style="padding-top: 50px">
+                  <div class="row">
+                  <div class="col-md-6">
                     <div class="description-block border-right">
-                      <span class="description-percentage text-success"><i class="fa fa-caret-up"></i> 17%</span>
-                      <h5 class="description-header">$35,210.43</h5>
-                      <span class="description-text">TOTAL REVENUE</span>
+                      <!-- <span class="description-percentage text-success"><i class="fa fa-caret-up"></i> 17%</span> -->
+                      <h5 class="description-header">Rp. {{$selisih}}</h5>
+                      <span class="description-text">SELISIH (A-B)</span>
                     </div>
-                    <!-- /.description-block -->
+        
                   </div>
-                  <!-- /.col -->
-                  <div class="col-sm-3 col-6">
-                    <div class="description-block border-right">
-                      <span class="description-percentage text-warning"><i class="fa fa-caret-left"></i> 0%</span>
-                      <h5 class="description-header">$10,390.90</h5>
-                      <span class="description-text">TOTAL COST</span>
-                    </div>
-                    <!-- /.description-block -->
-                  </div>
-                  <!-- /.col -->
-                  <div class="col-sm-3 col-6">
-                    <div class="description-block border-right">
-                      <span class="description-percentage text-success"><i class="fa fa-caret-up"></i> 20%</span>
-                      <h5 class="description-header">$24,813.53</h5>
-                      <span class="description-text">TOTAL PROFIT</span>
-                    </div>
-                    <!-- /.description-block -->
-                  </div>
-                  <!-- /.col -->
-                  <div class="col-sm-3 col-6">
+
+                   <div class="col-md-6">
                     <div class="description-block">
-                      <span class="description-percentage text-danger"><i class="fa fa-caret-down"></i> 18%</span>
-                      <h5 class="description-header">1200</h5>
-                      <span class="description-text">GOAL COMPLETIONS</span>
+                      <!-- <span class="description-percentage text-warning"><i class="fa fa-caret-left"></i> 0%</span> -->
+                      <h5 class="description-header">Rp. {{$total_terpakai}}</h5>
+                      <span class="description-text">Total Terpakai (B+C)</span>
+                    </div>
+                  </div>
+                  </div>
+                  <!-- /.col -->
+                  <div class="row">
+                  <div class="col-md-6">
+                    <div class="description-block border-right">
+                      <!-- <span class="description-percentage text-success"><i class="fa fa-caret-up"></i> 20%</span> -->
+                      <h5 class="description-header">Rp. {{$real_sisa_dana}}</h5>
+                      <span class="description-text">Real Sisa Dana (D-B-C)</span>
                     </div>
                     <!-- /.description-block -->
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="description-block">
+                      <!-- <span class="description-percentage text-danger"><i class="fa fa-caret-down"></i> 18%</span> -->
+                      <h5 class="description-header">{{$utilisasi}} %</h5>
+                      <span class="description-text">Utilisasi Dana</span>
+                    </div>
+                    <!-- /.description-block -->
+                  </div>
+                  <!-- /.col -->
+                  </div>
                   </div>
                 </div>
                 <!-- /.row -->
               </div>
-              <!-- /.card-footer -->
             </div>
             <!-- /.card -->
           </div>
@@ -411,50 +360,115 @@
     //- PIE CHART -
     //-------------
     // Get context with jQuery - using jQuery's .get() method.
-    var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
-    var pieChartCanvas2 = $('#pieChart2').get(0).getContext('2d')
-    var pieChartCanvas3 = $('#pieChart3').get(0).getContext('2d')
+    var pieChartCanvas = document.getElementById('pieChart').getContext('2d')
+    // var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
+    var pieChartCanvas2 = document.getElementById('pieChart2').getContext('2d')
+    var pieChartCanvas3 = document.getElementById('pieChart3').getContext('2d')
     var pieChart       = new Chart(pieChartCanvas)
     var pieChart2       = new Chart(pieChartCanvas2)
     var pieChart3       = new Chart(pieChartCanvas3)
-    var PieData        = [
-      {
-        value    : 700,
-        color    : '#f56954',
-        highlight: '#f56954',
-        label    : 'Chrome'
-      },
-      {
-        value    : 500,
-        color    : '#00a65a',
-        highlight: '#00a65a',
-        label    : 'IE'
-      },
-      {
-        value    : 400,
-        color    : '#f39c12',
-        highlight: '#f39c12',
-        label    : 'FireFox'
-      },
-      {
-        value    : 600,
-        color    : '#00c0ef',
-        highlight: '#00c0ef',
-        label    : 'Safari'
-      },
-      {
-        value    : 300,
-        color    : '#3c8dbc',
-        highlight: '#3c8dbc',
-        label    : 'Opera'
-      },
-      {
-        value    : 100,
-        color    : '#d2d6de',
-        highlight: '#d2d6de',
-        label    : 'Navigator'
+    var jamArray = []
+    var topikArray = []
+    var pesertaArray = []
+    var topik2Array = []
+    var kegiatanArray = []
+    var topik3Array = []
+
+    @forelse($jumlahjam as $j)
+    jamArray.push("{{$j['jumlahjam']}}");
+    topikArray.push("{{$j['topik']}}");
+    @empty
+    @endforelse
+
+    @forelse($jumlahpeserta as $k)
+    pesertaArray.push("{{$k['jumlahpeserta']}}");
+    topik2Array.push("{{$k['topik']}}");
+    @empty
+    @endforelse
+
+    @forelse($jumlahkegiatan as $l)
+    kegiatanArray.push("{{$l['jumlahkegiatan']}}");
+    topik3Array.push("{{$l['topik']}}");
+    @empty
+    @endforelse
+
+    var pieData   =  []
+
+    function getRandomColor() {
+      var letters = '0123456789ABCDEF';
+      var color = '#';
+      for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
       }
-    ]
+      return color;
+    }
+
+
+    function getDataset(index, data) { 
+      return { 
+          label    : topikArray[index],
+          value    : data,
+          color    : getRandomColor(),
+          highlight: '#f56954',
+      }; 
+    }
+
+    jamArray.forEach(function (a, i) { 
+      pieData.push(getDataset(i,JSON.parse(a))); 
+    });
+
+    var pieData2        = []
+
+    function getRandomColor() {
+      var letters = '0123456789ABCDEF';
+      var color = '#';
+      for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+
+
+    function getDataset(index, data) { 
+      return { 
+          value    : data,
+          color    : getRandomColor(),
+          highlight: '#f56954',
+          label    : topikArray[index]
+      }; 
+    }
+
+
+    pesertaArray.forEach(function (a, i) { 
+      pieData2.push(getDataset(i,JSON.parse(a))); 
+    });
+
+    var pieData3        = []
+
+    function getRandomColor() {
+      var letters = '0123456789ABCDEF';
+      var color = '#';
+      for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+
+
+    function getDataset(index, data3) { 
+      return { 
+          value    : data3,
+          color    : getRandomColor(),
+          highlight: '#f56954',
+          label    : topikArray[index],
+      }; 
+    }
+
+
+    kegiatanArray.forEach(function (a, i) { 
+      pieData3.push(getDataset(i,JSON.parse(a))); 
+    });
+
     var pieOptions     = {
       //Boolean - Whether we should show a stroke on each segment
       segmentShowStroke    : true,
@@ -481,43 +495,45 @@
     }
     //Create pie or douhnut chart
     // You can switch between pie and douhnut using the method below.
-    pieChart.Doughnut(PieData, pieOptions)
-    pieChart2.Doughnut(PieData, pieOptions)
-    pieChart3.Doughnut(PieData, pieOptions)
+    // pieOptions.datasetFill = false
+    pieChart.Doughnut(pieData, pieOptions)
+    pieChart2.Doughnut(pieData2, pieOptions)
+    pieChart3.Doughnut(pieData3, pieOptions)
 
     //-------------
     //- BAR CHART -
     //-------------
-    var barChartCanvas                   = $('#barChart').get(0).getContext('2d')
+    var barChartCanvas                   = document.getElementById('barChart').getContext('2d')
     var barChart                         = new Chart(barChartCanvas)
     var barChartData = {
-      labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+      labels  : ['Pegawai mengikuti training', 'Pegawai mengikuti GIAT', 'Pegawai mengikuti Juara', 'Total Pegawai'],
       datasets: [
+        // {
+        //   label               : 'Electronics',
+        //   fillColor           : 'rgba(210, 214, 222, 1)',
+        //   strokeColor         : 'rgba(210, 214, 222, 1)',
+        //   pointColor          : 'rgba(210, 214, 222, 1)',
+        //   pointStrokeColor    : '#c1c7d1',
+        //   pointHighlightFill  : '#fff',
+        //   pointHighlightStroke: 'rgba(220,220,220,1)',
+        //   data                : [65, 59, 80, 81]
+        // },
         {
-          label               : 'Electronics',
-          fillColor           : 'rgba(210, 214, 222, 1)',
-          strokeColor         : 'rgba(210, 214, 222, 1)',
-          pointColor          : 'rgba(210, 214, 222, 1)',
-          pointStrokeColor    : '#c1c7d1',
-          pointHighlightFill  : '#fff',
-          pointHighlightStroke: 'rgba(220,220,220,1)',
-          data                : [65, 59, 80, 81, 56, 55, 40]
-        },
-        {
-          label               : 'Digital Goods',
+          label               : 'Jumlah Pegawai Berpartisipasi',
           fillColor           : 'rgba(60,141,188,0.9)',
           strokeColor         : 'rgba(60,141,188,0.8)',
           pointColor          : '#3b8bba',
           pointStrokeColor    : 'rgba(60,141,188,1)',
           pointHighlightFill  : '#fff',
           pointHighlightStroke: 'rgba(60,141,188,1)',
-          data                : [28, 48, 40, 19, 86, 27, 90]
+          data                : [{{$pegawaitraining}}, {{$totalgiat}}, {{$totaljuara}}, {{$totalpegawai}}]
         }
       ]
+
     }
-    barChartData.datasets[1].fillColor   = '#00a65a'
-    barChartData.datasets[1].strokeColor = '#00a65a'
-    barChartData.datasets[1].pointColor  = '#00a65a'
+    barChartData.datasets[0].fillColor   = '#00a65a'
+    barChartData.datasets[0].strokeColor = '#00a65a'
+    barChartData.datasets[0].pointColor  = '#00a65a'
     var barChartOptions                  = {
       //Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
       scaleBeginAtZero        : true,

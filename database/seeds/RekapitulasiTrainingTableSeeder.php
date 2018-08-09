@@ -15,7 +15,7 @@ class RekapitulasiTrainingTableSeeder extends Seeder
     	RekapitulasiTraining::create( [
         'id_rekapitulasi_training'=>'1',
         'nik_pegawai'=>'0614887',
-        'status_training'=>'Diajukan',
+        'status_training'=>'Terlaksana',
         'justifikasi'=>'TNA',
         'jumlah_jam_training'=>'5',
         'harga_training'=>'5000000',
@@ -34,7 +34,7 @@ class RekapitulasiTrainingTableSeeder extends Seeder
         RekapitulasiTraining::create( [
         'id_rekapitulasi_training'=>'2',
         'nik_pegawai'=>'0215918',
-        'status_training'=>'Diajukan',
+        'status_training'=>'Terlaksana',
         'justifikasi'=>'HOHO',
         'jumlah_jam_training'=>'4',
         'harga_training'=>'500000',
