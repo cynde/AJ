@@ -374,6 +374,9 @@
     var kegiatanArray = []
     var topik3Array = []
 
+
+
+
     @forelse($jumlahjam as $j)
     jamArray.push("{{$j['jumlahjam']}}");
     topikArray.push("{{$j['topik']}}");
@@ -387,8 +390,8 @@
     @endforelse
 
     @forelse($jumlahkegiatan as $l)
-    kegiatanArray.push("{{$l['jumlahkegiatan']}}");
-    topik3Array.push("{{$l['topik']}}");
+    kegiatanArray.push("{{$l->jumlahkegiatan1}}");
+    topik3Array.push("{{$l->topik}}");
     @empty
     @endforelse
 

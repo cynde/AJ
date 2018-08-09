@@ -32,27 +32,6 @@ class DashboardController extends Controller
                         ->distinct()
                         ->get();
 
-        // $rekapalert = array($rekapalert[0], $rekapalert[1], $rekapalert[2], $rekapalert[3]);
-        // dd($rekapalert[2]);
-
-
-                        // dd($rekapalert[0]);
-//         if($rekapalert[0] == NULL){
-//             $rekapalert[0] == 0;
-//             if($rekapalert[1] == NULL){
-//             $rekapalert[1] == 0;
-//                 if($rekapalert[2] == NULL){
-//                 $rekapalert[2] == 0;
-//                     if($rekapalert[3] == NULL){
-//                     $rekapalert[3] == 0;
-//         }
-//     }
-// }
-// }
-
-        // dd($rekapalert[2]);
-
-        //
         $rekapbiaya = RekapitulasiTraining::leftJoin('pegawai', 'rekapitulasi_training.nik_pegawai', '=', 'pegawai.nik_pegawai')
                         ->leftJoin('training','rekapitulasi_training.id_training','=','training.id_training')
                         ->leftJoin('maxmin_tanggal_training','rekapitulasi_training.id_rekapitulasi_training','=','maxmin_tanggal_training.id_rekapitulasi_training')
@@ -182,19 +161,15 @@ class DashboardController extends Controller
                         ->groupBy('topik')
                         ->get();
 
-        $jumlahkegiatan = RekapitulasiTraining::leftJoin('pegawai', 'rekapitulasi_training.nik_pegawai', '=', 'pegawai.nik_pegawai')
-                        ->leftJoin('training','rekapitulasi_training.id_training','=','training.id_training')
-                        ->leftJoin('maxmin_tanggal_training','rekapitulasi_training.id_rekapitulasi_training','=','maxmin_tanggal_training.id_rekapitulasi_training')
-                        ->leftJoin('tanggal_rekapitulasi', 'tanggal_rekapitulasi.id_rekapitulasi_training', '=', 'rekapitulasi_training.id_rekapitulasi_training')
-                        ->leftJoin('tanggal_training', 'tanggal_training.id_tanggal_training', '=', 'tanggal_rekapitulasi.id_tanggal_training')
-                        ->leftJoin('topik', 'training.id_topik', '=', 'topik.id_topik')
-                        ->select('topik.nama_topik as topik', DB::raw('COUNT(DISTINCT rekapitulasi_training.id_training) as jumlahkegiatan'))
-                        ->where('rekapitulasi_training.status_training', '=', 'Terlaksana') 
-                        ->groupBy('topik')
-                        ->get();
+        $jumlahkegiatan = DB::select(DB::raw("select x.topik, SUM(x.jumlahkegiatan) as jumlahkegiatan1 FROM (select DISTINCT count(rekapitulasi_training.id_training) as jumlahkegiatan, periode, topik.nama_topik as topik from rekapitulasi_training, training, topik where training.id_training = rekapitulasi_training.id_training AND training.id_topik = topik.id_topik AND rekapitulasi_training.status_training = 'Terlaksana' group by periode, training.id_topik) x GROUP BY x.topik"));
+
+                     // dd($jumlahkegiatan);
+        // dd($jumlahkegiatan[0]->topik);
         $totalgiat = $totalgiat1[0]->giat;
         $totaljuara = $totaljuara1[0]->juara;
         $pegawaitraining = $pegawaitraining1[0]->pegawaitraining;
+
+        // dd($jumlahpeserta);
 
         return view('index4', ['anggaran' => $anggaran], compact('total_harga', 'total_invoice', 'total_biaya_lain', 'anggaran', 'toptrainee', 'jamperpegawai', 'hariperpegawai', 'selisih', 'total_terpakai', 'real_sisa_dana', 'utilisasi', 'total_invoice_publik', 'total_invoice_inhouse', 'totalgiat', 'totaljuara', 'totalpegawai', 'pegawaitraining', 'jumlahjam', 'jumlahpeserta', 'jumlahkegiatan', 'rekapalert'));
         }
