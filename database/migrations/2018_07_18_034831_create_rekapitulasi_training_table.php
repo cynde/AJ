@@ -20,6 +20,7 @@ class CreateRekapitulasiTrainingTable extends Migration
             $table->string('justifikasi',50);
             $table->integer('jumlah_jam_training');
             $table->integer('harga_training');
+            $table->integer('periode')->nullable();
             $table->integer('invoice_training')->nullable();
             $table->string('fpt_file',100)->nullable();
             $table->string('pendaftaran_file',100)->nullable();

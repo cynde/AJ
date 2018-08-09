@@ -57,6 +57,8 @@ class PegawaiController extends Controller
         $new = new Pegawai();
         $new->nik_pegawai = $request->nik_pegawai;
         $new->nama_pegawai = $request->nama_pegawai;
+        $new->tanggal_masuk = $request->tanggal_masuk;
+        $new->tanggal_keluar = $request->tanggal_keluar;
         $new->id_departemen = $request->id_departemen;
         $new->id_jabatan = $request->id_jabatan;
         $new->save();
@@ -71,6 +73,8 @@ class PegawaiController extends Controller
      */
     public function showKD($nik_pegawai)
     {
+        $allkompdept = KompetensiDepartemen::leftJoin('departemen','departemen.id_departemen','=','kompetensi_departemen.id_departemen')->leftJoin('kompetensi','kompetensi.id_kompetensi','=','kompetensi_departemen.id_kompetensi')->leftJoin('pegawai','departemen.id_departemen','=','pegawai.id_departemen')->where('pegawai.nik_pegawai','=',$nik_pegawai)->select('kompetensi.nama_kompetensi','kompetensi_departemen.level_kompetensi')->orderBy('kompetensi_departemen.level_kompetensi')->get();
+
         $kd = KompetensiDepartemen::leftJoin('departemen','kompetensi_departemen.id_departemen','=','departemen.id_departemen')
         ->leftJoin('kompetensi','kompetensi_departemen.id_kompetensi','=','kompetensi.id_kompetensi')
         ->leftJoin('pegawai','departemen.id_departemen','=','pegawai.id_departemen')
@@ -81,6 +85,7 @@ class PegawaiController extends Controller
         ->leftJoin('kompetensi','kompetensi.id_kompetensi','=','training.id_kompetensi')
         ->leftJoin('kompetensi_departemen','kompetensi_departemen.id_kompetensi','kompetensi.id_kompetensi')
         ->whereIn('training.id_kompetensi',$kd)
+        ->where('rekapitulasi_training.status_training','=','Terlaksana')
         ->where('rekapitulasi_training.nik_pegawai','=',$nik_pegawai)
         ->select('training.nama_training','kompetensi.nama_kompetensi','kompetensi_departemen.level_kompetensi')
         ->distinct()
@@ -88,16 +93,28 @@ class PegawaiController extends Controller
         ->get();
 
         $rk = RekapitulasiTraining::where('rekapitulasi_training.nik_pegawai','=',$nik_pegawai)->select('rekapitulasi_training.id_training')->get();
-        $undone = Training::leftJoin('kompetensi','kompetensi.id_kompetensi','=','training.id_kompetensi')
+        $undone1 = Training::leftJoin('kompetensi','kompetensi.id_kompetensi','=','training.id_kompetensi')
         ->leftJoin('kompetensi_departemen','kompetensi_departemen.id_kompetensi','kompetensi.id_kompetensi')
         ->whereNotIn('training.id_training',$rk)
         ->whereIn('training.id_kompetensi',$kd)
         ->select('training.nama_training','kompetensi.nama_kompetensi','kompetensi_departemen.level_kompetensi')
-        ->distinct()
-        ->orderBy('kompetensi_departemen.level_kompetensi','ASC')
-        ->get();
+        ->distinct();
+        // ->get();
+        $undone2 = Training::leftJoin('rekapitulasi_training','training.id_training','=','rekapitulasi_training.id_training')
+        ->leftJoin('kompetensi','kompetensi.id_kompetensi','=','training.id_kompetensi')
+        ->leftJoin('kompetensi_departemen','kompetensi_departemen.id_kompetensi','kompetensi.id_kompetensi')
+        ->whereIn('training.id_kompetensi',$kd)
+        ->where('rekapitulasi_training.status_training','<>','Terlaksana')
+        ->select('training.nama_training','kompetensi.nama_kompetensi','kompetensi_departemen.level_kompetensi')
+        ->distinct();
+        // ->orderBy('kompetensi_departemen.level_kompetensi','ASC');
+        // ->get();
+
+        // ->YANG DI REKAP TRAININGBELUM TERLAKSANA DIUNION SAMA YANG GAADA DI REKAP TRAINING
+        $undone = $undone1->union($undone2)->get();
         return response()->json([
            'success' => true,
+           'allkompdept' => $allkompdept,
            'done' => $done,
            'undone' => $undone
         ]);
@@ -105,6 +122,8 @@ class PegawaiController extends Controller
 
     public function showKJ($nik_pegawai)
     {
+        $allkompjab = KompetensiJabatan::leftJoin('jabatan','jabatan.id_jabatan','=','kompetensi_jabatan.id_jabatan')->leftJoin('kompetensi','kompetensi.id_kompetensi','=','kompetensi_jabatan.id_kompetensi')->leftJoin('pegawai','jabatan.id_jabatan','=','pegawai.id_jabatan')->where('pegawai.nik_pegawai','=',$nik_pegawai)->select('kompetensi.nama_kompetensi','kompetensi_jabatan.level_kompetensi')->orderBy('kompetensi_jabatan.level_kompetensi')->get();
+
         $kj = KompetensiJabatan::leftJoin('jabatan','kompetensi_jabatan.id_jabatan','=','jabatan.id_jabatan')
         ->leftJoin('kompetensi','kompetensi_jabatan.id_kompetensi','=','kompetensi.id_kompetensi')
         ->leftJoin('pegawai','jabatan.id_jabatan','=','pegawai.id_jabatan')
@@ -122,14 +141,23 @@ class PegawaiController extends Controller
         ->get();
 
         $rk = RekapitulasiTraining::where('rekapitulasi_training.nik_pegawai','=',$nik_pegawai)->select('rekapitulasi_training.id_training')->get();
-        $undone = Training::leftJoin('kompetensi','kompetensi.id_kompetensi','=','training.id_kompetensi')
+        $undone1 = Training::leftJoin('kompetensi','kompetensi.id_kompetensi','=','training.id_kompetensi')
         ->leftJoin('kompetensi_jabatan','kompetensi_jabatan.id_kompetensi','kompetensi.id_kompetensi')
         ->whereNotIn('training.id_training',$rk)
         ->whereIn('training.id_kompetensi',$kj)
         ->select('training.nama_training','kompetensi.nama_kompetensi','kompetensi_jabatan.level_kompetensi')
-        ->distinct()
-        ->orderBy('kompetensi_jabatan.level_kompetensi','ASC')
-        ->get();
+        ->distinct();
+        // ->orderBy('kompetensi_jabatan.level_kompetensi','ASC')
+        // ->get();
+       $undone2 = Training::leftJoin('rekapitulasi_training','training.id_training','=','rekapitulasi_training.id_training')
+        ->leftJoin('kompetensi','kompetensi.id_kompetensi','=','training.id_kompetensi')
+        ->leftJoin('kompetensi_jabatan','kompetensi_jabatan.id_kompetensi','kompetensi.id_kompetensi')
+        ->whereIn('training.id_kompetensi',$kj)
+        ->where('rekapitulasi_training.status_training','<>','Terlaksana')
+        ->select('training.nama_training','kompetensi.nama_kompetensi','kompetensi_jabatan.level_kompetensi')
+        ->distinct();
+
+        $undone = $undone1->union($undone2)->get();
         return response()->json([
            'success' => true,
            'done' => $done,
@@ -165,7 +193,7 @@ class PegawaiController extends Controller
     public function update(Request $request, $nik_pegawai)
     {
       $validatedData = $request->validate([
-            'nik_pegawai' => 'required|unique:pegawai',
+            'nik_pegawai' => 'required',
             'nama_pegawai' => 'required',
             'id_departemen' => 'required',
             'id_jabatan' => 'required',
@@ -173,6 +201,8 @@ class PegawaiController extends Controller
         $r = Pegawai::findorfail($nik_pegawai);
         $r->nik_pegawai = $request->nik_pegawai;
         $r->nama_pegawai = $request->nama_pegawai;
+        $r->tanggal_masuk = $request->tanggal_masuk;
+        $r->tanggal_keluar = $request->tanggal_keluar;
         $r->id_departemen = $request->id_departemen;
         $r->id_jabatan = $request->id_jabatan;
         $r->save();

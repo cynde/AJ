@@ -51,6 +51,8 @@
                 <th width="35%">Nama</th>
                 <th>Departemen</th>
                 <th>Jabatan</th>
+                <th>Tanggal Masuk</th>
+                <th>Tanggal Keluar</th>
                 <th width="12%">Status Kompetensi Departemen</th>
                 <th width="12%">Status Kompetensi Jabatan</th>
                 <th width="5%"></th>
@@ -65,6 +67,8 @@
                 <td width="20%">{{$a->nama_pegawai}}</td>
                 <td width="15%">{{$a->nama_departemen}}</td>
                 <td>{{$a->nama_jabatan}}</td>
+                <td>{{$a->tanggal_masuk}}</td>
+                <td>{{$a->tanggal_keluar}}</td>
                 <td><button type="button" class="btn btn-block btn-secondary btn-sm" id="lihatKD" data-id="{{$a->nik_pegawai}}">lihat</button></td>
                 <td><button type="button" class="btn btn-block btn-secondary btn-sm" id="lihatKJ" data-id="{{$a->nik_pegawai}}">lihat</button></td>
                 <td><a href="/pegawai/edit/{{$a->nik_pegawai}}"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
@@ -99,11 +103,7 @@
       <div class="modal-body" style="text-align: center;">
         <table id="table-kompetensi-departemen" class="table table-striped">
           <thead>
-            <tr>
-              <th width="7%">Level</th>
-              <th>Nama Kompetensi</th>
-              <th>Nama Training</th>
-            </tr>
+            <th>Status</th>
           </thead>
           <tbody id="KDDetailBody">
           </tbody>
@@ -219,13 +219,21 @@ $(document).ready(function() {
         // console.log(message)
           jQuery.noConflict();
           document.getElementById('KDDetailBody').innerHTML = '';
-          var tableAppend = '<tr><td colspan="3"><b>SUDAH</b></td></tr>';
-          for(var i = 0; i < message.done.length; i++) {
-               tableAppend += '<tr><td>' + message.done[i]['level_kompetensi'] + '</td><td>' + message.done[i]['nama_kompetensi'] + '</td><td>' + message.done[i]['nama_training'] + '</td></tr>';
-          };
-          tableAppend += '<tr><td colspan="3"><b>BELUM</b></td></tr>';
-          for(var i = 0; i < message.undone.length; i++) {
-               tableAppend += '<tr><td>' + message.undone[i]['level_kompetensi'] + '</td><td>' + message.undone[i]['nama_kompetensi'] + '</td><td>' + message.undone[i]['nama_training'] + '</td></tr>';
+          var tableAppend = '';
+          for(var j=0; j < message.allkompdept.length; j++){
+            tableAppend += '<tr><td><b>Kompetensi ' + message.allkompdept[j]['nama_kompetensi'] + '</b> (level:' + message.allkompdept[j]['level_kompetensi'] + ')</td></tr><tr><td><b>SUDAH</b></td></tr>';
+            for(var i = 0; i < message.done.length; i++) {
+              if(message.done[i]['nama_kompetensi'] == message.allkompdept[j]['nama_kompetensi']){
+                tableAppend += '<tr><td>' + message.done[i]['nama_training'] + '</td></tr>';
+                };
+            };
+
+            tableAppend += '<tr><td><b>BELUM</b></td></tr>';
+            for(var i = 0; i < message.undone.length; i++) {
+              if(message.undone[i]['nama_kompetensi'] == message.allkompdept[j]['nama_kompetensi']){
+                tableAppend += '<tr><td>' + message.undone[i]['nama_training'] + '</td></tr>';
+                };
+            };
           };
           $('#KDDetailBody').append(tableAppend);
           $('#kompetensiDepartemen').modal('show');
