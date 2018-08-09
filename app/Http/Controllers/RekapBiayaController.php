@@ -24,7 +24,7 @@ class RekapBiayaController extends Controller
     public function index()
     {
 
-        $rekapbiaya = DB::table('peserta_rekap_biaya')->get();
+        $rekapbiaya = DB::table('peserta_rekap_biaya')->orderBy('tgl_max', 'ASC')->get();
 
         return view('rekapBiaya', ['peserta_rekap_biaya' => $rekapbiaya], compact('rekapbiaya'));
 
@@ -64,10 +64,26 @@ class RekapBiayaController extends Controller
         ->leftJoin('tanggal_rekapitulasi', 'tanggal_rekapitulasi.id_rekapitulasi_training', '=', 'rekapitulasi_training.id_rekapitulasi_training')
         ->leftJoin('tanggal_training', 'tanggal_training.id_tanggal_training', '=', 'tanggal_rekapitulasi.id_tanggal_training')
         ->leftJoin('maxmin_tanggal_training','rekapitulasi_training.id_rekapitulasi_training','=','maxmin_tanggal_training.id_rekapitulasi_training')
+        ->where('rekapitulasi_training.status_training', '=', 'Terlaksana')
         ->get();
         return response()->json([
            'success' => true,
            'data' => $all
+        ]);
+    }
+
+    public function showrekapbulan()
+    {
+        $rekapbiayabulan = RekapitulasiTraining::leftJoin('training','rekapitulasi_training.id_training','=','training.id_training')
+        ->leftJoin('maxmin_tanggal_training','rekapitulasi_training.id_rekapitulasi_training','=','maxmin_tanggal_training.id_rekapitulasi_training')
+        ->select(DB::raw('SUM(invoice_training) as total'), DB::raw('MONTHNAME(tgl_max) as bulanrekap'))
+        ->where('rekapitulasi_training.status_training', '=', 'Terlaksana')
+        ->orderBy('tgl_max', 'ASC')
+        ->groupBy('bulanrekap')->get();
+
+        return response()->json([
+           'success' => true,
+           'data' => $rekapbiayabulan
         ]);
     }
 
