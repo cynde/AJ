@@ -54,32 +54,21 @@
               </tr>
             </thead>
             <tbody>
+              @foreach($rekap as $r)
               <tr>
-                <td>1</td>
-                <td>23 Maret 2018</td>
-                <td>2344</td>
-                <td>340</td>
-                <td>24</td>
-                <td>171</td>
-                <td>82</td>
-                <td>136</td>
-                <td>236</td>
-                <td>9.89</td>
-                <td>1.24</td>
+                <td>{{$loop->iteration}}</td>
+                <td>{{$r['per_tanggal']}}</td>
+                <td>{{$r['jmlh_jam']}}</td>
+                <td>{{$r['jmlh_peserta']}}</td>
+                <td>{{$r['jmlh_kegiatan']}}</td>
+                <td>{{$r['jmlh_pegawai_training']}}</td>
+                <td>{{$r['jmlh_peserta_giat']}}</td>
+                <td>{{$r['jmlh_peserta_juara']}}</td>
+                <td>{{$r['total_pegawai']}}</td>
+                <td>{{$r['jam_per_pegawai']}}</td>
+                <td>{{$r['hari_per_pegawai']}}</td>
               </tr>
-              <tr>
-                <td>2</td>
-                <td>29 Maret 2018</td>
-                <td>2568</td>
-                <td>350</td>
-                <td>28</td>
-                <td>82</td>
-                <td>92</td>
-                <td>136</td>
-                <td>236</td>
-                <td>10.84</td>
-                <td>1.35</td>
-              </tr>
+              @endforeach
           </table>
         </div>
         <!-- /.card-body -->
@@ -105,7 +94,8 @@
     $('#rekap-peserta').dataTable({
       dom: 'Bfrtip',
       buttons: [
-            'excelHtml5']
+            'excelHtml5'],
+      scrollX: 'true'
     });
   });
 </script>

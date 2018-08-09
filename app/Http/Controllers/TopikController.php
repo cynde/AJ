@@ -82,7 +82,7 @@ class TopikController extends Controller
     {
         $r = Topik::findorfail($id_topik);
         $validatedData = $request->validate([
-            'id_topik' => 'required|unique:topik|max:1',
+            'id_topik' => 'required|max:1',
             'nama_topik' => 'required|unique:topik',
         ]);
         $r->id_topik = $request->id_topik;
