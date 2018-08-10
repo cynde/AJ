@@ -23,14 +23,15 @@ Route::get('/rekapPeserta', function () {
     return view('rekapPeserta');
 });
 
-Route::get('/index4', function () {
-    return view('index4');
+Route::group(['prefix' => 'index4'], function() {
+ Route::get('/', ['as' => 'index4', 'uses' => 'DashboardController@index']);
 });
 
 
 Route::group(['prefix' => 'rekapbiaya'], function() {
  Route::get('/', ['as' => 'rekapbiaya', 'uses' => 'RekapBiayaController@index']);
  Route::get('show/{id}', 'RekapBiayaController@show');
+ Route::get('showrekapbulan', 'RekapBiayaController@showrekapbulan');
 });
 
 

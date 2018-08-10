@@ -52,7 +52,7 @@
                 <th>Tanggal Training</th>
                 <th>Penyelenggara</th>
                 <th>Peserta</th>
-                <th>Biaya Training</th>
+                <th>Biaya Invoice</th>
               </tr>
             </thead>
             <tbody>
@@ -75,6 +75,9 @@
             <i class="fa fa-exclamation-triangle"></i> Tidak ada data.
           </div>
           @endif
+          <div>
+            <button id="lihat2" type="button" class="btn btn-block btn-secondary btn-sm">Jumlah per bulan</button>
+          </div>
         </div>
         <!-- /.card-body -->
       </div>
@@ -101,6 +104,35 @@
             </tr>
           </thead>
           <tbody id=RekapBiayaDetailBody>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal jumlah biaya per bulan -->
+<div class="modal fade" id="lihatRekapBiayaBulan" tabindex="-1" role="dialog" aria-labelledby="lihatRekapBiayaBulan" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="lihatJumlah">Rekap Biaya Invoice Bulanan</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="text-align: center;">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th colspan="2">Rekap Biaya Invoice Bulanan</th>
+            </tr>
+          </thead>
+          <tbody id=RekapBulanDetailBody>
+
           </tbody>
         </table>
       </div>
@@ -170,7 +202,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 <script type="text/javascript">
   
-$(document).ready(function() {
+$(document).ready(function() { 
   $(document).on('click','#lihat',function(e) {
     jQuery.noConflict();
     // $('#lihatDepartemen').modal('show');
@@ -217,6 +249,37 @@ $(document).ready(function() {
 });
 </script>
 
-
+<script type="text/javascript">
+  
+$(document).ready(function() { 
+  $(document).on('click','#lihat2',function(e) {
+    jQuery.noConflict();
+    // $('#lihatDepartemen').modal('show');
+    $.ajaxSetup({
+        headers:{'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')}
+    })
+    e.preventDefault(e);
+    var triggerid2 = $(this).data('id');
+    $.ajax({
+      type: 'get',
+      url: '/rekapbiaya/showrekapbulan/',
+      dataType: 'json',
+      success: function(message) {
+        // console.log(message)
+          jQuery.noConflict();
+          document.getElementById('RekapBulanDetailBody').innerHTML = '';
+          var tableAppend = '';
+          // console.log('jalan');
+          for(var i = 0; i < message.data.length; i++) { 
+              // console.log(message.data[i]);
+              tableAppend += '<tr><td>' + message.data[i]['bulanrekap'] + '</td> + <td>' + message.data[i]['total'] + '</td> </tr>';
+        }
+          $('#RekapBulanDetailBody').append(tableAppend);
+          $('#lihatRekapBiayaBulan').modal('show');
+      }
+    });
+  });
+});
+</script>
 @endsection
 
