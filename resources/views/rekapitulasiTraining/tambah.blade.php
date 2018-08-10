@@ -147,11 +147,11 @@
               </div>
             </div>
             <div class="col-sm-6 form-group" style="float: left">
-              <label for="evaluasi_file">Evaluasi</label>
+              <label for="eval_file">Evaluasi</label>
               <div class="input-group">
                 <div class="custom-file">
-                  <input type="file" class="custom-file-input" id="evaluasi_file" name="evaluasi_file">
-                  <label class="custom-file-label" for="evaluasi_file">Choose file</label>
+                  <input type="file" class="custom-file-input" id="eval_file" name="eval_file">
+                  <label class="custom-file-label" for="eval_file">Choose file</label>
                 </div>
               </div>
             </div>
