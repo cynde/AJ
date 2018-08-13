@@ -50,7 +50,7 @@
               <div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                 <h4><i class="icon fa fa-ban"></i> Alert!</h4>
-                <h5>Training <b>{{$r->nama_training}}</b> akan berlangsung pada tanggal <b>{{$r->t}}</b>.</h5>
+                <h5>Training <b>{{$r->nama_training}}</b> akan berlangsung pada tanggal <b>{{$r->t}}</b> (Tahun-Bulan-Tanggal).</h5>
               </div>
               @endforeach
             @endif
@@ -409,10 +409,12 @@
 
     function getDataset(index, data) { 
       return { 
-          label    : topikArray[index],
           value    : data,
           color    : getRandomColor(),
-          highlight: '#f56954',
+          label    : topikArray[index],
+          labelColor : '#000000',
+          labelFontSize : '16'
+          // highlight: '#f56954'
       }; 
     }
 
@@ -436,8 +438,10 @@
       return { 
           value    : data,
           color    : getRandomColor(),
-          highlight: '#f56954',
-          label    : topikArray[index]
+          // highlight: '#f56954',
+          label    : topikArray[index],
+          labelColor : '#000000',
+          labelFontSize : '16'
       }; 
     }
 
@@ -462,8 +466,10 @@
       return { 
           value    : data3,
           color    : getRandomColor(),
-          highlight: '#f56954',
+          // highlight: '#f56954',
           label    : topikArray[index],
+          labelColor : '#000000',
+          labelFontSize : '16'
       }; 
     }
 
@@ -494,11 +500,18 @@
       // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
       maintainAspectRatio  : true,
       //String - A legend template
-      legendTemplate       : '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<segments.length; i++){%><li><span style="background-color:<%=segments[i].fillColor%>"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>'
+      legendTemplate       : '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<segments.length; i++){%><li><span style="background-color:<%=segments[i].fillColor%>"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>',
+      tooltipEvents: [],
+      showTooltips: true,
+        onAnimationComplete: function() {
+            this.showTooltip(this.segments, true);
+        },
+      tooltipTemplate: "<%= label %>:<%= value %>"
     }
     //Create pie or douhnut chart
     // You can switch between pie and douhnut using the method below.
-    // pieOptions.datasetFill = false
+    pieOptions.datasetFill = true
+    // pieChart.fillText("%");
     pieChart.Doughnut(pieData, pieOptions)
     pieChart2.Doughnut(pieData2, pieOptions)
     pieChart3.Doughnut(pieData3, pieOptions)
@@ -532,7 +545,6 @@
           data                : [{{$pegawaitraining}}, {{$totalgiat}}, {{$totaljuara}}, {{$totalpegawai}}]
         }
       ]
-
     }
     barChartData.datasets[0].fillColor   = '#00a65a'
     barChartData.datasets[0].strokeColor = '#00a65a'
@@ -563,6 +575,7 @@
       //Boolean - whether to make the chart responsive
       responsive              : true,
       maintainAspectRatio     : true
+
     }
 
     barChartOptions.datasetFill = false
