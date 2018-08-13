@@ -10,6 +10,7 @@ use App\Training;
 use App\Pegawai;
 use DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class RekapitulasiTrainingController extends Controller
 {
@@ -72,8 +73,7 @@ class RekapitulasiTrainingController extends Controller
                 // fpt
                 $dest_fpt = 'fpt/'.($id+1);
                 $file_fpt = $request->file('fpt_file');
-                $name_fpt = $file_fpt->getClientOriginalName();
-                $path_fpt = $file_fpt->move($dest_fpt, $name_fpt);
+                $path_fpt = Storage::disk('public')->putFileAs($dest_fpt, $file_fpt, $file_fpt->getClientOriginalName());
                 $rt->fpt_file = $path_fpt;
                 $rt->status_training = 'FPT Disetujui';
             }
@@ -81,8 +81,7 @@ class RekapitulasiTrainingController extends Controller
                 // pendaftaran
                 $dest_pendaftaran = 'pendaftaran/'.($id+1);
                 $file_pendaftaran = $request->file('pendaftaran_file');
-                $name_pendaftaran = $file_pendaftaran->getClientOriginalName();
-                $path_pendaftaran = $file_pendaftaran->move($dest_pendaftaran, $name_pendaftaran);
+                $path_pendaftaran = Storage::disk('public')->putFileAs($dest_pendaftaran, $file_pendaftaran, $file_pendaftaran->getClientOriginalName());
                 $rt->pendaftaran_file = $path_pendaftaran;
                 $rt->status_training = 'Terdaftar';
             }
@@ -90,8 +89,7 @@ class RekapitulasiTrainingController extends Controller
                 // undangan
                 $dest_undangan = 'undangan/'.($id+1);
                 $file_undangan = $request->file('undangan_file');
-                $name_undangan = $file_undangan->getClientOriginalName();
-                $path_undangan = $file_undangan->move($dest_undangan, $name_undangan);
+                $path_undangan = Storage::disk('public')->putFileAs($dest_undangan, $file_undangan, $file_undangan->getClientOriginalName());
                 $rt->undangan_file = $path_undangan;
                 $rt->status_training = 'Diundang';
             }
@@ -99,8 +97,7 @@ class RekapitulasiTrainingController extends Controller
                 // absensi
                 $dest_absensi = 'absensi/'.($id+1);
                 $file_absensi = $request->file('absensi_file');
-                $name_absensi = $file_absensi->getClientOriginalName();
-                $path_absensi = $file_absensi->move($dest_absensi, $name_absensi);
+                $path_absensi = Storage::disk('public')->putFileAs($dest_absensi, $file_absensi, $file_absensi->getClientOriginalName());
                 $rt->absensi_file = $path_absensi;
                 $rt->status_training = 'Terlaksana';
             }
@@ -108,8 +105,7 @@ class RekapitulasiTrainingController extends Controller
                 // sertifikat
                 $dest_sertifikat = 'sertifikat/'.($id+1);
                 $file_sertifikat = $request->file('sertifikat_file');
-                $name_sertifikat = $file_sertifikat->getClientOriginalName();
-                $path_sertifikat = $file_sertifikat->move($dest_sertifikat, $name_sertifikat);
+                $path_sertifikat = Storage::disk('public')->putFileAs($dest_sertifikat, $file_sertifikat, $file_sertifikat->getClientOriginalName());
                 $rt->sertifikat_file = $path_sertifikat;
                 $rt->status_training = 'Terlaksana';
             }
@@ -117,8 +113,7 @@ class RekapitulasiTrainingController extends Controller
                 // invoice
                 $dest_invoice = 'invoice/'.($id+1);
                 $file_invoice = $request->file('invoice_file');
-                $name_invoice = $file_invoice->getClientOriginalName();
-                $path_invoice = $file_invoice->move($dest_invoice, $name_invoice);
+                $path_invoice = Storage::disk('public')->putFileAs($dest_invoice, $file_invoice, $file_invoice->getClientOriginalName());
                 $rt->invoice_file = $path_invoice;
                 $rt->status_training = 'Terlaksana';
             }
@@ -126,8 +121,7 @@ class RekapitulasiTrainingController extends Controller
                 // eval
                 $dest_eval = 'eval/'.($id+1);
                 $file_eval = $request->file('eval_file');
-                $name_eval = $file_eval->getClientOriginalName();
-                $path_eval = $file_eval->move($dest_eval, $name_eval);
+                $path_eval = Storage::disk('public')->putFileAs($dest_eval, $file_eval, $file_eval->getClientOriginalName());
                 $rt->eval_file = $path_eval;
                 $rt->status_training = 'Terlaksana';
             }
@@ -247,66 +241,59 @@ class RekapitulasiTrainingController extends Controller
         $rt->harga_training = $request->harga_training;
         $rt->invoice_training = $request->invoice_training;
         // dd($request->file('fpt_file'));
-        if(empty($rt->fpt_file) && $request->file('fpt_file')){
+        if($request->file('fpt_file')){
             // fpt
             $dest_fpt = 'fpt/'.($id+1);
             $file_fpt = $request->file('fpt_file');
-            $name_fpt = $file_fpt->getClientOriginalName();
-            $path_fpt = $file_fpt->move($dest_fpt, $name_fpt);
+            $path_fpt = Storage::disk('public')->putFileAs($dest_fpt, $file_fpt, $file_fpt->getClientOriginalName());
             $rt->fpt_file = $path_fpt;
             $rt->status_training = 'FPT Disetujui';
         }
-        if(empty($rt->pendaftaran_file) && $request->file('pendaftaran_file')){
+        if($request->file('pendaftaran_file')){
             // pendaftaran
             $dest_pendaftaran = 'pendaftaran/'.($id+1);
             $file_pendaftaran = $request->file('pendaftaran_file');
-            $name_pendaftaran = $file_pendaftaran->getClientOriginalName();
-            $path_pendaftaran = $file_pendaftaran->move($dest_pendaftaran, $name_pendaftaran);
+            $path_pendaftaran = Storage::disk('public')->putFileAs($dest_pendaftaran, $file_pendaftaran, $file_pendaftaran->getClientOriginalName());
             $rt->pendaftaran_file = $path_pendaftaran;
             $rt->status_training = 'Terdaftar';
         }
-        if(empty($rt->undangan_file) && $request->file('undangan_file')){
+        if($request->file('undangan_file')){
             // undangan
             $dest_undangan = 'undangan/'.($id+1);
             $file_undangan = $request->file('undangan_file');
-            $name_undangan = $file_undangan->getClientOriginalName();
-            $path_undangan = $file_undangan->move($dest_undangan, $name_undangan);
+            $path_undangan = Storage::disk('public')->putFileAs($dest_undangan, $file_undangan, $file_undangan->getClientOriginalName());
             $rt->undangan_file = $path_undangan;
             $rt->status_training = 'Diundang';
         }
-        if(empty($rt->absensi_file) && $request->file('absensi_file')){
+        if($request->file('absensi_file')){
             // absensi
             $dest_absensi = 'absensi/'.($id+1);
             $file_absensi = $request->file('absensi_file');
-            $name_absensi = $file_absensi->getClientOriginalName();
-            $path_absensi = $file_absensi->move($dest_absensi, $name_absensi);
+            $path_absensi = Storage::disk('public')->putFileAs($dest_absensi, $file_absensi, $file_absensi->getClientOriginalName());
             $rt->absensi_file = $path_absensi;
             $rt->status_training = 'Terlaksana';
         }
-        if(empty($rt->sertifikat_file) && $request->file('sertifikat_file')){
+        if($request->file('sertifikat_file')){
             // sertifikat
             $dest_sertifikat = 'sertifikat/'.($id+1);
             $file_sertifikat = $request->file('sertifikat_file');
-            $name_sertifikat = $file_sertifikat->getClientOriginalName();
-            $path_sertifikat = $file_sertifikat->move($dest_sertifikat, $name_sertifikat);
+            $path_sertifikat = Storage::disk('public')->putFileAs($dest_sertifikat, $file_sertifikat, $file_sertifikat->getClientOriginalName());
             $rt->sertifikat_file = $path_sertifikat;
             $rt->status_training = 'Terlaksana';
         }
-        if(empty($rt->invoice_file) && $request->file('invoice_file')){
+        if($request->file('invoice_file')){
             // invoice
             $dest_invoice = 'invoice/'.($id+1);
             $file_invoice = $request->file('invoice_file');
-            $name_invoice = $file_invoice->getClientOriginalName();
-            $path_invoice = $file_invoice->move($dest_invoice, $name_invoice);
+            $path_invoice = Storage::disk('public')->putFileAs($dest_invoice, $file_invoice, $file_invoice->getClientOriginalName());
             $rt->invoice_file = $path_invoice;
             $rt->status_training = 'Terlaksana';
         }
-        if(empty($rt->eval_file) && $request->file('eval_file')){
+        if($request->file('eval_file')){
             // eval
             $dest_eval = 'eval/'.($id+1);
             $file_eval = $request->file('eval_file');
-            $name_eval = $file_eval->getClientOriginalName();
-            $path_eval = $file_eval->move($dest_eval, $name_eval);
+            $path_eval = Storage::disk('public')->putFileAs($dest_eval, $file_eval, $file_eval->getClientOriginalName());
             $rt->eval_file = $path_eval;
             $rt->status_training = 'Terlaksana';
         }
@@ -355,7 +342,7 @@ class RekapitulasiTrainingController extends Controller
         RekapPeserta::truncate();
         $data = $request->data;
         foreach ($data as $d) { 
-            // if($d[3] == 'Terlaksana'){
+            if($d[3] == 'Terlaksana'){
                 $rp = new RekapPeserta();
                 $rp->tanggal_akhir = $d[2];
                 $rp->nama_peserta = $d[5];
@@ -364,7 +351,7 @@ class RekapitulasiTrainingController extends Controller
                 $rp->media = $d[10];
                 $rp->periode = $d[25];
                 $rp->save();
-            // }
+            }
         }
         return response()->json([
            'success' => true

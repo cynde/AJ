@@ -95,6 +95,7 @@ Route::group(['prefix' => 'direktorat'], function() {
 	Route::get('edit/{id}', 'DirektoratController@edit');
 	Route::post('update/{id}', 'DirektoratController@update');
 	Route::post('delete/{id}', 'DirektoratController@destroy');
+	Route::get('show/{id}', 'DirektoratController@show');
 });
 
 
@@ -160,5 +161,10 @@ Route::group(['prefix' => 'rekapitulasiTraining'], function() {
 	Route::get('show/{id}', 'RekapitulasiTrainingController@show');
 	Route::post('storeTanggal/{id}', 'RekapitulasiTrainingController@storeTanggal');
 	Route::post('deleteTanggal/{id}', 'RekapitulasiTrainingController@destroyTanggal');
+	Route::post('rekapPeserta', 'RekapitulasiTrainingController@rekapPeserta');
 });
 
+Route::get('rekapPeserta', ['as' => 'rekapPeserta', 'uses' => 'RekapPesertaController@index']);
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -100,8 +100,8 @@
                 <td>@if(!empty($a->undangan_file)) v @endif</td>
                 <td>@if(!empty($a->absensi_file)) v @endif</td>
                 <td>@if(!empty($a->sertifikat_file)) v @endif</td>
-                <td>@if(!empty($a->eval_file)) v @endif</td>
                 <td>@if(!empty($a->invoice_file)) v @endif</td>
+                <td>@if(!empty($a->eval_file)) v @endif</td>
                 <td>{{number_format($a->harga_training)}}</td>
                 <td>{{number_format($a->invoice_training)}}</td>
                 <td>{{number_format($a->biaya_lain)}}</td>

@@ -89,7 +89,15 @@
                 </div>
               </div>
               @else
-              <p>File: {{$rt->fpt_file}}</p>
+              <br>
+              <img src="{{Storage::url($rt->fpt_file)}}" height="170vw">
+              <br>
+              <div class="input-group">
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" id="fpt_file" name="fpt_file">
+                  <label class="custom-file-label" for="fpt_file">Choose file</label>
+                </div>
+              </div>
               @endif
             </div>
             <div class="col-sm-6 form-group" style="float: left">
@@ -102,7 +110,15 @@
                 </div>
               </div>
               @else
-                <p>File: {{$rt->pendaftaran_file}}</p>
+                <br>
+                <img src="{{Storage::url($rt->pendaftaran_file)}}" height="170vw">
+                <br>
+                <div class="input-group">
+                  <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="pendaftaran" name="pendaftaran_file">
+                    <label class="custom-file-label" for="pendaftaran">Choose file</label>
+                  </div>
+                </div>
               @endif
             </div>
             <div class="col-sm-6 form-group" style="float: left">
@@ -115,7 +131,15 @@
                 </div>
               </div>
               @else
-                <p>File: {{$rt->undangan_file}}</p>
+                <br>
+                <img src="{{Storage::url($rt->undangan_file)}}" height="170vw">
+                <br>
+                <div class="input-group">
+                  <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="undangan_file" name="undangan_file">
+                    <label class="custom-file-label" for="undangan_file">Choose file</label>
+                  </div>
+                </div>
               @endif
             </div>
             <div class="col-sm-6 form-group" style="float: left">
@@ -128,7 +152,15 @@
                 </div>
               </div>
               @else
-                <p>File: {{$rt->absensi_file}}</p>
+                <br>
+                <img src="{{Storage::url($rt->absensi_file)}}" height="170vw">
+                <br>
+                <div class="input-group">
+                  <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="absensi_file" name="absensi_file">
+                    <label class="custom-file-label" for="absensi_file">Choose file</label>
+                  </div>
+                </div>
               @endif
             </div>
             <div class="col-sm-6 form-group" style="float: left">
@@ -141,7 +173,15 @@
                 </div>
               </div>
               @else
-                <p>File: {{$rt->sertifikat_file}}</p>
+                <br>
+                <img src="{{Storage::url($rt->sertifikat_file)}}" height="170vw">
+                <br>
+                <div class="input-group">
+                  <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="sertifikat_file" name="sertifikat_file">
+                    <label class="custom-file-label" for="sertifikat_file">Choose file</label>
+                  </div>
+                </div>
               @endif
             </div>
             <div class="col-sm-6 form-group" style="float: left">
@@ -154,7 +194,15 @@
                 </div>
               </div>
               @else
-                <p>File: {{$rt->invoice_file}}</p>
+                <br>
+                <img src="{{Storage::url($rt->invoice_file)}}" height="170vw">
+                <br>
+                <div class="input-group">
+                  <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="invoice_file" name="invoice_file">
+                    <label class="custom-file-label" for="invoice_file">Choose file</label>
+                  </div>
+                </div>
               @endif
             </div>
             <div class="col-sm-6 form-group" style="float: left">
@@ -162,12 +210,20 @@
               @if(empty($rt->eval_file))
               <div class="input-group">
                 <div class="custom-file">
-                  <input type="file" class="custom-file-input" id="evaluasi_file" name="evaluasi_file">
-                  <label class="custom-file-label" for="evaluasi_file">Choose file</label>
+                  <input type="file" class="custom-file-input" id="eval_file" name="eval_file">
+                  <label class="custom-file-label" for="eval_file">Choose file</label>
                 </div>
               </div>
               @else
-                <p>File: {{$rt->eval_file}}</p>
+                <br>
+                <img src="{{Storage::url($rt->eval_file)}}" height="170vw">
+                <br>
+                <div class="input-group">
+                  <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="eval_file" name="eval_file">
+                    <label class="custom-file-label" for="eval_file">Choose file</label>
+                  </div>
+                </div>
               @endif
             </div>
           </div>
