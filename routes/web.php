@@ -11,10 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index4');
-});
-
 Route::get('/rekapBiaya', function () {
     return view('rekapBiaya');
 });
@@ -23,10 +19,7 @@ Route::get('/rekapPeserta', function () {
     return view('rekapPeserta');
 });
 
-Route::group(['prefix' => 'index4'], function() {
- Route::get('/', ['as' => 'index4', 'uses' => 'DashboardController@index']);
-});
-
+Route::get('/', ['as' => 'index4', 'uses' => 'DashboardController@index']);
 
 Route::group(['prefix' => 'rekapbiaya'], function() {
  Route::get('/', ['as' => 'rekapbiaya', 'uses' => 'RekapBiayaController@index']);

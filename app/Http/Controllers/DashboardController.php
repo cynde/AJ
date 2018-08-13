@@ -171,7 +171,7 @@ class DashboardController extends Controller
 
         // dd($jumlahpeserta);
 
-        return view('index4', ['anggaran' => $anggaran], compact('total_harga', 'total_invoice', 'total_biaya_lain', 'anggaran', 'toptrainee', 'jamperpegawai', 'hariperpegawai', 'selisih', 'total_terpakai', 'real_sisa_dana', 'utilisasi', 'total_invoice_publik', 'total_invoice_inhouse', 'totalgiat', 'totaljuara', 'totalpegawai', 'pegawaitraining', 'jumlahjam', 'jumlahpeserta', 'jumlahkegiatan', 'rekapalert'));
+        return view('index', ['anggaran' => $anggaran], compact('total_harga', 'total_invoice', 'total_biaya_lain', 'anggaran', 'toptrainee', 'jamperpegawai', 'hariperpegawai', 'selisih', 'total_terpakai', 'real_sisa_dana', 'utilisasi', 'total_invoice_publik', 'total_invoice_inhouse', 'totalgiat', 'totaljuara', 'totalpegawai', 'pegawaitraining', 'jumlahjam', 'jumlahpeserta', 'jumlahkegiatan', 'rekapalert'));
         }
     /**
      * Show the form for creating a new resource.
