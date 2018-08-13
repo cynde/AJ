@@ -160,6 +160,7 @@ class PegawaiController extends Controller
         $undone = $undone1->union($undone2)->get();
         return response()->json([
            'success' => true,
+           'allkompjab' => $allkompjab,
            'done' => $done,
            'undone' => $undone
         ]);

@@ -101,6 +101,7 @@
         </button>
       </div>
       <div class="modal-body" style="text-align: center;">
+        {{-- <button onclick="exportTableToExcel('table-kompetensi-jabatan')">Export Table Data To Excel File</button> --}}
         <table id="table-kompetensi-departemen" class="table table-striped">
           <thead>
             <th>Status</th>
@@ -130,9 +131,7 @@
         <table id="table-kompetensi-jabatan" class="table table-striped">
           <thead>
             <tr>
-              <th width="7%">Level</th>
-              <th>Nama Kompetensi</th>
-              <th>Nama Training</th>
+              <th>Status</th>
             </tr>
           </thead>
           <tbody id="KJDetailBody">
@@ -162,43 +161,12 @@
 <script src="/js/jszip.min.js"></script>
 <script src="/js/buttons.html5.min.js"></script>
 <script src="/js/vfs_fonts.js"></script>
+<script src="/js/jquery.table2excel.js"></script>
 <script>
   $(function () {
     //Initialize Select2 Elements
     $('.select2').select2()
   })
-</script>
-<script>
-  $(document).ready(function() {
-    'use strict';
-    $('#tabel-pegawai').dataTable({
-        "bJQueryUI": true,
-        "bStateSave": true,
-        "scrollX": true
-    })
-    $('#table-kompetensi-departemen').dataTable({
-        "bJQueryUI": true,
-        "bStateSave": true,
-        "paging":   false,
-        "ordering": false,
-        "info": false,
-        "bFilter": false,
-        dom: 'Bfrtip',
-        buttons: [
-            'excelHtml5']
-    })
-    $('#table-kompetensi-jabatan').dataTable({
-        "bJQueryUI": true,
-        "bStateSave": true,
-        "paging":   false,
-        "ordering": false,
-        "info": false,
-        "bFilter": false,
-        dom: 'Bfrtip',
-        buttons: [
-            'excelHtml5']
-    })
-  });
 </script>
 
 <script type="text/javascript">
@@ -264,13 +232,21 @@ $(document).ready(function() {
         // console.log(message)
           jQuery.noConflict();
           document.getElementById('KJDetailBody').innerHTML = '';
-          var tableAppend = '<tr><td colspan="3"><b>SUDAH</b></td></tr>';
-          for(var i = 0; i < message.done.length; i++) {
-              tableAppend += '<tr><td>' + message.done[i]['level_kompetensi'] + '</td><td>' + message.done[i]['nama_kompetensi'] + '</td><td>' + message.done[i]['nama_training'] + '</td></tr>';
-          };
-          tableAppend += '<tr><td colspan="3"><b>BELUM</b></td></tr>';
-          for(var i = 0; i < message.undone.length; i++) {
-              tableAppend += '<tr><td>' + message.undone[i]['level_kompetensi'] + '</td><td>' + message.undone[i]['nama_kompetensi'] + '</td><td>' + message.undone[i]['nama_training'] + '</td></tr>';
+          var tableAppend = '';
+          for(var j=0; j < message.allkompjab.length; j++){
+            tableAppend += '<tr><td><b>Kompetensi ' + message.allkompjab[j]['nama_kompetensi'] + '</b> (level:' + message.allkompjab[j]['level_kompetensi'] + ')</td></tr><tr><td><b>SUDAH</b></td></tr>';
+            for(var i = 0; i < message.done.length; i++) {
+              if(message.done[i]['nama_kompetensi'] == message.allkompjab[j]['nama_kompetensi']){
+                tableAppend += '<tr><td>' + message.done[i]['nama_training'] + '</td></tr>';
+                };
+            };
+
+            tableAppend += '<tr><td><b>BELUM</b></td></tr>';
+            for(var i = 0; i < message.undone.length; i++) {
+              if(message.undone[i]['nama_kompetensi'] == message.allkompjab[j]['nama_kompetensi']){
+                tableAppend += '<tr><td>' + message.undone[i]['nama_training'] + '</td></tr>';
+                };
+            };
           };
           $('#KJDetailBody').append(tableAppend);
           $('#kompetensiJabatan').modal('show');
@@ -281,6 +257,63 @@ $(document).ready(function() {
     });
   });
 });
+</script>
+
+<script>
+  $(document).ready(function() {
+    'use strict';
+    $('#tabel-pegawai').dataTable({
+        "bJQueryUI": true,
+        "bStateSave": true,
+        "scrollX": true
+    });
+    $('#table-kompetensi-departemen').dataTable({
+        "bJQueryUI": true,
+        "bStateSave": true,
+        "paging":   false,
+        "ordering": false,
+        "info": false,
+        "bFilter": false,
+        "serverSide": true,
+        dom: 'Blfrtip',
+        buttons: [
+            {
+              extend: 'excel',
+              text: '<span class="fa fa-file-excel-o"></span> Excel Export',
+              exportOptions: {
+                  modifier: {
+                      search: 'applied',
+                      order: 'applied'
+                  }
+              }
+            }
+        ]
+    });
+
+    
+
+    $('#table-kompetensi-jabatan').dataTable({
+        "bJQueryUI": true,
+        "bStateSave": true,
+        "paging":   false,
+        "ordering": false,
+        "info": false,
+        "bFilter": false,
+        dom: 'Bfrtip',
+        buttons: [
+            {
+              extend: 'excel',
+              text: '<span class="fa fa-file-excel-o"></span> Excel Export',
+              exportOptions: {
+                  modifier: {
+                      search: 'applied',
+                      order: 'applied'
+                  }
+              }
+            }
+        ]
+    });
+  });
 </script>
 @endsection
 

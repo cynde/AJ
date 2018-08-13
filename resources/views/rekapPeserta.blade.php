@@ -92,9 +92,19 @@
 <script>
    $(document).ready(function() {
     $('#rekap-peserta').dataTable({
-      dom: 'Bfrtip',
+      dom: 'Blfrtip',
       buttons: [
-            'excelHtml5'],
+            {
+              extend: 'excel',
+              text: '<span class="fa fa-file-excel-o"></span> Excel Export',
+              exportOptions: {
+                  modifier: {
+                      search: 'applied',
+                      order: 'applied'
+                  }
+              }
+            }
+        ],
       scrollX: 'true'
     });
   });

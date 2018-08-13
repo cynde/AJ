@@ -118,7 +118,7 @@
 
             <div class="info-box-content">
               <span class="info-box-text" style="font-size: 22px">Rata-rata training pegawai dari 1 Januari 2018</span>
-              <span> -------------------------------------------------------------------------------------------</span>
+              <hr>
               <span class="info-box-number"> <h5><b>{{$jamperpegawai}}  jam/pegawai</b></h5></span>
               <span class="info-box-number"> <h5><b>{{$hariperpegawai}}  hari/pegawai</b></h5></span>
             </div>
