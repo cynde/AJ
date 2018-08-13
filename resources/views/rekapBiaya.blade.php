@@ -65,7 +65,7 @@
                 <td>{{$a->tgl_max}}</td>
                 <td>{{$a->nama_penyelenggara}}</td>
                 <td><button id="lihat" type="button" class="btn btn-block btn-secondary btn-sm" data-id="{{$a->id_training}}" data-bulan="{{$a->bulan}}">lihat</button></td>
-                <td>{{$a->total}}</td>
+                <td>Rp. {{$a->total}}</td>
               </tr>
               @endforeach
               </tbody>
@@ -156,6 +156,13 @@
 <script src="/js/jszip.min.js"></script>
 <script src="/js/buttons.html5.min.js"></script>
 <script src="/js/vfs_fonts.js"></script>
+<script src="/js/dataTables.buttons.min.js"></script>
+<script src="/js/jszip.min.js"></script>
+<script src="/js/buttons.html5.min.js"></script>
+<script src="/js/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/fixedcolumns/3.2.6/js/dataTables.fixedColumns.min.js
+"></script>
+
 
 <script>
   $(function () {
@@ -169,7 +176,7 @@
     $('#rekap-biaya').dataTable({
         "bJQueryUI": true,
         "bStateSave": true,
-        "scrollX": true,
+        "scrollX": true, 
         dom: 'Bfrtip',
         buttons: [
             'excelHtml5']
@@ -272,7 +279,7 @@ $(document).ready(function() {
           // console.log('jalan');
           for(var i = 0; i < message.data.length; i++) { 
               // console.log(message.data[i]);
-              tableAppend += '<tr><td>' + message.data[i]['bulanrekap'] + '</td> + <td>' + message.data[i]['total'] + '</td> </tr>';
+              tableAppend += '<tr><td>' + message.data[i]['bulanrekap'] + '</td> + <td>' + 'Rp. ' + message.data[i]['total'] + '</td> </tr>';
         }
           $('#RekapBulanDetailBody').append(tableAppend);
           $('#lihatRekapBiayaBulan').modal('show');
