@@ -179,7 +179,17 @@
         "scrollX": true, 
         dom: 'Bfrtip',
         buttons: [
-            'excelHtml5']
+            {
+              extend: 'excel',
+              text: '<span class="fa fa-file-excel-o"></span> Excel Export',
+              exportOptions: {
+                  modifier: {
+                      search: 'applied',
+                      order: 'applied'
+                  }
+              }
+            }
+        ]
     }).yadcf([{
         column_number: 1,
         filter_type: "multi_select",
