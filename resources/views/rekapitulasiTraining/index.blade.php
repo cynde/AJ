@@ -225,9 +225,19 @@
         "bStateSave": true,
         "scrollX": true,
         "stateSave": true,
-        dom: 'Bfrtip',
+        dom: 'Blfrtip',
         buttons: [
-            'excelHtml5'],
+            {
+              extend: 'excel',
+              text: '<span class="fa fa-file-excel-o"></span> Excel Export',
+              exportOptions: {
+                  modifier: {
+                      search: 'applied',
+                      order: 'applied'
+                  }
+              }
+            }
+        ],
         fixedColumns: {
           leftColumns: 5
         }

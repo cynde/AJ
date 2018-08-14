@@ -37,6 +37,7 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
+          @if($all->count())
           <table id="rekap-peserta" class="table table-bordered table-striped">
             <thead style="text-align: center">
               <tr>
@@ -70,6 +71,11 @@
               </tr>
               @endforeach
           </table>
+          @else
+          <div class="alert alert-warning">
+            <i class="fa fa-exclamation-triangle"></i> Tidak ada data.
+          </div>
+          @endif
         </div>
         <!-- /.card-body -->
       </div>
@@ -92,9 +98,19 @@
 <script>
    $(document).ready(function() {
     $('#rekap-peserta').dataTable({
-      dom: 'Bfrtip',
+      dom: 'Blfrtip',
       buttons: [
-            'excelHtml5'],
+            {
+              extend: 'excel',
+              text: '<span class="fa fa-file-excel-o"></span> Excel Export',
+              exportOptions: {
+                  modifier: {
+                      search: 'applied',
+                      order: 'applied'
+                  }
+              }
+            }
+        ],
       scrollX: 'true'
     });
   });
