@@ -342,7 +342,7 @@ class RekapitulasiTrainingController extends Controller
         RekapPeserta::truncate();
         $data = $request->data;
         foreach ($data as $d) { 
-            if($d[3] == 'Terlaksana'){
+            if($d[4] == 'Terlaksana'){
                 $rp = new RekapPeserta();
                 $rp->tanggal_akhir = $d[2];
                 $rp->nama_peserta = $d[5];

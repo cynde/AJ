@@ -44,7 +44,7 @@ class RekapPesertaController extends Controller
             );
 
         }
-        // dd($rekap);
-    	return view('rekapPeserta', compact('rekap'));
+        // dd($all);
+    	return view('rekapPeserta', compact('all','rekap'));
     }
 }
