@@ -101,7 +101,6 @@
         </button>
       </div>
       <div class="modal-body" style="text-align: center;">
-        {{-- <button onclick="exportTableToExcel('table-kompetensi-jabatan')">Export Table Data To Excel File</button> --}}
         <table id="table-kompetensi-departemen" class="table table-striped">
           <thead>
             <th>Status</th>
@@ -273,21 +272,7 @@ $(document).ready(function() {
         "paging":   false,
         "ordering": false,
         "info": false,
-        "bFilter": false,
-        "serverSide": true,
-        dom: 'Blfrtip',
-        buttons: [
-            {
-              extend: 'excel',
-              text: '<span class="fa fa-file-excel-o"></span> Excel Export',
-              exportOptions: {
-                  modifier: {
-                      search: 'applied',
-                      order: 'applied'
-                  }
-              }
-            }
-        ]
+        "bFilter": false
     });
 
     
@@ -298,20 +283,7 @@ $(document).ready(function() {
         "paging":   false,
         "ordering": false,
         "info": false,
-        "bFilter": false,
-        dom: 'Bfrtip',
-        buttons: [
-            {
-              extend: 'excel',
-              text: '<span class="fa fa-file-excel-o"></span> Excel Export',
-              exportOptions: {
-                  modifier: {
-                      search: 'applied',
-                      order: 'applied'
-                  }
-              }
-            }
-        ]
+        "bFilter": false
     });
   });
 </script>
