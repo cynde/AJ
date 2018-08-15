@@ -69,7 +69,7 @@
                 <td><a href="training/edit/{{$a->id_training}}"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
                 <form action="training/delete/{{$a->id_training}}" method="post">
                   {{csrf_field()}}
-                    <td><button type="submit" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button></td>
+                    <td><button onclick="return confirm('Are you sure?')" type="submit" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button></td>
                 </form>
               </tr>
               @endforeach

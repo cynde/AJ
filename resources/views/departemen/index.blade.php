@@ -64,7 +64,7 @@
                 <td>
                   <form action="/departemen/delete/{{$a->id_departemen}}" method="post">
                     {{csrf_field()}}
-                    <button type="submit" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button>
+                    <button onclick="return confirm('Are you sure?')" type="submit" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button>
                   </form>
                 </td>
               </tr>

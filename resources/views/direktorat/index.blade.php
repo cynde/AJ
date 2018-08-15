@@ -55,7 +55,7 @@
                 <td><a href="/direktorat/edit/{{$a->id_direktorat}}"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
                 <td><form action="/direktorat/delete/{{$a->id_direktorat}}" method="POST">
                             {{csrf_field()}}
-                            <button type="submit" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button>
+                            <button onclick="return confirm('Are you sure?')" type="submit" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button>
                     </form></td>
               </tr>
               @endforeach
