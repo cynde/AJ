@@ -111,7 +111,7 @@
                 <td>
                   <form action="rekapitulasiTraining/delete/{{$a->id_rekapitulasi_training}}" method="post">
                     {{csrf_field()}}
-                    <button type="submit" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button>
+                    <button onclick="return confirm('Are you sure?')" type="submit" class="btn btn-block btn-danger btn-sm"><span class="fa fa-trash"></span></button>
                   </form>
                 </td>
                 @endforeach
