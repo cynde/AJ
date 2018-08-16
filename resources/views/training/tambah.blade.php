@@ -47,10 +47,6 @@
           {{csrf_field()}}
           <div class="card-body">
             <div class="form-group">
-              <label>ID</label>
-              <input name="id_training" type="number" class="form-control" id="id_training" placeholder="Masukkan ID Training" required>
-            </div>
-            <div class="form-group">
               <label for="nama_training">Nama Training</label>
               <input name="nama_training" type="text" class="form-control" id="nama_training" placeholder="Masukkan Nama Training" required>
             </div>
