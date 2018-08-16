@@ -59,7 +59,9 @@
               @endforeach
           </table>
           @else
-            <p>Tidak ada data</p>
+          <div class="alert alert-warning">
+            <i class="fa fa-exclamation-triangle"></i> Tidak ada data.
+          </div>
           @endif
         </div>
         <!-- /.card-body -->

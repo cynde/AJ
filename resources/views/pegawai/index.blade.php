@@ -80,7 +80,9 @@
               @endforeach
           </table>
           @else
-            <p>Tidak ada data</p>
+          <div class="alert alert-warning">
+            <i class="fa fa-exclamation-triangle"></i> Tidak ada data.
+          </div>
           @endif
         </div>
         <!-- /.card-body -->
@@ -191,14 +193,14 @@ $(document).ready(function() {
             tableAppend += '<tr><td><b>Kompetensi ' + message.allkompdept[j]['nama_kompetensi'] + '</b> (level:' + message.allkompdept[j]['level_kompetensi'] + ')</td></tr><tr><td><b>SUDAH</b></td></tr>';
             for(var i = 0; i < message.done.length; i++) {
               if(message.done[i]['nama_kompetensi'] == message.allkompdept[j]['nama_kompetensi']){
-                tableAppend += '<tr><td>' + message.done[i]['nama_training'] + '</td></tr>';
+                tableAppend += '<tr style="background-color:#c8e6c9"><td>' + message.done[i]['nama_training'] + '</td></tr>';
                 };
             };
 
             tableAppend += '<tr><td><b>BELUM</b></td></tr>';
             for(var i = 0; i < message.undone.length; i++) {
               if(message.undone[i]['nama_kompetensi'] == message.allkompdept[j]['nama_kompetensi']){
-                tableAppend += '<tr><td>' + message.undone[i]['nama_training'] + '</td></tr>';
+                tableAppend += '<tr style="background-color:#fff9c4"><td>' + message.undone[i]['nama_training'] + '</td></tr>';
                 };
             };
           };
