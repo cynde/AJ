@@ -26,7 +26,7 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   {{-- favicon --}}
-  <link rel="icon" href="image/logo-artajasa.png" sizes="16x16" type="image/png">
+  <link rel="icon" href="{{ asset('image/logo-artajasa.png') }}" sizes="16x16" type="image/png">
   @yield('css')
 </head>
 <body class="hold-transition sidebar-mini">
