@@ -59,8 +59,9 @@ class JabatanController extends Controller
     public function show($id_jabatan)
     {
         $id_now = $id_jabatan;
+        $jab_now = Jabatan::select('nama_jabatan')->where('id_jabatan','=',$id_jabatan)->get();
         $all = KompetensiJabatan::where('id_jabatan','=',$id_jabatan)->leftJoin('kompetensi as komp','komp.id_kompetensi','=','kompetensi_jabatan.id_kompetensi')->leftJoin('kompetensi as pend','pend.id_kompetensi','=','kompetensi_jabatan.kompetensi_pendahulu')->select('kompetensi_jabatan.*','komp.*','pend.nama_kompetensi as nama_kompetensi_pendahulu')->orderBy('kompetensi_jabatan.level_kompetensi','ASC')->get();
-        return view('jabatan.kompetensi', compact('all','id_now'));
+        return view('jabatan.kompetensi', compact('all','id_now','jab_now'));
     }
 
     public function tambahKompetensi()

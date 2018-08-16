@@ -64,8 +64,9 @@ class DepartemenController extends Controller
     public function show($id)
     {
         $id_now = $id;
+        $dept_now = Departemen::select('nama_departemen')->where('id_departemen','=',$id)->get();
         $all = KompetensiDepartemen::where('id_departemen','=',$id)->leftJoin('kompetensi as komp','komp.id_kompetensi','=','kompetensi_departemen.id_kompetensi')->leftJoin('kompetensi as pend','pend.id_kompetensi','=','kompetensi_departemen.kompetensi_pendahulu')->select('kompetensi_departemen.*','komp.*','pend.nama_kompetensi as nama_kompetensi_pendahulu')->orderBy('kompetensi_departemen.level_kompetensi','ASC')->get();
-        return view('departemen.kompetensi', compact('all','id_now'));
+        return view('departemen.kompetensi', compact('all','id_now','dept_now'));
     }
 
     public function tambahKompetensi()

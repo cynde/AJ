@@ -70,6 +70,19 @@
                 <td>{{$r['hari_per_pegawai']}}</td>
               </tr>
               @endforeach
+              <tr>
+                <td></td>
+                <td><b>TOTAL</b></td>
+                <td>{{$total['jmlh_jam']}}</td>
+                <td>{{$total['jmlh_peserta']}}</td>
+                <td>{{$total['jmlh_kegiatan']}}</td>
+                <td>{{$total['jmlh_pegawai_training']}}</td>
+                <td>{{$total['jmlh_peserta_giat']}}</td>
+                <td>{{$total['jmlh_peserta_juara']}}</td>
+                <td>{{$total['total_pegawai']}}</td>
+                <td>{{$total['jam_per_pegawai']}}</td>
+                <td>{{$total['hari_per_pegawai']}}</td>
+              </tr>
           </table>
           @else
           <div class="alert alert-warning">

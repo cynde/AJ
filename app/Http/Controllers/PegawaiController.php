@@ -112,12 +112,10 @@ class PegawaiController extends Controller
 
         // ->YANG DI REKAP TRAININGBELUM TERLAKSANA DIUNION SAMA YANG GAADA DI REKAP TRAINING
         $undone = $undone1->union($undone2)->get();
-        return response()->json([
-           'success' => true,
-           'allkompdept' => $allkompdept,
-           'done' => $done,
-           'undone' => $undone
-        ]);
+
+        $peg = Pegawai::select('nama_pegawai')->where('nik_pegawai','=',$nik_pegawai)->get();
+        // dd($peg);
+        return view('pegawai.kompetensiDepartemen', compact('allkompdept','done','undone','peg'));
     }
 
     public function showKJ($nik_pegawai)
@@ -130,6 +128,7 @@ class PegawaiController extends Controller
         ->where('pegawai.nik_pegawai','=',$nik_pegawai)
         ->select('kompetensi_jabatan.id_kompetensi')
         ->get();
+        // dd($kj);
         $done = Training::leftJoin('rekapitulasi_training','training.id_training','=','rekapitulasi_training.id_training')
         ->leftJoin('kompetensi','kompetensi.id_kompetensi','=','training.id_kompetensi')
         ->leftJoin('kompetensi_jabatan','kompetensi_jabatan.id_kompetensi','kompetensi.id_kompetensi')
@@ -158,12 +157,9 @@ class PegawaiController extends Controller
         ->distinct();
 
         $undone = $undone1->union($undone2)->get();
-        return response()->json([
-           'success' => true,
-           'allkompjab' => $allkompjab,
-           'done' => $done,
-           'undone' => $undone
-        ]);
+        $peg = Pegawai::select('nama_pegawai')->where('nik_pegawai','=',$nik_pegawai)->get();
+        // dd($allkompjab);
+        return view('pegawai.kompetensiJabatan', compact('allkompjab','done','undone','peg'));
     }
 
     /**

@@ -31,7 +31,7 @@
     <section class="content">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Data Kompetensi Departemen
+          <h3 class="card-title">Data Kompetensi Departemen {{$dept_now[0]->nama_departemen}}
             <div style="float: right; margin-bottom: 20px">
               <button id="tambah" type="button" class="btn btn-block btn-sm btn-primary" style="padding-top: 2px; padding-bottom: 2px">+ Tambah</button>
             </div>

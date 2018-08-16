@@ -19,6 +19,9 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    {{-- favicon --}}
+    <link rel="icon" href="{{ asset('image/logo-artajasa.png') }}" sizes="16x16" type="image/png">
 </head>
 <body>
     <div id="app">

@@ -49,7 +49,6 @@ class TrainingController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'id_training' => 'required|unique:training',
             'nama_training' => 'required',
             'id_media' => 'required',
             'id_topik' => 'required',
