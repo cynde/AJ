@@ -76,8 +76,9 @@ class RekapBiayaController extends Controller
     {
         $rekapbiayabulan = RekapitulasiTraining::leftJoin('training','rekapitulasi_training.id_training','=','training.id_training')
         ->leftJoin('maxmin_tanggal_training','rekapitulasi_training.id_rekapitulasi_training','=','maxmin_tanggal_training.id_rekapitulasi_training')
-        ->select(DB::raw('SUM(invoice_training) as total'), DB::raw('MONTHNAME(tgl_max) as bulanrekap'))
+        ->select(DB::raw('SUM(invoice_training) as total'), DB::raw('MONTHNAME(tgl_max) as bulanrekap'), DB::raw('YEAR(tgl_max) as tahunrekap', DB::raw('YEAR(CURDATE() as tahunsekarang)')))
         ->where('rekapitulasi_training.status_training', '=', 'Terlaksana')
+        ->whereYear('tgl_max', DB::raw('YEAR(CURDATE())'))
         ->orderBy('tgl_max', 'ASC')
         ->groupBy('bulanrekap')->get();
 

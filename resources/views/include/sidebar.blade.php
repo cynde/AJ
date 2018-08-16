@@ -97,53 +97,63 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a href="/media" class="nav-link {{ Request::is('media') ? 'active' : '' }}">
-              <i class="nav-icon fa fa-pie-chart"></i>
-              <p>
-                Media
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="/topik" class="nav-link {{ Request::is('topik') ? 'active' : '' }}">
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
               <i class="nav-icon fa fa-empire"></i>
               <p>
-                Topik
+                Referensi
+                <i class="right fa fa-angle-left"></i>
               </p>
             </a>
+            <ul class="nav nav-treeview" style="display: {{ Request::is('media') ? 'block' : Request::is('topik') ? 'block' : Request::is('penyelenggara') ? 'block' : Request::is('kompetensi') ? 'block' : 'none'}}">
+              <li class="nav-item">
+                <a href="/media" class="nav-link {{ Request::is('media') ? 'active' : '' }}">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>Media</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/topik" class="nav-link {{ Request::is('topik') ? 'active' : '' }}">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>Topik</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/penyelenggara" class="nav-link {{ Request::is('penyelenggara') ? 'active' : '' }}">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>Penyelenggara</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/kompetensi" class="nav-link {{ Request::is('kompetensi') ? 'active' : '' }}">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>Kompetensi</p>
+                </a>
+              </li>
+            </ul>
           </li>
-          <li class="nav-item">
-            <a href="/penyelenggara" class="nav-link {{ Request::is('penyelenggara') ? 'active' : '' }}">
-              <i class="nav-icon fa fa-institution"></i>
-              <p>
-                Penyelenggara
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="/anggaran" class="nav-link {{ Request::is('anggaran') ? 'active' : '' }}">
+           <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
               <i class="nav-icon fa fa-money"></i>
               <p>
-                Anggaran
+                Keuangan
+                <i class="right fa fa-angle-left"></i>
               </p>
             </a>
-          </li>
-          <li class="nav-item">
-            <a href="/rekapbiaya" class="nav-link {{ Request::is('rekapBiaya') ? 'active' : '' }}">
-              <i class="nav-icon fa fa-book"></i>
-              <p>
-                Rekap Biaya
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="/kompetensi" class="nav-link {{ Request::is('kompetensi') ? 'active' : '' }}">
-              <i class="fa fa-star nav-icon"></i>
-              <p>
-                Kompetensi
-              </p>
-            </a>
+            <ul class="nav nav-treeview" style="display: {{ Request::is('anggaran') ? 'block' : Request::is('rekapbiaya') ? 'block' : 'none'}}">
+              <li class="nav-item">
+                <a href="/anggaran" class="nav-link {{ Request::is('anggaran') ? 'active' : '' }}">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>Anggaran</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/rekapbiaya" class="nav-link {{ Request::is('rekapbiaya') ? 'active' : '' }}">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>Rekap Biaya</p>
+                </a>
+              </li>
+            </ul>
           </li>
         </ul>
       </nav>
