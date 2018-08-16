@@ -49,7 +49,7 @@
               @foreach($rekapalert as $r)
               <div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                <h4><i class="icon fa fa-exclamation-triangle"></i> Alert!</h4>
                 <h5>Training <b>{{$r->nama_training}}</b> akan berlangsung pada tanggal <b>{{$r->t}}</b> (Tahun-Bulan-Tanggal).</h5>
               </div>
               @endforeach
@@ -246,7 +246,7 @@
 
                     <div class="progress-group">
                       A. Total Harga Training
-                      <span class="float-right"><b>Rp. {{$total_harga}}</b></span>
+                      <span class="float-right"><b>Rp. {{number_format($total_harga,2)}}</b></span>
                       <div class="progress progress-sm">
                         <div class="progress-bar bg-primary" style="width: 100%"></div>
                       </div>
@@ -255,28 +255,30 @@
 
                     <div class="progress-group">
                       B. Total Invoice
-                      <span class="float-right"><b>Rp. {{$total_invoice}}</b></span>
+                      <span class="float-right"><b>Rp. {{number_format($total_invoice,2)}}</b></span>
                       <div class="progress progress-sm">
                         <div class="progress-bar bg-danger" style="width: 100%"></div>
                       </div>
                     </div>
                     
+                    <div style="padding-left: 40px">
                     <div class="progress-group">
                       Inhouse
-                      <span class="float-right">Rp. {{$total_invoice_inhouse}}</span>
+                      <span class="float-right">Rp. {{number_format($total_invoice_inhouse,2)}}</span>
                   
                         
                     </div>
 
                     <div class="progress-group">
                       Publik
-                      <span class="float-right">Rp. -{{$total_invoice_publik}}</span>
+                      <span class="float-right">Rp. {{number_format($total_invoice_publik,2)}}</span>
                       
+                    </div>
                     </div>
                     <!-- /.progress-group -->
                     <div class="progress-group">
                       <span class="progress-text">C. Total Biaya Lain</span>
-                      <span class="float-right"><b>Rp. {{$total_biaya_lain}}</b></span>
+                      <span class="float-right"><b>Rp. {{number_format($total_biaya_lain,2)}}</b></span>
                       <div class="progress progress-sm">
                         <div class="progress-bar bg-success" style="width: 100%"></div>
                       </div>
@@ -285,7 +287,7 @@
                     <!-- /.progress-group -->
                     <div class="progress-group">
                       D. Anggaran 2018
-                      <span class="float-right"><b>Rp. {{$anggaran[0]->jumlah_anggaran}}</b></span>
+                      <span class="float-right"><b>Rp. {{number_format($anggaran[0]->jumlah_anggaran,2)}}</b></span>
                       <div class="progress progress-sm">
                         <div class="progress-bar bg-warning" style="width: 100%"></div>
                       </div>
@@ -298,7 +300,7 @@
                   <div class="col-md-6">
                     <div class="description-block border-right">
                       <!-- <span class="description-percentage text-success"><i class="fa fa-caret-up"></i> 17%</span> -->
-                      <h5 class="description-header">Rp. {{$selisih}}</h5>
+                      <h5 class="description-header">Rp. {{number_format($selisih,2)}}</h5>
                       <span class="description-text">SELISIH (A-B)</span>
                     </div>
         
@@ -307,7 +309,7 @@
                    <div class="col-md-6">
                     <div class="description-block">
                       <!-- <span class="description-percentage text-warning"><i class="fa fa-caret-left"></i> 0%</span> -->
-                      <h5 class="description-header">Rp. {{$total_terpakai}}</h5>
+                      <h5 class="description-header">Rp. {{number_format($total_terpakai,2)}}</h5>
                       <span class="description-text">Total Terpakai (B+C)</span>
                     </div>
                   </div>
@@ -317,7 +319,7 @@
                   <div class="col-md-6">
                     <div class="description-block border-right">
                       <!-- <span class="description-percentage text-success"><i class="fa fa-caret-up"></i> 20%</span> -->
-                      <h5 class="description-header">Rp. {{$real_sisa_dana}}</h5>
+                      <h5 class="description-header">Rp. {{number_format($real_sisa_dana,2)}}</h5>
                       <span class="description-text">Real Sisa Dana (D-B-C)</span>
                     </div>
                     <!-- /.description-block -->
@@ -522,7 +524,7 @@
     var barChartCanvas                   = document.getElementById('barChart').getContext('2d')
     var barChart                         = new Chart(barChartCanvas)
     var barChartData = {
-      labels  : ['Pegawai mengikuti training', 'Pegawai mengikuti GIAT', 'Pegawai mengikuti Juara', 'Total Pegawai'],
+      labels  : ['Peserta Mengikuti Training', 'Pegawai mengikuti training', 'Pegawai mengikuti GIAT', 'Pegawai mengikuti Juara', 'Total Pegawai'],
       datasets: [
         // {
         //   label               : 'Electronics',
@@ -542,7 +544,7 @@
           pointStrokeColor    : 'rgba(60,141,188,1)',
           pointHighlightFill  : '#fff',
           pointHighlightStroke: 'rgba(60,141,188,1)',
-          data                : [{{$pegawaitraining}}, {{$totalgiat}}, {{$totaljuara}}, {{$totalpegawai}}]
+          data                : [{{$pesertatraining}},{{$pegawaitraining}}, {{$totalgiat}}, {{$totaljuara}}, {{$totalpegawai}}]
         }
       ]
     }

@@ -143,6 +143,22 @@ class DashboardController extends Controller
                         ->where('rekapitulasi_training.status_training', '=', 'Terlaksana') 
                         ->get();
 
+        $pesertatraining1 = RekapitulasiTraining::leftJoin('pegawai', 'rekapitulasi_training.nik_pegawai', '=', 'pegawai.nik_pegawai')
+                        ->leftJoin('training','rekapitulasi_training.id_training','=','training.id_training')
+                        ->leftJoin('maxmin_tanggal_training','rekapitulasi_training.id_rekapitulasi_training','=','maxmin_tanggal_training.id_rekapitulasi_training')
+                        ->leftJoin('tanggal_rekapitulasi', 'tanggal_rekapitulasi.id_rekapitulasi_training', '=', 'rekapitulasi_training.id_rekapitulasi_training')
+                        ->leftJoin('tanggal_training', 'tanggal_training.id_tanggal_training', '=', 'tanggal_rekapitulasi.id_tanggal_training')
+                        ->leftJoin('media', 'training.id_media', '=', 'media.id_media')
+                        ->select(DB::raw('COUNT(rekapitulasi_training.id_rekapitulasi_training) as pesertatraining'))
+                        ->where('rekapitulasi_training.status_training', '=', 'Terlaksana') 
+                        ->get();
+
+        $totalgiat = $totalgiat1[0]->giat;
+        $totaljuara = $totaljuara1[0]->juara;
+        $pegawaitraining = $pegawaitraining1[0]->pegawaitraining;
+        $pesertatraining = $pesertatraining1[0]->pesertatraining;
+        // dd($pesertatraining);
+
         $jumlahjam = RekapitulasiTraining::leftJoin('pegawai', 'rekapitulasi_training.nik_pegawai', '=', 'pegawai.nik_pegawai')
                         ->leftJoin('training','rekapitulasi_training.id_training','=','training.id_training')
                         ->leftJoin('topik', 'training.id_topik', '=', 'topik.id_topik')
@@ -150,8 +166,6 @@ class DashboardController extends Controller
                         ->where('rekapitulasi_training.status_training', '=', 'Terlaksana') 
                         ->groupBy('topik') 
                         ->get()->toArray();
-                        // dd($jumlahjam);
-
                         
         $jumlahpeserta = RekapitulasiTraining::leftJoin('pegawai', 'rekapitulasi_training.nik_pegawai', '=', 'pegawai.nik_pegawai')
                         ->leftJoin('training','rekapitulasi_training.id_training','=','training.id_training')
@@ -163,15 +177,7 @@ class DashboardController extends Controller
 
         $jumlahkegiatan = DB::select(DB::raw("select x.topik, SUM(x.jumlahkegiatan) as jumlahkegiatan1 FROM (select DISTINCT count(rekapitulasi_training.id_training) as jumlahkegiatan, periode, topik.nama_topik as topik from rekapitulasi_training, training, topik where training.id_training = rekapitulasi_training.id_training AND training.id_topik = topik.id_topik AND rekapitulasi_training.status_training = 'Terlaksana' group by periode, training.id_topik) x GROUP BY x.topik"));
 
-                     // dd($jumlahkegiatan);
-        // dd($jumlahkegiatan[0]->topik);
-        $totalgiat = $totalgiat1[0]->giat;
-        $totaljuara = $totaljuara1[0]->juara;
-        $pegawaitraining = $pegawaitraining1[0]->pegawaitraining;
-
-        // dd($jumlahpeserta);
-
-        return view('index', ['anggaran' => $anggaran], compact('total_harga', 'total_invoice', 'total_biaya_lain', 'anggaran', 'toptrainee', 'jamperpegawai', 'hariperpegawai', 'selisih', 'total_terpakai', 'real_sisa_dana', 'utilisasi', 'total_invoice_publik', 'total_invoice_inhouse', 'totalgiat', 'totaljuara', 'totalpegawai', 'pegawaitraining', 'jumlahjam', 'jumlahpeserta', 'jumlahkegiatan', 'rekapalert'));
+        return view('index', ['anggaran' => $anggaran], compact('total_harga', 'total_invoice', 'total_biaya_lain', 'anggaran', 'toptrainee', 'jamperpegawai', 'hariperpegawai', 'selisih', 'total_terpakai', 'real_sisa_dana', 'utilisasi', 'total_invoice_publik', 'total_invoice_inhouse', 'totalgiat', 'totaljuara', 'totalpegawai', 'pegawaitraining', 'jumlahjam', 'jumlahpeserta', 'jumlahkegiatan', 'rekapalert', 'pesertatraining'));
         }
     /**
      * Show the form for creating a new resource.
