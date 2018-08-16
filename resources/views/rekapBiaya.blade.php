@@ -65,7 +65,7 @@
                 <td>{{$a->tgl_max}}</td>
                 <td>{{$a->nama_penyelenggara}}</td>
                 <td><button id="lihat" type="button" class="btn btn-block btn-secondary btn-sm" data-id="{{$a->id_training}}" data-bulan="{{$a->bulan}}">lihat</button></td>
-                <td>Rp. {{$a->total}}</td>
+                <td>Rp. {{number_format($a->total,2)}}</td>
               </tr>
               @endforeach
               </tbody>
