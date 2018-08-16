@@ -76,7 +76,7 @@
           </div>
           @endif
           <div>
-            <button id="lihat2" type="button" class="btn btn-block btn-secondary btn-sm">Jumlah per bulan</button>
+            <button id="lihat2" type="button" class="btn btn-block btn-secondary btn-sm" style="width: 300px">Jumlah per bulan</button>
           </div>
         </div>
         <!-- /.card-body -->
@@ -288,7 +288,7 @@ $(document).ready(function() {
           var tableAppend = '';
           // console.log('jalan');
           for(var i = 0; i < message.data.length; i++) { 
-              // console.log(message.data[i]);
+              console.log(message.data[i]);
               tableAppend += '<tr><td>' + message.data[i]['bulanrekap'] + '</td> + <td>' + 'Rp. ' + message.data[i]['total'] + '</td> </tr>';
         }
           $('#RekapBulanDetailBody').append(tableAppend);
