@@ -16,6 +16,11 @@ class DepartemenController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         $all = Departemen::orderBy('id_departemen')->get();

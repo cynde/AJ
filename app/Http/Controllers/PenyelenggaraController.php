@@ -13,6 +13,11 @@ class PenyelenggaraController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         $all = Penyelenggara::orderBy('nama_penyelenggara', 'ASC')->get();

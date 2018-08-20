@@ -12,6 +12,11 @@ class KompetensiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         $all = Kompetensi::orderBy('id_kompetensi','ASC')->get();
