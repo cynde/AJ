@@ -20,6 +20,11 @@ class PegawaiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         $all = Pegawai::leftJoin('departemen', 'pegawai.id_departemen', '=', 'departemen.id_departemen')

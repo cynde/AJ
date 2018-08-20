@@ -18,6 +18,11 @@ class TrainingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         $all = Training::leftJoin('media', 'training.id_media', '=', 'media.id_media')

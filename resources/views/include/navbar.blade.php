@@ -16,10 +16,10 @@
     <ul class="navbar-nav ml-auto">
     <!-- logout Menu -->
     <li class="nav-item">
-      <form id="logout">
-        {{csrf_field()}}
+      <form id="logout" action="{{ route('logout') }}" method="POST">
+        {{@csrf_field()}}
+        <button class="btn btn-block btn-outline-danger" type="submit" form="logout"><i class="fa fa-power-off"></i></button>
       </form>
-      <button class="btn btn-block btn-outline-danger" type="submit" form="logout"><i class="fa fa-power-off"></i></button>
     </li>
   </ul>
   </nav>

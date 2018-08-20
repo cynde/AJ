@@ -15,6 +15,11 @@ class DivisiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         $all = Divisi::leftJoin('direktorat', 'direktorat.id_direktorat', '=', 'divisi.id_direktorat')->orderBy('nama_divisi')->get();
