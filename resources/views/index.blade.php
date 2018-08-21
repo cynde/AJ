@@ -1,5 +1,5 @@
 @extends('master.app')
-@section('title') Home @endsection
+@section('title') Dashboard @endsection
 @section('css')
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -22,8 +22,7 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard</li>
+              <li class="breadcrumb-item">Home</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -37,11 +36,10 @@
       <section class="col-lg-6 connectedSortable">
         <!-- Custom tabs (Charts with tabs)-->
         <div class="col-sm-12">
-        <div class="card-body">
+        <div class="card-body" style="padding-top: 3px">
           <div class="box box-default">
             <div class="box-header with-border">
-
-              <h3 class="box-title"><i class="fa fa-bullhorn"></i> Jangan Lupa !!!</h3>
+              <h4 class="box-title"><i class="fa fa-bullhorn"></i> Jangan Lupa !!!</h4>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -49,8 +47,8 @@
               @foreach($rekapalert as $r)
               <div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                <h4><i class="icon fa fa-exclamation-triangle"></i> Alert!</h4>
-                <h5>Training <b>{{$r->nama_training}}</b> akan berlangsung pada tanggal <b>{{$r->t}}</b> (Tahun-Bulan-Tanggal).</h5>
+                <h5><i class="fa fa-exclamation-triangle"></i><b>   Alert!</b></h5>
+                <h6>Training <b>{{$r->nama_training}}</b> akan berlangsung pada tanggal <b>{{$r->t}}</b> (Tahun-Bulan-Tanggal).</h6>
               </div>
               @endforeach
             @endif
@@ -117,10 +115,10 @@
             <span class="info-box-icon"><i class="fa fa-tag"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text" style="font-size: 22px">Rata-rata training pegawai dari 1 Januari 2018</span>
+              <b><span class="info-box-text" style="font-size: 21px">Rata-rata training pegawai dari 1 Januari 2018</span></b>
               <hr>
-              <span class="info-box-number"> <h5><b>{{$jamperpegawai}}  jam/pegawai</b></h5></span>
-              <span class="info-box-number"> <h5><b>{{$hariperpegawai}}  hari/pegawai</b></h5></span>
+              <span class="info-box-number"> <h6><b>{{$jamperpegawai}}</b>  jam/pegawai</h6></span>
+              <span class="info-box-number"> <h6><b>{{$hariperpegawai}}</b>  hari/pegawai</h6></span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -271,7 +269,7 @@
 
                     <div class="progress-group">
                       Publik
-                      <span class="float-right">Rp. {{number_format($total_invoice_publik,2)}}</span>
+                      <span class="float-right">Rp. {{$total_invoice_publik}}</span>
                       
                     </div>
                     </div>

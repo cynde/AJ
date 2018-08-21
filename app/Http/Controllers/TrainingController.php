@@ -8,6 +8,8 @@ use App\Topik;
 use App\Penyelenggara;
 use App\Kompetensi;
 use Illuminate\Http\Request;
+use DB;
+use Illuminate\Support\Facades\Validator;
 
 class TrainingController extends Controller
 {
@@ -16,6 +18,11 @@ class TrainingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         $all = Training::leftJoin('media', 'training.id_media', '=', 'media.id_media')
@@ -48,13 +55,18 @@ class TrainingController extends Controller
      */
     public function store(Request $request)
     {
+        Validator::extend('uniqueNamaandPenyelenggaraTraining', function ($attribute, $value, $parameters, $validator) {
+        $count = DB::table('training')->where('nama_training', $value)
+                                ->where('id_penyelenggara', $parameters[0])
+                                ->count();
+
+        return $count === 0;
+        });
         $validatedData = $request->validate([
-            'id_training' => 'required|unique:training',
-            'nama_training' => 'required',
+            'nama_training' => "uniqueNamaandPenyelenggaraTraining:{$request->id_penyelenggara}|required",
             'id_media' => 'required',
             'id_topik' => 'required',
             'id_kompetensi' => 'required',
-            'id_penyelenggara' => 'required',
         ]);
         $train = new Training();
         $train->id_training = $request->id_training;

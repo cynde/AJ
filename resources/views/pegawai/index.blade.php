@@ -69,8 +69,8 @@
                 <td>{{$a->nama_jabatan}}</td>
                 <td>{{$a->tanggal_masuk}}</td>
                 <td>{{$a->tanggal_keluar}}</td>
-                <td><button type="button" class="btn btn-block btn-secondary btn-sm" id="lihatKD" data-id="{{$a->nik_pegawai}}">lihat</button></td>
-                <td><button type="button" class="btn btn-block btn-secondary btn-sm" id="lihatKJ" data-id="{{$a->nik_pegawai}}">lihat</button></td>
+                <td><a href="/pegawai/showKD/{{$a->nik_pegawai}}"><button type="button" class="btn btn-block btn-secondary btn-sm">lihat</button></a></td>
+                <td><a href="/pegawai/showKJ/{{$a->nik_pegawai}}"><button type="button" class="btn btn-block btn-secondary btn-sm">lihat</button></td>
                 <td><a href="/pegawai/edit/{{$a->nik_pegawai}}"><button type="button" class="btn btn-block btn-warning btn-sm"><span class="fa fa-edit"></span></button></a></td>
                 <td><form action="/pegawai/delete/{{$a->nik_pegawai}}" method="POST">
                   {{csrf_field()}}
@@ -80,7 +80,9 @@
               @endforeach
           </table>
           @else
-            <p>Tidak ada data</p>
+          <div class="alert alert-warning">
+            <i class="fa fa-exclamation-triangle"></i> Tidak ada data.
+          </div>
           @endif
         </div>
         <!-- /.card-body -->
@@ -89,61 +91,6 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-
-<!-- Modal kompetensi departemen -->
-<div class="modal fade" id="kompetensiDepartemen" tabindex="-1" role="dialog" aria-labelledby="kompetensiDepartemen" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="kompetensiDepartemen">Kompetensi Departemen</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body" style="text-align: center;">
-        <table id="table-kompetensi-departemen" class="table table-striped">
-          <thead>
-            <th>Status</th>
-          </thead>
-          <tbody id="KDDetailBody">
-          </tbody>
-        </table>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Modal kompetensi jabatan -->
-<div class="modal fade" id="kompetensiJabatan" tabindex="-1" role="dialog" aria-labelledby="kompetensiJabatan" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="kompetensiJabatan">Kompetensi Jabatan</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body" style="text-align: center;">
-        <table id="table-kompetensi-jabatan" class="table table-striped">
-          <thead>
-            <tr>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody id="KJDetailBody">
-
-          </tbody>
-        </table>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 </div>
 @endsection
@@ -168,96 +115,6 @@
   })
 </script>
 
-<script type="text/javascript">
-$(document).ready(function() {
-  $(document).on('click','#lihatKD',function(e) {
-    jQuery.noConflict();
-    // $('#lihatDepartemen').modal('show');
-    $.ajaxSetup({
-        headers:{'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')}
-    })
-    e.preventDefault(e);
-    var triggerid = $(this).data('id');
-    $.ajax({
-      type: 'get',
-      url: '/pegawai/showKD/'+ triggerid,
-      dataType: 'json',
-      success: function(message) {
-        // console.log(message)
-          jQuery.noConflict();
-          document.getElementById('KDDetailBody').innerHTML = '';
-          var tableAppend = '';
-          for(var j=0; j < message.allkompdept.length; j++){
-            tableAppend += '<tr><td><b>Kompetensi ' + message.allkompdept[j]['nama_kompetensi'] + '</b> (level:' + message.allkompdept[j]['level_kompetensi'] + ')</td></tr><tr><td><b>SUDAH</b></td></tr>';
-            for(var i = 0; i < message.done.length; i++) {
-              if(message.done[i]['nama_kompetensi'] == message.allkompdept[j]['nama_kompetensi']){
-                tableAppend += '<tr><td>' + message.done[i]['nama_training'] + '</td></tr>';
-                };
-            };
-
-            tableAppend += '<tr><td><b>BELUM</b></td></tr>';
-            for(var i = 0; i < message.undone.length; i++) {
-              if(message.undone[i]['nama_kompetensi'] == message.allkompdept[j]['nama_kompetensi']){
-                tableAppend += '<tr><td>' + message.undone[i]['nama_training'] + '</td></tr>';
-                };
-            };
-          };
-          $('#KDDetailBody').append(tableAppend);
-          $('#kompetensiDepartemen').modal('show');
-      },
-      error: function(message){
-        console.log(message);
-      }
-    });
-  });
-});
-</script>
-
-<script type="text/javascript">
-$(document).ready(function() {
-  $(document).on('click','#lihatKJ',function(e) {
-    jQuery.noConflict();
-    // $('#lihatDepartemen').modal('show');
-    $.ajaxSetup({
-        headers:{'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')}
-    })
-    e.preventDefault(e);
-    var triggerid = $(this).data('id');
-    $.ajax({
-      type: 'get',
-      url: '/pegawai/showKJ/'+ triggerid,
-      dataType: 'json',
-      success: function(message) {
-        // console.log(message)
-          jQuery.noConflict();
-          document.getElementById('KJDetailBody').innerHTML = '';
-          var tableAppend = '';
-          for(var j=0; j < message.allkompjab.length; j++){
-            tableAppend += '<tr><td><b>Kompetensi ' + message.allkompjab[j]['nama_kompetensi'] + '</b> (level:' + message.allkompjab[j]['level_kompetensi'] + ')</td></tr><tr><td><b>SUDAH</b></td></tr>';
-            for(var i = 0; i < message.done.length; i++) {
-              if(message.done[i]['nama_kompetensi'] == message.allkompjab[j]['nama_kompetensi']){
-                tableAppend += '<tr><td>' + message.done[i]['nama_training'] + '</td></tr>';
-                };
-            };
-
-            tableAppend += '<tr><td><b>BELUM</b></td></tr>';
-            for(var i = 0; i < message.undone.length; i++) {
-              if(message.undone[i]['nama_kompetensi'] == message.allkompjab[j]['nama_kompetensi']){
-                tableAppend += '<tr><td>' + message.undone[i]['nama_training'] + '</td></tr>';
-                };
-            };
-          };
-          $('#KJDetailBody').append(tableAppend);
-          $('#kompetensiJabatan').modal('show');
-      },
-      error: function(message){
-        console.log(message);
-      }
-    });
-  });
-});
-</script>
-
 <script>
   $(document).ready(function() {
     'use strict';
@@ -265,25 +122,6 @@ $(document).ready(function() {
         "bJQueryUI": true,
         "bStateSave": true,
         "scrollX": true
-    });
-    $('#table-kompetensi-departemen').dataTable({
-        "bJQueryUI": true,
-        "bStateSave": true,
-        "paging":   false,
-        "ordering": false,
-        "info": false,
-        "bFilter": false
-    });
-
-    
-
-    $('#table-kompetensi-jabatan').dataTable({
-        "bJQueryUI": true,
-        "bStateSave": true,
-        "paging":   false,
-        "ordering": false,
-        "info": false,
-        "bFilter": false
     });
   });
 </script>
